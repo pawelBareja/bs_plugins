@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ES2018",
+		"module": "ES2015",
+		"moduleResolution": "node",
+		"jsx": "react-jsx",
+		"strict": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
+	},
+	"include": ["src/**/*"]
+}

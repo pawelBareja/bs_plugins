@@ -1,0 +1,27 @@
+{
+	"name": "bs-plugins",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"lint:js": "wp-scripts lint-js",
+		"lint:style": "wp-scripts lint-style",
+		"type-check": "tsc --noEmit",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
+	},
+	"devDependencies": {
+		"@storybook/addon-essentials": "^8.6.14",
+		"@storybook/react": "^8.6.18",
+		"@storybook/react-vite": "^8.6.18",
+		"@types/wordpress__block-editor": "^15.0.6",
+		"@wordpress/block-editor": "*",
+		"@wordpress/blocks": "*",
+		"@wordpress/components": "*",
+		"@wordpress/i18n": "*",
+		"@wordpress/scripts": "^30.0.0",
+		"storybook": "^8.6.18",
+		"vite": "^6.4.3"
+	}
+}
