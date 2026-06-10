@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/grid",
+	"version": "1.0.0",
+	"title": "Grid Obraz + Tekst",
+	"category": "common",
+	"icon": "columns",
+	"description": "Dwie kolumny: obrazek i tekst, z możliwością zamiany stron",
+	"keywords": ["grid", "obraz", "tekst", "kolumny"],
+	"textdomain": "bs-plugins",
+	"attributes": {
+		"obrazek": {
+			"type": "object",
+			"default": null
+		},
+		"tytul": {
+			"type": "string"
+		},
+		"tresc": {
+			"type": "string"
+		},
+		"obrazekPoLewej": {
+			"type": "boolean",
+			"default": true
+		},
+		"kolorTla": {
+			"type": "string"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

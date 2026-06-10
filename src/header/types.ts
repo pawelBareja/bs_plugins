@@ -5,7 +5,8 @@ export interface IkonaMedia {
 }
 
 export type HeaderAtributes = {
-	tytul: string;
+	tytul?: string;
 	podtytul: string;
 	ikona: IkonaMedia | null;
+	szerokoscIkony?: number;
 }

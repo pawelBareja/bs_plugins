@@ -11,8 +11,7 @@
 	"textdomain": "bs-plugins",
 	"attributes": {
 		"tytul": {
-			"type": "string",
-			"default": ""
+			"type": "string"
 		},
 		"podtytul": {
 			"type": "string",
@@ -21,6 +20,9 @@
 		"ikona": {
 			"type": "object",
 			"default": null
+		},
+		"szerokoscIkony": {
+			"type": "number"
 		}
 	},
 	"editorScript": "file:./index.js",

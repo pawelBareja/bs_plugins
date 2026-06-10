@@ -1,0 +1,11 @@
+.blok-grid {
+	&__obrazek {
+		img {
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.85;
+			}
+		}
+	}
+}

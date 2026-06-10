@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function bs_plugins_register_blocks(): void {
 	$blocks = [
 		'header',
+		'grid',
 	];
 
 	foreach ( $blocks as $block ) {

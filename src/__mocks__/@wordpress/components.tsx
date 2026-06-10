@@ -19,3 +19,67 @@ export function Button( { variant = 'secondary', children, ...rest }: ButtonProp
 		</button>
 	);
 }
+
+interface PanelBodyProps {
+	title?: string;
+	children: React.ReactNode;
+}
+
+export function PanelBody( { title, children }: PanelBodyProps ) {
+	return (
+		<div style={ { marginBottom: '8px' } }>
+			{ title && (
+				<strong style={ { display: 'block', marginBottom: '8px', fontSize: '11px', textTransform: 'uppercase', color: '#1e1e1e' } }>
+					{ title }
+				</strong>
+			) }
+			{ children }
+		</div>
+	);
+}
+
+interface TextControlProps {
+	label?: string;
+	value?: string;
+	onChange: ( val: string ) => void;
+	type?: string;
+	placeholder?: string;
+}
+
+interface ToggleControlProps {
+	label?: string;
+	checked: boolean;
+	onChange: ( val: boolean ) => void;
+}
+
+export function ToggleControl( { label, checked, onChange }: ToggleControlProps ) {
+	return (
+		<label style={ { display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', marginBottom: '8px' } }>
+			<input
+				type="checkbox"
+				checked={ checked }
+				onChange={ ( e ) => onChange( e.target.checked ) }
+			/>
+			{ label && <span style={ { fontSize: '13px', color: '#1e1e1e' } }>{ label }</span> }
+		</label>
+	);
+}
+
+export function TextControl( { label, value = '', onChange, type = 'text', placeholder }: TextControlProps ) {
+	return (
+		<div style={ { marginBottom: '8px' } }>
+			{ label && (
+				<label style={ { display: 'block', fontSize: '11px', marginBottom: '4px', color: '#1e1e1e' } }>
+					{ label }
+				</label>
+			) }
+			<input
+				type={ type }
+				value={ value }
+				placeholder={ placeholder }
+				onChange={ ( e ) => onChange( e.target.value ) }
+				style={ { width: '100%', padding: '4px 8px', border: '1px solid #949494', borderRadius: 2, fontSize: '13px' } }
+			/>
+		</div>
+	);
+}

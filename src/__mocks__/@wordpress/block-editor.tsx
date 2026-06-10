@@ -79,6 +79,50 @@ interface MediaUploadProps {
 	render: ( { open }: { open: () => void } ) => React.ReactNode;
 }
 
+// InspectorControls — w Storybooku renderuje się inline pod blokiem
+export function InspectorControls( { children }: { children: React.ReactNode } ) {
+	return (
+		<div style={ { border: '1px dashed #007cba', padding: '12px', marginTop: '12px', background: '#f0f6fc', borderRadius: 2 } }>
+			<small style={ { color: '#007cba', display: 'block', marginBottom: '8px' } }>
+				⚙ Sidebar (Inspector Controls)
+			</small>
+			{ children }
+		</div>
+	);
+}
+
+// ColorPalette — paleta kolorów
+interface ColorPaletteProps {
+	colors: Array< { name: string; color: string } >;
+	value?: string;
+	onChange: ( color: string | undefined ) => void;
+	disableCustomColors?: boolean;
+}
+
+export function ColorPalette( { colors, value, onChange }: ColorPaletteProps ) {
+	return (
+		<div style={ { display: 'flex', flexWrap: 'wrap', gap: '6px', padding: '4px 0' } }>
+			{ colors.map( ( { name, color } ) => (
+				<button
+					key={ color }
+					title={ name }
+					onClick={ () => onChange( value === color ? undefined : color ) }
+					style={ {
+						width: '28px',
+						height: '28px',
+						borderRadius: '50%',
+						background: color,
+						border: value === color ? '3px solid #007cba' : '2px solid #ccc',
+						cursor: 'pointer',
+						padding: 0,
+						outline: 'none',
+					} }
+				/>
+			) ) }
+		</div>
+	);
+}
+
 export function MediaUpload( { render, onSelect }: MediaUploadProps ) {
 	const open = () => {
 		// Symuluje wybranie przykładowego obrazka
