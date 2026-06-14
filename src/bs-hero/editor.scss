@@ -1,0 +1,23 @@
+@use '../styles/config' as *;
+
+// Cap height in editor for comfort — editor styles load after style.scss,
+// so cascade order wins here without needing !important
+.blok-hero {
+	min-height: min( calc( var( --blok-hero-vh, 100 ) * 1dvh ), 60vh );
+	overflow: visible;
+
+	&__tytul {
+		animation: none;
+	}
+
+	&__zawartosc {
+		position: relative;
+		z-index: 1;
+	}
+}
+
+.blok-hero__usun-zdjecie {
+	display: block;
+	margin-top: 0.5rem;
+	color: #cc1818;
+}

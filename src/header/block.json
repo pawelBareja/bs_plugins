@@ -25,6 +25,10 @@
 			"type": "number"
 		}
 	},
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true
+	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

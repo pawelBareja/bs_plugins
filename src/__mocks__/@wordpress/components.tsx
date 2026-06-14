@@ -65,6 +65,68 @@ export function ToggleControl( { label, checked, onChange }: ToggleControlProps 
 	);
 }
 
+interface RangeControlProps {
+	label?: string;
+	value: number;
+	onChange: ( val: number | undefined ) => void;
+	min?: number;
+	max?: number;
+}
+
+export function RangeControl( { label, value, onChange, min = 0, max = 100 }: RangeControlProps ) {
+	return (
+		<div style={ { marginBottom: '8px' } }>
+			{ label && (
+				<label style={ { display: 'block', fontSize: '11px', marginBottom: '4px', color: '#1e1e1e' } }>
+					{ label }: <strong>{ value }</strong>
+				</label>
+			) }
+			<input
+				type="range"
+				min={ min }
+				max={ max }
+				value={ value }
+				onChange={ ( e ) => onChange( parseInt( e.target.value, 10 ) ) }
+				style={ { width: '100%' } }
+			/>
+			<div style={ { display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#666' } }>
+				<span>{ min }</span>
+				<span>{ max }</span>
+			</div>
+		</div>
+	);
+}
+
+interface SelectControlProps {
+	label?: string;
+	value?: string;
+	options: Array< { label: string; value: string } >;
+	onChange: ( val: string ) => void;
+}
+
+export function SelectControl( { label, value, options, onChange }: SelectControlProps ) {
+	return (
+		<div style={ { marginBottom: '8px' } }>
+			{ label && (
+				<label style={ { display: 'block', fontSize: '11px', marginBottom: '4px', color: '#1e1e1e' } }>
+					{ label }
+				</label>
+			) }
+			<select
+				value={ value }
+				onChange={ ( e ) => onChange( e.target.value ) }
+				style={ { width: '100%', padding: '4px 8px', border: '1px solid #949494', borderRadius: 2, fontSize: '13px' } }
+			>
+				{ options.map( ( opt ) => (
+					<option key={ opt.value } value={ opt.value }>
+						{ opt.label }
+					</option>
+				) ) }
+			</select>
+		</div>
+	);
+}
+
 export function TextControl( { label, value = '', onChange, type = 'text', placeholder }: TextControlProps ) {
 	return (
 		<div style={ { marginBottom: '8px' } }>

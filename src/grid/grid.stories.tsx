@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Edit from './edit';
 import type { GridAttributes } from './types';
@@ -10,6 +11,20 @@ const meta: Meta< typeof Edit > = {
 		layout: 'fullscreen',
 	},
 	tags: [ 'autodocs' ],
+	decorators: [
+		( _Story, { args } ) => {
+			const [ attributes, setAttrs ] = useState< GridAttributes >( args.attributes );
+			return (
+				<Edit
+					{ ...args }
+					attributes={ attributes }
+					setAttributes={ ( partial ) =>
+						setAttrs( ( prev ) => ( { ...prev, ...partial } ) )
+					}
+				/>
+			);
+		},
+	],
 };
 
 export default meta;
@@ -26,49 +41,31 @@ const baseAttributes: GridAttributes = {
 	obrazekPoLewej: true,
 };
 
-const defaultArgs = {
-	setAttributes: () => {},
+const baseArgs = {
 	clientId: 'preview-grid',
 	isSelected: false,
 	context: {},
 };
 
 export const ObrazekPoLewej: Story = {
-	args: {
-		attributes: baseAttributes,
-		...defaultArgs,
-	},
+	args: { attributes: baseAttributes, ...baseArgs },
 };
 
 export const ObrazekPoPrawej: Story = {
-	args: {
-		attributes: { ...baseAttributes, obrazekPoLewej: false },
-		...defaultArgs,
-	},
+	args: { attributes: { ...baseAttributes, obrazekPoLewej: false }, ...baseArgs },
 };
 
 export const BezTytulu: Story = {
-	args: {
-		attributes: { ...baseAttributes, tytul: undefined },
-		...defaultArgs,
-	},
+	args: { attributes: { ...baseAttributes, tytul: undefined }, ...baseArgs },
 };
 
 export const BezObrazka: Story = {
-	args: {
-		attributes: { ...baseAttributes, obrazek: null },
-		...defaultArgs,
-	},
+	args: { attributes: { ...baseAttributes, obrazek: null }, ...baseArgs },
 };
 
 export const Pusty: Story = {
 	args: {
-		attributes: {
-			obrazek: null,
-			tytul: undefined,
-			tresc: undefined,
-			obrazekPoLewej: true,
-		},
-		...defaultArgs,
+		attributes: { obrazek: null, tytul: undefined, tresc: undefined, obrazekPoLewej: true },
+		...baseArgs,
 	},
 };

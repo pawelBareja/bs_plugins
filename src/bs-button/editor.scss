@@ -1,0 +1,8 @@
+@use '../styles/config' as *;
+
+// Remove contenteditable outline from RichText inside the button
+// More specific selector overrides without !important
+.editor-styles-wrapper .blok-przycisk {
+	outline: none;
+	cursor: text;
+}

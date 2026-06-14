@@ -26,7 +26,31 @@
 		},
 		"kolorTla": {
 			"type": "string"
+		},
+		"kolorTekstu": {
+			"type": "string"
+		},
+		"arkaObrazka": {
+			"type": "boolean",
+			"default": false
+		},
+		"kolorArki": {
+			"type": "string"
+		},
+		"ozdobaTekst": {
+			"type": "string",
+			"default": ""
+		},
+		"ozdobaTekstKolor": {
+			"type": "string"
+		},
+		"ozdobaLiniaKolor": {
+			"type": "string"
 		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

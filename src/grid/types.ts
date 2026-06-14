@@ -10,4 +10,10 @@ export type GridAttributes = {
 	tresc?: string;
 	obrazekPoLewej: boolean;
 	kolorTla?: string;
+	kolorTekstu?: string;
+	arkaObrazka?: boolean;
+	kolorArki?: string;
+	ozdobaTekst?: string;
+	ozdobaTekstKolor?: string;
+	ozdobaLiniaKolor?: string;
 }

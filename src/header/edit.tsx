@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import {
 	useBlockProps,
 	RichText,
@@ -23,6 +24,28 @@ export default function Edit( {
 		cursor: 'pointer',
 	};
 
+	const onSelectIkona = useCallback(
+		( media: IkonaMedia ) =>
+			setAttributes( { ikona: { id: media.id, url: media.url, alt: media.alt } } ),
+		[ setAttributes ]
+	);
+
+	const onChangeSzerokosc = useCallback(
+		( val: string ) =>
+			setAttributes( { szerokoscIkony: val ? parseInt( val, 10 ) : undefined } ),
+		[ setAttributes ]
+	);
+
+	const onChangeTytul = useCallback(
+		( val: string ) => setAttributes( { tytul: val } ),
+		[ setAttributes ]
+	);
+
+	const onChangePodtytul = useCallback(
+		( val: string ) => setAttributes( { podtytul: val } ),
+		[ setAttributes ]
+	);
+
 	return (
 		<>
 			<InspectorControls>
@@ -31,11 +54,7 @@ export default function Edit( {
 						label="Szerokość ikony (px)"
 						type="number"
 						value={ szerokoscIkony ? String( szerokoscIkony ) : '' }
-						onChange={ ( val: string ) =>
-							setAttributes( {
-								szerokoscIkony: val ? parseInt( val, 10 ) : undefined,
-							} )
-						}
+						onChange={ onChangeSzerokosc }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -43,15 +62,7 @@ export default function Edit( {
 			<div { ...blockProps } className="blok-header">
 				<MediaUploadCheck>
 					<MediaUpload
-						onSelect={ ( media ) =>
-							setAttributes( {
-								ikona: {
-									id: ( media as IkonaMedia ).id,
-									url: ( media as IkonaMedia ).url,
-									alt: ( media as IkonaMedia ).alt,
-								},
-							} )
-						}
+						onSelect={ ( media ) => onSelectIkona( media as IkonaMedia ) }
 						allowedTypes={ [ 'image' ] }
 						value={ ikona?.id }
 						render={ ( { open } ) => (
@@ -77,7 +88,7 @@ export default function Edit( {
 					tagName="h3"
 					className="blok-header__tytul"
 					value={ tytul }
-					onChange={ ( val: string ) => setAttributes( { tytul: val } ) }
+					onChange={ onChangeTytul }
 					placeholder="Wpisz tytuł..."
 				/>
 
@@ -85,9 +96,7 @@ export default function Edit( {
 					tagName="p"
 					className="blok-header__podtytul"
 					value={ podtytul }
-					onChange={ ( val: string ) =>
-						setAttributes( { podtytul: val } )
-					}
+					onChange={ onChangePodtytul }
 					placeholder="Podtytuł (opcjonalne)..."
 				/>
 			</div>

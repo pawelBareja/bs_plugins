@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import {
 	useBlockProps,
 	RichText,
@@ -6,40 +7,83 @@ import {
 	InspectorControls,
 	ColorPalette,
 } from '@wordpress/block-editor';
-import { Button, PanelBody, ToggleControl } from '@wordpress/components';
+import { Button, PanelBody, ToggleControl, TextControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { GridAttributes, ObrazekMedia } from './types';
+import { BRAND_COLORS } from '../config';
 import './editor.scss';
-
-const BRAND_COLORS = [
-	{ name: 'Biały', color: '#fff' },
-	{ name: 'Czarny', color: '#111111' },
-	{ name: 'Czerwony', color: '#ee2b27' },
-	{ name: 'Zielony', color: '#a7ce3a' },
-	{ name: 'Szary', color: '#6a6a6a' },
-	{ name: 'Kremowy', color: '#f1efeb' },
-];
 
 export default function Edit( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< GridAttributes > ) {
-	const { obrazek, tytul, tresc, obrazekPoLewej, kolorTla } = attributes;
-	const blockProps = useBlockProps();
+	const {
+		obrazek, tytul, tresc, obrazekPoLewej,
+		kolorTla, kolorTekstu, arkaObrazka, kolorArki,
+		ozdobaTekst, ozdobaTekstKolor, ozdobaLiniaKolor,
+	} = attributes;
+	const gridClassName = obrazekPoLewej ? 'blok-grid' : 'blok-grid blok-grid--obrazek-prawy';
+	const blockProps = useBlockProps( { className: gridClassName } );
+
+	const tekstStyle: React.CSSProperties = {
+		...( kolorTla ? { backgroundColor: kolorTla } : {} ),
+		...( kolorTekstu ? { color: kolorTekstu } : {} ),
+	};
+	const hasTekstStyle = Object.keys( tekstStyle ).length > 0;
+	const obrazekClassName = arkaObrazka ? 'blok-grid__obrazek blok-grid__obrazek--arka' : 'blok-grid__obrazek';
+	const arkaStyle: React.CSSProperties = arkaObrazka && kolorArki ? { backgroundColor: kolorArki } : {};
+
+	const onSelectObrazek = useCallback(
+		( media: ObrazekMedia ) =>
+			setAttributes( { obrazek: { id: media.id, url: media.url, alt: media.alt } } ),
+		[ setAttributes ]
+	);
+	const onToggleStrona = useCallback(
+		( val: boolean ) => setAttributes( { obrazekPoLewej: val } ),
+		[ setAttributes ]
+	);
+	const onChangeKolorTla = useCallback(
+		( color: string | undefined ) => setAttributes( { kolorTla: color ?? undefined } ),
+		[ setAttributes ]
+	);
+	const onChangeKolorTekstu = useCallback(
+		( color: string | undefined ) => setAttributes( { kolorTekstu: color ?? undefined } ),
+		[ setAttributes ]
+	);
+	const onToggleArka = useCallback(
+		( val: boolean ) => setAttributes( { arkaObrazka: val } ),
+		[ setAttributes ]
+	);
+	const onChangeKolorArki = useCallback(
+		( color: string | undefined ) => setAttributes( { kolorArki: color ?? undefined } ),
+		[ setAttributes ]
+	);
+	const onChangeTytul = useCallback(
+		( val: string ) => setAttributes( { tytul: val } ),
+		[ setAttributes ]
+	);
+	const onChangeTresc = useCallback(
+		( val: string ) => setAttributes( { tresc: val } ),
+		[ setAttributes ]
+	);
+	const onChangeOzdobaTekst = useCallback(
+		( val: string ) => setAttributes( { ozdobaTekst: val } ),
+		[ setAttributes ]
+	);
+	const onChangeOzdobaTekstKolor = useCallback(
+		( color: string | undefined ) => setAttributes( { ozdobaTekstKolor: color ?? undefined } ),
+		[ setAttributes ]
+	);
+	const onChangeOzdobaLiniaKolor = useCallback(
+		( color: string | undefined ) => setAttributes( { ozdobaLiniaKolor: color ?? undefined } ),
+		[ setAttributes ]
+	);
 
 	const kolumnaObrazek = (
-		<div className="blok-grid__obrazek">
+		<div className={ obrazekClassName } style={ Object.keys( arkaStyle ).length ? arkaStyle : undefined }>
 			<MediaUploadCheck>
 				<MediaUpload
-					onSelect={ ( media ) =>
-						setAttributes( {
-							obrazek: {
-								id: ( media as ObrazekMedia ).id,
-								url: ( media as ObrazekMedia ).url,
-								alt: ( media as ObrazekMedia ).alt,
-							},
-						} )
-					}
+					onSelect={ ( media ) => onSelectObrazek( media as ObrazekMedia ) }
 					allowedTypes={ [ 'image' ] }
 					value={ obrazek?.id }
 					render={ ( { open } ) =>
@@ -48,7 +92,7 @@ export default function Edit( {
 								src={ obrazek.url }
 								alt={ obrazek.alt }
 								onClick={ open }
-								style={ { cursor: 'pointer', width: '100%', height: 'auto' } }
+								style={ { cursor: 'pointer', width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }
 							/>
 						) : (
 							<Button onClick={ open } variant="secondary">
@@ -58,26 +102,37 @@ export default function Edit( {
 					}
 				/>
 			</MediaUploadCheck>
+			{ ozdobaLiniaKolor && (
+				<div
+					className="blok-grid__ozdoba-linia"
+					style={ { backgroundColor: ozdobaLiniaKolor } }
+				/>
+			) }
+			{ ozdobaTekstKolor && (
+				<div
+					className="blok-grid__ozdoba-tekst"
+					style={ { color: ozdobaTekstKolor } }
+				>
+					{ ozdobaTekst || 'Tekst dekoracyjny' }
+				</div>
+			) }
 		</div>
 	);
 
 	const kolumnaTekst = (
-		<div
-			className={ `blok-grid__tekst${ kolorTla ? ' blok-grid__tekst--has-bg' : '' }` }
-			style={ kolorTla ? { backgroundColor: kolorTla } : undefined }
-		>
+		<div className="blok-grid__tekst" style={ hasTekstStyle ? tekstStyle : undefined }>
 			<RichText
 				tagName="h3"
 				className="blok-grid__tytul"
 				value={ tytul ?? '' }
-				onChange={ ( val: string ) => setAttributes( { tytul: val } ) }
+				onChange={ onChangeTytul }
 				placeholder="Tytuł (opcjonalny)..."
 			/>
 			<RichText
 				tagName="p"
 				className="blok-grid__tresc"
 				value={ tresc ?? '' }
-				onChange={ ( val: string ) => setAttributes( { tresc: val } ) }
+				onChange={ onChangeTresc }
 				placeholder="Treść (opcjonalna)..."
 			/>
 		</div>
@@ -90,27 +145,70 @@ export default function Edit( {
 					<ToggleControl
 						label="Obrazek po lewej"
 						checked={ obrazekPoLewej }
-						onChange={ ( val: boolean ) =>
-							setAttributes( { obrazekPoLewej: val } )
-						}
+						onChange={ onToggleStrona }
+					/>
+					<ToggleControl
+						label="Kształt arki"
+						checked={ arkaObrazka ?? false }
+						onChange={ onToggleArka }
 					/>
 				</PanelBody>
+				{ arkaObrazka && (
+					<PanelBody title="Kolor tła arki">
+						<ColorPalette
+							colors={ BRAND_COLORS }
+							value={ kolorArki }
+							onChange={ onChangeKolorArki }
+							disableCustomColors
+						/>
+					</PanelBody>
+				) }
+				{ arkaObrazka && (
+					<PanelBody title="Dekoracje arki">
+						<p style={ { fontSize: '11px', color: '#757575', marginTop: 0 } }>
+							Linia (prawa strona)
+						</p>
+						<ColorPalette
+							colors={ BRAND_COLORS }
+							value={ ozdobaLiniaKolor }
+							onChange={ onChangeOzdobaLiniaKolor }
+							disableCustomColors
+						/>
+						<p style={ { fontSize: '11px', color: '#757575' } }>
+							Tekst pionowy (lewa strona)
+						</p>
+						<TextControl
+							label="Treść tekstu"
+							value={ ozdobaTekst ?? '' }
+							onChange={ onChangeOzdobaTekst }
+						/>
+						<ColorPalette
+							colors={ BRAND_COLORS }
+							value={ ozdobaTekstKolor }
+							onChange={ onChangeOzdobaTekstKolor }
+							disableCustomColors
+						/>
+					</PanelBody>
+				) }
 				<PanelBody title="Kolor tła sekcji tekstu">
 					<ColorPalette
 						colors={ BRAND_COLORS }
 						value={ kolorTla }
-						onChange={ ( color ) =>
-							setAttributes( { kolorTla: color ?? undefined } )
-						}
+						onChange={ onChangeKolorTla }
+						disableCustomColors
+					/>
+				</PanelBody>
+				<PanelBody title="Kolor tekstu">
+					<ColorPalette
+						colors={ BRAND_COLORS }
+						value={ kolorTekstu }
+						onChange={ onChangeKolorTekstu }
 						disableCustomColors
 					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div
-				{ ...blockProps }
-				className={ `blok-grid${ obrazekPoLewej ? '' : ' blok-grid--obrazek-prawy' }` }
-			>
+			<div { ...blockProps }>
 				{ obrazekPoLewej ? kolumnaObrazek : kolumnaTekst }
 				{ obrazekPoLewej ? kolumnaTekst : kolumnaObrazek }
 			</div>

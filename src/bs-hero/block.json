@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/bs-hero",
+	"version": "1.0.0",
+	"title": "BS Hero",
+	"category": "design",
+	"description": "Sekcja hero z tłem obrazkowym, opcjonalnym nagłówkiem i przyciskiem.",
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true
+	},
+	"attributes": {
+		"obrazek": {
+			"type": "object",
+			"default": null
+		},
+		"tytul": {
+			"type": "string"
+		},
+		"marginesGorny": {
+			"type": "number",
+			"default": 0
+		},
+		"wysokoscVh": {
+			"type": "number",
+			"default": 100
+		}
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"textdomain": "bs-plugins"
+}

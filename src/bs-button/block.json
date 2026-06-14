@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/bs-button",
+	"version": "1.0.0",
+	"title": "BS Button",
+	"category": "design",
+	"description": "Przycisk z wariantami kolorystycznymi i rozmiarami.",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"etykieta": {
+			"type": "string",
+			"default": ""
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"wariant": {
+			"type": "string",
+			"default": "bialy"
+		},
+		"rozmiar": {
+			"type": "string",
+			"default": "lg"
+		},
+		"nowyTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"scrollOffset": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "bs-plugins"
+}

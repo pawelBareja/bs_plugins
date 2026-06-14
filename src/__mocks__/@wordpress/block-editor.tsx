@@ -17,6 +17,7 @@ interface RichTextProps {
 	onChange?: ( val: string ) => void;
 	placeholder?: string;
 	className?: string;
+	allowedFormats?: string[];
 }
 
 interface RichTextContentProps {
@@ -40,7 +41,7 @@ function RichText( {
 			onInput={ ( e: React.FormEvent< HTMLElement > ) =>
 				onChange?.( e.currentTarget.innerHTML )
 			}
-			style={ { outline: '1px dashed #999', minHeight: '1em', padding: '2px 4px' } }
+			style={ { outline: '1px dashed #999', minHeight: '1em' } }
 		>
 			{ value || (
 				<span style={ { opacity: 0.4, pointerEvents: 'none' } }>
@@ -122,6 +123,27 @@ export function ColorPalette( { colors, value, onChange }: ColorPaletteProps ) {
 		</div>
 	);
 }
+
+// InnerBlocks — placeholder w Storybooku
+interface InnerBlocksProps {
+	allowedBlocks?: string[];
+	template?: Array< [ string, Record< string, unknown > ] >;
+	renderAppender?: unknown;
+}
+
+function InnerBlocksComponent( { allowedBlocks }: InnerBlocksProps ) {
+	return (
+		<div style={ { border: '1px dashed #007cba', padding: '16px', textAlign: 'center', color: '#007cba', fontSize: '12px', borderRadius: 2 } }>
+			Inner Blocks{ allowedBlocks ? ` (dozwolone: ${ allowedBlocks.join( ', ' ) })` : '' }
+		</div>
+	);
+}
+
+InnerBlocksComponent.Content = function InnerBlocksContent() {
+	return <></>;
+};
+
+export const InnerBlocks = InnerBlocksComponent;
 
 export function MediaUpload( { render, onSelect }: MediaUploadProps ) {
 	const open = () => {
