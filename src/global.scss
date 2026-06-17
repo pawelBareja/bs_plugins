@@ -1,3 +1,8 @@
 @use "styles/config" as *;
 @use "styles/cf7";
 @use "styles/latest-posts";
+@use "styles/gallery";
+
+.single-content p {
+	margin-top: 0;
+}

@@ -1,0 +1,120 @@
+@use "../styles/config" as *;
+
+.blok-hero-home {
+	display: flex;
+	align-items: stretch;
+	background-color: var(--bs-hero-home-bg, #fbfbfb);
+	border-radius: var(--border-radius);
+	overflow: hidden;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		flex: 1 1 auto;
+		padding: var(--spacing-xxl) 6%;
+		box-sizing: border-box;
+	}
+
+	&__tytul {
+		font-family: var(--font-heading);
+		font-size: 53.235px;
+		font-weight: 200;
+		line-height: 53.235px;
+		color: var(--color-black);
+		margin: 0 0 5px;
+	}
+
+	&__rotator {
+		display: block;
+		width: 100%;
+		min-height: 53.235px;
+		margin-bottom: 30px;
+	}
+
+	&__rotator-item {
+		display: none;
+		font-family: var(--font-heading);
+		font-size: 53.235px;
+		font-weight: 200;
+		line-height: 53.235px;
+		color: var(--color-red);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		white-space: nowrap;
+
+		&.is-active {
+			display: block;
+
+			&::after {
+				content: "|";
+				animation: bs-hero-cursor 0.7s step-end infinite;
+				margin-left: 2px;
+			}
+		}
+	}
+
+	@keyframes bs-hero-cursor {
+
+		50% {
+			opacity: 0;
+		}
+	}
+
+	&__przyciski {
+		margin-top: 0;
+	}
+
+	&__obrazek-wrapper {
+		flex: 0 0 31vw;
+		position: relative;
+		overflow: hidden;
+	}
+
+	&__obrazek {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transform: scale(var(--bs-hero-home-scale, 1));
+		transition: transform 0.2s linear;
+		will-change: transform;
+	}
+
+	@media ( max-width: 768px ) {
+		flex-direction: column;
+
+		&__obrazek-wrapper {
+			flex: 1 1 auto;
+			aspect-ratio: 4 / 3;
+			order: -1;
+		}
+
+		&__content {
+			flex: 1 1 auto;
+			padding: var(--spacing-xl) 8%;
+		}
+
+		&__tytul {
+			font-size: var(--text-h3);
+			line-height: var(--leading-heading);
+		}
+
+		&__rotator {
+			min-height: calc(var(--text-h3) * var(--leading-heading));
+		}
+
+		&__rotator-item {
+			font-size: var(--text-h3);
+			line-height: var(--leading-heading);
+		}
+	}
+
+	@media ( prefers-reduced-motion: reduce ) {
+
+		&__rotator-item.is-active::after {
+			animation: none;
+		}
+	}
+}

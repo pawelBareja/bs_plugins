@@ -1,97 +1,107 @@
 @use "../styles/config" as *;
 
 .blok-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  align-items: stretch;
-  border-radius: var(--border-radius);
-  overflow: hidden;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+	align-items: stretch;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	max-width: 1260px;
+	margin-inline: auto;
+	min-height: 516px;
 
-  &__obrazek {
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+	&__obrazek {
 
-    &--arka {
-      position: relative;
-      padding: 5% 20%;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
 
-      img {
-        border-radius: 90px 90px 0 0;
-        height: auto;
-      }
-    }
-  }
+		&--arka {
+			position: relative;
+			padding: 5% 20%;
 
-  &__ozdoba-linia {
-    position: absolute;
-    right: 40px;
-    top: 10%;
-    height: 112px;
-    width: 2px;
-  }
+			img {
+				border-radius: 90px 90px 0 0;
+				height: auto;
+			}
+		}
+	}
 
-  &__ozdoba-tekst {
-    position: absolute;
-    left: 40px;
-    bottom: 10%;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: "Titillium Web", sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
+	&__ozdoba-linia {
+		position: absolute;
+		right: 40px;
+		top: 10%;
+		height: 112px;
+		width: 1px;
+	}
 
-  &__tekst {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    color: var(--color-black);
-    padding-block-start: 20%;
-    padding-inline-start: 11%;
-    padding-block-end: 11%;
-    padding-inline-end: 11%;
-  }
+	&__ozdoba-tekst {
+		position: absolute;
+		left: 40px;
+		bottom: 10%;
+		writing-mode: vertical-rl;
+		transform: rotate(180deg);
+		font-family: "Titillium Web", sans-serif;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 0.975rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
 
-  &__tytul {
-    font-family: "Titillium Web", sans-serif;
-    font-size: 35px;
-    font-weight: 300;
-    color: inherit;
-    margin: 0;
-    padding: 0;
-  }
+	&__tekst {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		color: var(--color-black);
+		padding-block-start: 20%;
+		padding-inline-start: 17%;
+		padding-block-end: 11%;
+		padding-inline-end: 20%;
+		transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+	}
 
-  &__tresc {
-    font-family: "Lato", sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    color: inherit;
-    margin: 0;
-    line-height: 1.7;
-  }
+	&__tytul {
+		font-family: "Titillium Web", sans-serif;
+		font-size: 36px;
+		font-weight: 300;
+		line-height: 2.925rem;
+		color: inherit;
+		margin: 0;
+		padding: 0;
+	}
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 0;
+	&__tresc {
+		font-family: Montserrat, sans-serif;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.225rem;
+		color: inherit;
+		margin: 0;
+	}
 
-    &__obrazek {
-      img {
-        height: auto;
-      }
-    }
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+		gap: 0;
+		min-height: unset;
 
-    &--obrazek-prawy {
-      .blok-grid__obrazek {
-        order: -1;
-      }
-    }
-  }
+		&__obrazek {
+
+			img {
+				height: auto;
+			}
+		}
+
+		&--obrazek-prawy {
+
+			.blok-grid__obrazek {
+				order: -1;
+			}
+		}
+	}
 }

@@ -5,4 +5,8 @@ export type BsButtonAttributes = {
 	rozmiar: 'xs' | 'sm' | 'md' | 'lg' | 'full';
 	nowyTab: boolean;
 	scrollOffset: number;
+	paddingGora: number;
+	paddingDol: number;
+	paddingBoki: number;
+	kolorTlaSekcji: string;
 };

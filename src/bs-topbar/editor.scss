@@ -1,0 +1,29 @@
+@use "../styles/config" as *;
+
+.bs-topbar-kampania {
+
+	&__daty {
+		display: flex;
+		gap: var(--spacing-xs);
+
+		> div {
+			flex: 1 1 50%;
+		}
+	}
+
+	&__pomoc {
+		margin: 4px 0 8px;
+		font-size: 12px;
+		opacity: 0.7;
+	}
+
+	&__separator {
+		margin: var(--spacing-sm) 0;
+		border: none;
+		border-top: 1px solid var(--color-cream);
+	}
+
+	&:last-of-type &__separator {
+		display: none;
+	}
+}

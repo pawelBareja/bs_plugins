@@ -1,0 +1,37 @@
+@use "../styles/config" as *;
+
+.editor-styles-wrapper {
+
+	.blok-faq__tab,
+	.blok-faq__pytanie-tekst,
+	.blok-faq__odpowiedz {
+		outline: none;
+		cursor: text;
+		min-width: 2em;
+	}
+
+	.blok-faq__odpowiedz {
+		display: block;
+	}
+}
+
+// Wiersze w Inspectorze — przycisk + "Usuń"
+.bs-faq-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 4px;
+
+	&__label {
+		overflow: hidden;
+		font-size: 12px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__usun {
+		flex-shrink: 0;
+		color: var(--color-red);
+	}
+}

@@ -1,50 +1,52 @@
-@use '../styles/config' as *;
+@use "../styles/config" as *;
 
 .blok-features {
 	display: grid;
-	grid-template-columns: repeat( var( --bs-features-cols, 3 ), 1fr );
-	gap: 40px 32px;
+	grid-template-columns: repeat(var(--bs-features-cols, 3), 1fr);
+	gap: 40px 30px;
+	justify-items: center;
 
 	&__element {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		gap: 16px;
+		max-width: 230px;
+		margin-inline: auto;
 	}
 
 	&__numer {
-		font-family: 'Titillium Web', sans-serif;
-		font-size: 48px;
+		font-family: "Titillium Web", sans-serif;
+		font-size: 36px;
 		font-weight: 300;
+		line-height: 2.925rem;
 		color: var(--color-black);
 		margin: 0;
-		line-height: 1;
 	}
 
 	&__tytul {
-		font-family: 'Titillium Web', sans-serif;
-		font-size: 18px;
-		font-weight: 600;
+		font-family: "Titillium Web", sans-serif;
+		font-size: 25px;
+		font-weight: 300;
+		line-height: 1.953rem;
 		color: var(--color-black);
-		margin: 0;
-		line-height: 1.3;
+		margin: 0 0 10px;
 	}
 
 	&__tresc {
-		font-family: 'Lato', sans-serif;
-		font-size: 15px;
+		font-family: Montserrat, sans-serif;
+		font-size: 16px;
 		font-weight: 400;
-		color: var(--color-gray);
+		line-height: 1.15rem;
+		color: var(--color-black);
 		margin: 0;
-		line-height: 1.7;
 	}
 
-	@media ( max-width: 768px ) {
+	@media (max-width: 768px) {
 		grid-template-columns: 1fr;
 	}
 
-	@media ( min-width: 769px ) and ( max-width: 1024px ) {
-		grid-template-columns: repeat( min( var( --bs-features-cols, 3 ), 2 ), 1fr );
+	@media (min-width: 769px) and (max-width: 1024px) {
+		grid-template-columns: repeat(min(var(--bs-features-cols, 3), 2), 1fr);
 	}
 }

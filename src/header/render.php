@@ -15,8 +15,15 @@ $szerokosc_ikony = isset( $attributes['szerokoscIkony'] ) ? intval( $attributes[
 $ikona_style = $szerokosc_ikony
 	? ' style="width:' . $szerokosc_ikony . 'px;height:auto;"'
 	: '';
+
+$sekcja_style  = bs_block_sekcja_style( $attributes );
+$wrapper_args  = [ 'class' => 'blok-header' ];
+if ( $sekcja_style ) {
+	$wrapper_args['style'] = $sekcja_style;
+}
+$wrapper_attributes = get_block_wrapper_attributes( $wrapper_args );
 ?>
-<div <?php echo get_block_wrapper_attributes( array( 'class' => 'blok-header' ) ); ?>>
+<div <?php echo $wrapper_attributes; ?>>
 
 	<?php if ( $ikona ) : ?>
 		<div class="blok-header__ikona">

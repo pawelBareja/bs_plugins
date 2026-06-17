@@ -1,18 +1,22 @@
-@use '../styles/config' as *;
+@use "../styles/config" as *;
 
-// Cap height in editor for comfort — editor styles load after style.scss,
-// so cascade order wins here without needing !important
 .blok-hero {
-	min-height: min( calc( var( --blok-hero-vh, 100 ) * 1dvh ), 60vh );
+	// Cap height in editor for comfort
+	min-height: min(calc(var(--blok-hero-vh, 100) * 1dvh), 60vh);
 	overflow: visible;
 
 	&__tytul {
 		animation: none;
+		// Upewnij, że tytuł jest biały w edytorze, gdy brak zdjęcia tła
+		color: var(--e-global-color-vamtam_accent_5, var(--color-white));
 	}
 
 	&__zawartosc {
 		position: relative;
 		z-index: 1;
+		// Zamroz efekt scroll-fade w edytorze — view.js nie działa w edytorze
+		--bs-hero-zawartosc-opacity: 1;
+		transition: none;
 	}
 }
 

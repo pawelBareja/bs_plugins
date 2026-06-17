@@ -1,0 +1,41 @@
+@use "config" as *;
+
+// =============================================================================
+// Natywny blok WordPress — Galeria (klasa dodatkowa: bs-galeria)
+// =============================================================================
+
+.wp-block-gallery.bs-galeria {
+
+	.wp-block-image {
+		margin: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			border-radius: var(--border-radius);
+			transform: translateY(calc(var(--bs-galeria-shift, 0px) * var(--bs-galeria-dir, 0)));
+		}
+
+		figcaption {
+			margin-top: var(--spacing-xs);
+			font-family: var(--font-body);
+			font-size: var(--text-small);
+			font-weight: var(--weight-regular);
+			color: var(--color-gray);
+			text-align: center;
+		}
+
+		// Co drugie zdjęcie przesunięte od góry
+		&:nth-child(2n) {
+			--bs-galeria-dir: 1;
+
+			@media ( min-width: 769px ) {
+				margin-top: 50px;
+			}
+		}
+
+		&:nth-child(2n + 1) {
+			--bs-galeria-dir: -1;
+		}
+	}
+}

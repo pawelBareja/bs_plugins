@@ -1,0 +1,168 @@
+@use "../styles/config" as *;
+
+.blok-faq {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--spacing-xxl);
+
+	&__sidebar {
+		flex: 0 0 220px;
+	}
+
+	&__marka {
+		font-family: var(--font-heading);
+		font-size: var(--text-h2);
+		font-weight: var(--weight-light);
+		color: var(--color-black);
+		margin: 0 0 var(--spacing-md);
+	}
+
+	&__taby {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-sm);
+		list-style: none;
+		margin: 0 0 var(--spacing-md);
+		padding: 0;
+		border-bottom: 1px solid var(--color-cream);
+		padding-bottom: var(--spacing-md);
+
+		li {
+			margin: 0;
+		}
+	}
+
+	&__tab {
+		display: inline-block;
+		background: none;
+		border: none;
+		padding: 0;
+		font-family: var(--font-body);
+		font-size: var(--text-p);
+		font-weight: var(--weight-regular);
+		color: var(--color-black);
+		cursor: pointer;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--color-red);
+			background: none;
+		}
+
+		&.is-active {
+			color: var(--color-red);
+			font-weight: var(--weight-semi);
+		}
+	}
+
+	&__content {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	&__panel-tytul {
+		font-family: var(--font-heading);
+		font-size: var(--text-h2);
+		font-weight: var(--weight-light);
+		color: var(--color-black);
+		margin: 0 0 var(--spacing-md);
+	}
+
+	&__lista {
+		border-top: 1px solid var(--color-cream);
+	}
+
+	&__pozycja {
+		border-bottom: 1px solid var(--color-cream);
+	}
+
+	&__pytanie-wiersz {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-md);
+		padding: var(--spacing-md) 0;
+		cursor: pointer;
+	}
+
+	&__pytanie {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-md);
+		padding: var(--spacing-md) 0;
+		background: none;
+		border: none;
+		cursor: pointer;
+		text-align: left;
+	}
+
+	&__pytanie-tekst {
+		font-family: var(--font-body);
+		font-size: var(--text-p);
+		font-weight: var(--weight-regular);
+		color: var(--color-black);
+	}
+
+	&__ikona {
+		position: relative;
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			background: var(--color-red);
+			transform: translate(-50%, -50%);
+		}
+
+		&::before {
+			width: 100%;
+			height: 1px;
+		}
+
+		&::after {
+			width: 1px;
+			height: 100%;
+			transition: transform 0.25s ease;
+		}
+	}
+
+	&__ikona.is-open::after {
+		transform: translate(-50%, -50%) scaleY(0);
+	}
+
+	&__odpowiedz {
+		padding: 0 0 var(--spacing-md);
+		font-family: var(--font-body);
+		font-size: var(--text-p);
+		font-weight: var(--weight-regular);
+		line-height: var(--leading-body);
+		color: var(--color-gray);
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	@media ( max-width: 768px ) {
+		flex-direction: column;
+		gap: var(--spacing-lg);
+
+		&__sidebar {
+			flex: 1 1 auto;
+			width: 100%;
+		}
+
+		&__taby {
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: var(--spacing-md);
+		}
+	}
+}

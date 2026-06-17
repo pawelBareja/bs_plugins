@@ -4,9 +4,15 @@ import {
 	RichText,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
+import {
+	PanelBody,
+	TextControl,
+	ToggleControl,
+	SelectControl,
+} from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { BsButtonAttributes } from './types';
+import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
 
 const WARIANTY = [
@@ -26,19 +32,47 @@ export default function Edit( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< BsButtonAttributes > ) {
-	const { etykieta, url, wariant, rozmiar, nowyTab, scrollOffset } = attributes;
+	const {
+		etykieta,
+		url,
+		wariant,
+		rozmiar,
+		nowyTab,
+		scrollOffset,
+		paddingGora,
+		paddingDol,
+		paddingBoki,
+		kolorTlaSekcji,
+	} = attributes;
 	const blockProps = useBlockProps();
 
+	const sekcjaStyle: React.CSSProperties = {
+		...( paddingGora && { paddingTop: paddingGora } ),
+		...( paddingDol && { paddingBottom: paddingDol } ),
+		...( paddingBoki && { paddingInline: paddingBoki } ),
+		...( kolorTlaSekcji && { backgroundColor: kolorTlaSekcji } ),
+	};
+
 	const isAnchor = url.startsWith( '#' );
-	const btnClass = [ 'blok-przycisk', `blok-przycisk--${ wariant }`, `blok-przycisk--${ rozmiar }` ].join( ' ' );
+	const btnClass = [
+		'blok-przycisk',
+		`blok-przycisk--${ wariant }`,
+		`blok-przycisk--${ rozmiar }`,
+	].join( ' ' );
 
 	const onChangeWariant = useCallback(
-		( val: string ) => setAttributes( { wariant: val as BsButtonAttributes[ 'wariant' ] } ),
+		( val: string ) =>
+			setAttributes( {
+				wariant: val as BsButtonAttributes[ 'wariant' ],
+			} ),
 		[ setAttributes ]
 	);
 
 	const onChangeRozmiar = useCallback(
-		( val: string ) => setAttributes( { rozmiar: val as BsButtonAttributes[ 'rozmiar' ] } ),
+		( val: string ) =>
+			setAttributes( {
+				rozmiar: val as BsButtonAttributes[ 'rozmiar' ],
+			} ),
 		[ setAttributes ]
 	);
 
@@ -48,7 +82,8 @@ export default function Edit( {
 	);
 
 	const onChangeOffset = useCallback(
-		( val: string ) => setAttributes( { scrollOffset: parseInt( val, 10 ) || 0 } ),
+		( val: string ) =>
+			setAttributes( { scrollOffset: parseInt( val, 10 ) || 0 } ),
 		[ setAttributes ]
 	);
 
@@ -102,9 +137,19 @@ export default function Edit( {
 						/>
 					) }
 				</PanelBody>
+				<SectionControls
+					paddingGora={ paddingGora }
+					paddingDol={ paddingDol }
+					paddingBoki={ paddingBoki }
+					kolorTlaSekcji={ kolorTlaSekcji }
+					onChange={ setAttributes }
+				/>
 			</InspectorControls>
 
-			<div { ...blockProps } style={ { display: 'inline-block' } }>
+			<div
+				{ ...blockProps }
+				style={ { display: 'inline-block', ...sekcjaStyle } }
+			>
 				<RichText
 					tagName="span"
 					className={ btnClass }

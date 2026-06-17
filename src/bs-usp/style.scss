@@ -1,0 +1,106 @@
+@use "../styles/config" as *;
+
+.blok-usp {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: var(--spacing-lg);
+	padding: var(--spacing-xxl) var(--spacing-md);
+	overflow: hidden;
+
+	&__scena {
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		min-height: var(--bs-usp-ksztalt-height, 420px);
+	}
+
+	&__ksztalt {
+		position: absolute;
+		bottom: 0;
+		width: min(var(--bs-usp-ksztalt-width, 380px), 90%);
+		height: var(--bs-usp-ksztalt-height, 420px);
+		background-color: var(--bs-usp-ksztalt-color, var(--color-cream));
+		border-radius: 50% 50% 0 0;
+		transform: translateY(var(--bs-usp-ksztalt-shift, 0));
+		transition: transform 0.2s linear;
+		will-change: transform;
+	}
+
+	&__obrazek-wrapper {
+		position: relative;
+		z-index: 1;
+		height: calc(var(--bs-usp-ksztalt-height, 420px) + 100px);
+		max-height: 90vh;
+		display: flex;
+		align-items: flex-end;
+		transform: translateY(var(--bs-usp-obrazek-shift, 0));
+		transition: transform 0.2s linear;
+		will-change: transform;
+	}
+
+	&__obrazek {
+		display: block;
+		width: auto;
+		height: 100%;
+		max-width: 100%;
+		object-fit: contain;
+	}
+
+	&__placeholder {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__usun-zdjecie {
+		color: var(--color-red);
+	}
+
+	&__tresc {
+		max-width: 640px;
+		font-family: var(--font-body);
+		font-size: var(--text-h6);
+		font-weight: var(--weight-regular);
+		line-height: var(--leading-body);
+		color: var(--color-black);
+		margin: 0;
+		transform: translateY(var(--bs-usp-tresc-shift, 0));
+		transition: transform 0.2s linear;
+		will-change: transform;
+	}
+
+	@media ( prefers-reduced-motion: reduce ) {
+		// view.ts nie odpala paralaksy, ale wyłączamy też transition
+		&__ksztalt,
+		&__obrazek-wrapper,
+		&__tresc {
+			transform: none;
+			transition: none;
+		}
+	}
+
+	@media ( max-width: 600px ) {
+		gap: var(--spacing-md);
+		padding: var(--spacing-xl) var(--spacing-sm);
+
+		&__scena {
+			min-height: calc(var(--bs-usp-ksztalt-height, 420px) * 0.7);
+		}
+
+		&__ksztalt {
+			width: min(calc(var(--bs-usp-ksztalt-width, 380px) * 0.7), 90%);
+			height: calc(var(--bs-usp-ksztalt-height, 420px) * 0.7);
+		}
+
+		&__obrazek-wrapper {
+			height: calc(var(--bs-usp-ksztalt-height, 420px) * 0.7 + 60px);
+		}
+
+		&__tresc {
+			font-size: var(--text-p);
+		}
+	}
+}

@@ -1,0 +1,26 @@
+@use "../styles/config" as *;
+
+// Remove contenteditable outline from RichText heading
+.editor-styles-wrapper .blok-hero-home__tytul {
+	outline: none;
+	cursor: text;
+}
+
+.blok-hero-home__obrazek-wrapper {
+	min-height: 280px;
+}
+
+.blok-hero-home__placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	min-height: 280px;
+}
+
+.blok-hero-home__usun-zdjecie {
+	display: block;
+	margin-top: 0.5rem;
+	color: #cc1818;
+}

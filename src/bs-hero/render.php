@@ -24,6 +24,11 @@ if ( $margines_gorny > 0 ) {
 	$inline_styles[] = 'padding-top: ' . $margines_gorny . 'px';
 }
 
+$sekcja_style = bs_block_sekcja_style( $attributes );
+if ( $sekcja_style ) {
+	$inline_styles[] = $sekcja_style;
+}
+
 $extra_attrs = [ 'class' => 'blok-hero' ];
 if ( $inline_styles ) {
 	$extra_attrs['style'] = implode( '; ', $inline_styles );

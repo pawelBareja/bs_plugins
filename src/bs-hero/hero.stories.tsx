@@ -13,7 +13,9 @@ const meta: Meta< typeof Edit > = {
 	tags: [ 'autodocs' ],
 	decorators: [
 		( _Story, { args } ) => {
-			const [ attributes, setAttrs ] = useState< HeroAttributes >( args.attributes );
+			const [ attributes, setAttrs ] = useState< HeroAttributes >(
+				args.attributes
+			);
 			return (
 				<Edit
 					{ ...args }
@@ -36,9 +38,18 @@ const baseArgs = {
 	context: {},
 };
 
+const baseAttrs = {
+	wysokoscVh: 100,
+	paddingGora: 0,
+	paddingDol: 0,
+	paddingBoki: 0,
+	kolorTlaSekcji: '',
+};
+
 export const ZTytulem: Story = {
 	args: {
 		attributes: {
+			...baseAttrs,
 			obrazek: {
 				id: 1,
 				url: 'https://placehold.co/1920x1080/1a2e1a/1a2e1a',
@@ -54,6 +65,7 @@ export const ZTytulem: Story = {
 export const BezTytulu: Story = {
 	args: {
 		attributes: {
+			...baseAttrs,
 			obrazek: {
 				id: 1,
 				url: 'https://placehold.co/1920x1080/1a2e1a/1a2e1a',
@@ -69,6 +81,7 @@ export const BezTytulu: Story = {
 export const BezObrazka: Story = {
 	args: {
 		attributes: {
+			...baseAttrs,
 			obrazek: null,
 			tytul: 'Kwiaty dla Twojego biznesu',
 			marginesGorny: 0,
@@ -81,6 +94,7 @@ export const ZOffsetemMenu: Story = {
 	name: 'Z offsetem menu (80px)',
 	args: {
 		attributes: {
+			...baseAttrs,
 			obrazek: {
 				id: 1,
 				url: 'https://placehold.co/1920x1080/1a2e1a/1a2e1a',

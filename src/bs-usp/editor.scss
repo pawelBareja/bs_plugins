@@ -1,0 +1,21 @@
+.blok-usp {
+	// Placeholder „Dodaj zdjęcie", gdy brak obrazka
+	&__placeholder {
+		min-height: 200px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__obrazek {
+		// Wskazanie, że obrazek można kliknąć i zmienić
+		&:hover {
+			opacity: 0.85;
+		}
+	}
+
+	&__tresc {
+		outline: none;
+		cursor: text;
+	}
+}

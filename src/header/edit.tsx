@@ -9,14 +9,31 @@ import {
 import { Button, PanelBody, TextControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { HeaderAtributes, IkonaMedia } from './types';
+import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
 
 export default function Edit( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< HeaderAtributes > ) {
-	const { tytul, podtytul, ikona, szerokoscIkony } = attributes;
+	const {
+		tytul,
+		podtytul,
+		ikona,
+		szerokoscIkony,
+		paddingGora,
+		paddingDol,
+		paddingBoki,
+		kolorTlaSekcji,
+	} = attributes;
 	const blockProps = useBlockProps();
+
+	const sekcjaStyle: React.CSSProperties = {
+		...( paddingGora && { paddingTop: paddingGora } ),
+		...( paddingDol && { paddingBottom: paddingDol } ),
+		...( paddingBoki && { paddingInline: paddingBoki } ),
+		...( kolorTlaSekcji && { backgroundColor: kolorTlaSekcji } ),
+	};
 
 	const ikonaStyle: React.CSSProperties = {
 		width: szerokoscIkony ? `${ szerokoscIkony }px` : undefined,
@@ -26,13 +43,17 @@ export default function Edit( {
 
 	const onSelectIkona = useCallback(
 		( media: IkonaMedia ) =>
-			setAttributes( { ikona: { id: media.id, url: media.url, alt: media.alt } } ),
+			setAttributes( {
+				ikona: { id: media.id, url: media.url, alt: media.alt },
+			} ),
 		[ setAttributes ]
 	);
 
 	const onChangeSzerokosc = useCallback(
 		( val: string ) =>
-			setAttributes( { szerokoscIkony: val ? parseInt( val, 10 ) : undefined } ),
+			setAttributes( {
+				szerokoscIkony: val ? parseInt( val, 10 ) : undefined,
+			} ),
 		[ setAttributes ]
 	);
 
@@ -57,17 +78,31 @@ export default function Edit( {
 						onChange={ onChangeSzerokosc }
 					/>
 				</PanelBody>
+				<SectionControls
+					paddingGora={ paddingGora }
+					paddingDol={ paddingDol }
+					paddingBoki={ paddingBoki }
+					kolorTlaSekcji={ kolorTlaSekcji }
+					onChange={ setAttributes }
+				/>
 			</InspectorControls>
 
-			<div { ...blockProps } className="blok-header">
+			<div
+				{ ...blockProps }
+				className="blok-header"
+				style={ sekcjaStyle }
+			>
 				<MediaUploadCheck>
 					<MediaUpload
-						onSelect={ ( media ) => onSelectIkona( media as IkonaMedia ) }
+						onSelect={ ( media ) =>
+							onSelectIkona( media as IkonaMedia )
+						}
 						allowedTypes={ [ 'image' ] }
 						value={ ikona?.id }
 						render={ ( { open } ) => (
 							<div className="blok-header__ikona">
 								{ ikona ? (
+									// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
 									<img
 										src={ ikona.url }
 										alt={ ikona.alt }
@@ -75,7 +110,10 @@ export default function Edit( {
 										style={ ikonaStyle }
 									/>
 								) : (
-									<Button onClick={ open } variant="secondary">
+									<Button
+										onClick={ open }
+										variant="secondary"
+									>
 										Dodaj ikonę (opcjonalne)
 									</Button>
 								) }
@@ -87,7 +125,7 @@ export default function Edit( {
 				<RichText
 					tagName="h3"
 					className="blok-header__tytul"
-					value={ tytul }
+					value={ tytul ?? '' }
 					onChange={ onChangeTytul }
 					placeholder="Wpisz tytuł..."
 				/>

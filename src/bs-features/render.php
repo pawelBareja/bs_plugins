@@ -9,9 +9,11 @@
 $liczba   = intval( $attributes['liczbaElementow'] ?? 3 );
 $elementy = array_slice( $attributes['elementy'] ?? [], 0, $liczba );
 
+$sekcja_style  = bs_block_sekcja_style( $attributes );
+$blok_style    = '--bs-features-cols: ' . $liczba . ( $sekcja_style ? '; ' . $sekcja_style : '' );
 $wrapper_attrs = get_block_wrapper_attributes( [
 	'class' => 'blok-features',
-	'style' => '--bs-features-cols: ' . $liczba,
+	'style' => $blok_style,
 ] );
 ?>
 <div <?php echo $wrapper_attrs; ?>>

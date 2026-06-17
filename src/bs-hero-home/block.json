@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/bs-hero-home",
+	"version": "1.0.0",
+	"title": "BS Hero Home",
+	"category": "design",
+	"description": "Hero strony głównej: nagłówek z animowanym wierszem tekstu, przycisk i zdjęcie z efektem powiększenia przy scrollu.",
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true
+	},
+	"attributes": {
+		"tytul": {
+			"type": "string"
+		},
+		"teksty": {
+			"type": "array",
+			"default": [ "Zamów online", "", "" ]
+		},
+		"obrazek": {
+			"type": "object",
+			"default": null
+		},
+		"kolorTla": {
+			"type": "string",
+			"default": "#fbfbfb"
+		},
+		"paddingGora": { "type": "number", "default": 0 },
+		"paddingDol": { "type": "number", "default": 0 },
+		"paddingBoki": { "type": "number", "default": 0 },
+		"kolorTlaSekcji": { "type": "string", "default": "" }
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "bs-plugins"
+}

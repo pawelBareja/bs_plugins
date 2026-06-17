@@ -19,7 +19,12 @@ $btn_class = implode( ' ', [
 	'blok-przycisk--' . esc_attr( $rozmiar ),
 ] );
 
-$wrapper_attrs = get_block_wrapper_attributes( [ 'class' => 'blok-przycisk-wrapper' ] );
+$sekcja_style = bs_block_sekcja_style( $attributes );
+$wrapper_args = [ 'class' => 'blok-przycisk-wrapper' ];
+if ( $sekcja_style ) {
+	$wrapper_args['style'] = $sekcja_style;
+}
+$wrapper_attrs = get_block_wrapper_attributes( $wrapper_args );
 
 $is_anchor = str_starts_with( $url, '#' );
 $target    = ( ! $is_anchor && $nowy_tab ) ? ' target="_blank" rel="noopener noreferrer"' : '';

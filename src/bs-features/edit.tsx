@@ -7,14 +7,29 @@ import {
 import { PanelBody, RangeControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { BsFeaturesAttributes, FeatureItem } from './types';
+import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
 
 export default function Edit( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< BsFeaturesAttributes > ) {
-	const { liczbaElementow, elementy } = attributes;
+	const {
+		liczbaElementow,
+		elementy,
+		paddingGora,
+		paddingDol,
+		paddingBoki,
+		kolorTlaSekcji,
+	} = attributes;
 	const blockProps = useBlockProps();
+
+	const sekcjaStyle: React.CSSProperties = {
+		...( paddingGora && { paddingTop: paddingGora } ),
+		...( paddingDol && { paddingBottom: paddingDol } ),
+		...( paddingBoki && { paddingInline: paddingBoki } ),
+		...( kolorTlaSekcji && { backgroundColor: kolorTlaSekcji } ),
+	};
 
 	const widoczne = elementy.slice( 0, liczbaElementow );
 
@@ -29,7 +44,8 @@ export default function Edit( {
 	);
 
 	const onChangeLiczba = useCallback(
-		( val: number | undefined ) => setAttributes( { liczbaElementow: val ?? 3 } ),
+		( val: number | undefined ) =>
+			setAttributes( { liczbaElementow: val ?? 3 } ),
 		[ setAttributes ]
 	);
 
@@ -45,12 +61,24 @@ export default function Edit( {
 						max={ 5 }
 					/>
 				</PanelBody>
+				<SectionControls
+					paddingGora={ paddingGora }
+					paddingDol={ paddingDol }
+					paddingBoki={ paddingBoki }
+					kolorTlaSekcji={ kolorTlaSekcji }
+					onChange={ setAttributes }
+				/>
 			</InspectorControls>
 
 			<div
 				{ ...blockProps }
 				className="blok-features"
-				style={ { '--bs-features-cols': liczbaElementow } as React.CSSProperties }
+				style={
+					{
+						'--bs-features-cols': liczbaElementow,
+						...sekcjaStyle,
+					} as React.CSSProperties
+				}
 			>
 				{ widoczne.map( ( el, i ) => (
 					<div key={ i } className="blok-features__element">
@@ -58,7 +86,9 @@ export default function Edit( {
 							tagName="p"
 							className="blok-features__numer"
 							value={ el.numer }
-							onChange={ ( val ) => updateElement( i, { numer: val } ) }
+							onChange={ ( val ) =>
+								updateElement( i, { numer: val } )
+							}
 							placeholder={ `0${ i + 1 }.` }
 							allowedFormats={ [] }
 						/>
@@ -66,7 +96,9 @@ export default function Edit( {
 							tagName="h3"
 							className="blok-features__tytul"
 							value={ el.tytul }
-							onChange={ ( val ) => updateElement( i, { tytul: val } ) }
+							onChange={ ( val ) =>
+								updateElement( i, { tytul: val } )
+							}
 							placeholder="Tytuł (opcjonalny)..."
 							allowedFormats={ [] }
 						/>
@@ -74,7 +106,9 @@ export default function Edit( {
 							tagName="p"
 							className="blok-features__tresc"
 							value={ el.tresc }
-							onChange={ ( val ) => updateElement( i, { tresc: val } ) }
+							onChange={ ( val ) =>
+								updateElement( i, { tresc: val } )
+							}
 							placeholder="Opis (opcjonalny)..."
 						/>
 					</div>

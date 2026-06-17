@@ -9,4 +9,8 @@ export type HeaderAtributes = {
 	podtytul: string;
 	ikona: IkonaMedia | null;
 	szerokoscIkony?: number;
-}
+	paddingGora: number;
+	paddingDol: number;
+	paddingBoki: number;
+	kolorTlaSekcji: string;
+};

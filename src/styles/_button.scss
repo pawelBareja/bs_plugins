@@ -1,0 +1,75 @@
+@use "./config" as *;
+
+// Wspólny styl przycisku .blok-przycisk — patrz src/bs-button/style.scss
+.blok-przycisk {
+	display: inline-block;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 100px;
+	font-family: Montserrat, sans-serif;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		color 0.25s ease,
+		background-color 0.25s ease,
+		border-color 0.25s ease;
+	line-height: 1;
+	white-space: nowrap;
+
+	// Rozmiary
+	&--xs {
+		padding: 8px 18px;
+		font-size: 11px;
+	}
+
+	&--sm {
+		padding: 11px 26px;
+		font-size: 13px;
+	}
+
+	&--md {
+		padding: 14px 34px;
+		font-size: 15px;
+	}
+
+	&--lg {
+		padding: 18px 44px;
+		font-size: 17px;
+	}
+
+	&--full {
+		display: block;
+		width: 100%;
+		padding: 14px 34px;
+		font-size: 15px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	// Wariant 1: biały przycisk, czarny tekst
+	&--bialy {
+		background-color: var(--color-white);
+		color: var(--color-black);
+		border-color: var(--color-black);
+
+		&:hover {
+			color: var(--color-red);
+			border-color: var(--color-black);
+		}
+	}
+
+	// Wariant 2: czerwony przycisk, biały tekst
+	&--czerwony {
+		background-color: var(--color-red);
+		color: var(--color-white);
+		border-color: var(--color-red);
+
+		&:hover {
+			background-color: var(--color-white);
+			color: var(--color-red);
+			border-color: var(--color-red);
+		}
+	}
+}

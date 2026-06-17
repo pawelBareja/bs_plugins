@@ -9,4 +9,8 @@ export type HeroAttributes = {
 	tytul?: string;
 	marginesGorny: number;
 	wysokoscVh: number;
+	paddingGora: number;
+	paddingDol: number;
+	paddingBoki: number;
+	kolorTlaSekcji: string;
 };

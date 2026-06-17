@@ -13,7 +13,9 @@ const meta: Meta< typeof Edit > = {
 	tags: [ 'autodocs' ],
 	decorators: [
 		( _Story, { args } ) => {
-			const [ attributes, setAttrs ] = useState< GridAttributes >( args.attributes );
+			const [ attributes, setAttrs ] = useState< GridAttributes >(
+				args.attributes
+			);
 			return (
 				<Edit
 					{ ...args }
@@ -39,6 +41,10 @@ const baseAttributes: GridAttributes = {
 	tytul: 'Dlaczego warto wybrać nasze kwiaty',
 	tresc: 'Specjalizujemy się w dostawach kwiatów ciętych i roślin doniczkowych dla klientów biznesowych. Realizujemy regularne dostawy do biur, hoteli oraz przestrzeni reprezentacyjnych, tworząc sezonowe kompozycje dopasowane do charakteru wnętrza.',
 	obrazekPoLewej: true,
+	paddingGora: 0,
+	paddingDol: 0,
+	paddingBoki: 0,
+	kolorTlaSekcji: '',
 };
 
 const baseArgs = {
@@ -52,7 +58,10 @@ export const ObrazekPoLewej: Story = {
 };
 
 export const ObrazekPoPrawej: Story = {
-	args: { attributes: { ...baseAttributes, obrazekPoLewej: false }, ...baseArgs },
+	args: {
+		attributes: { ...baseAttributes, obrazekPoLewej: false },
+		...baseArgs,
+	},
 };
 
 export const BezTytulu: Story = {
@@ -65,7 +74,13 @@ export const BezObrazka: Story = {
 
 export const Pusty: Story = {
 	args: {
-		attributes: { obrazek: null, tytul: undefined, tresc: undefined, obrazekPoLewej: true },
+		attributes: {
+			...baseAttributes,
+			obrazek: null,
+			tytul: undefined,
+			tresc: undefined,
+			obrazekPoLewej: true,
+		},
 		...baseArgs,
 	},
 };

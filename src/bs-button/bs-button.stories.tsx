@@ -13,7 +13,9 @@ const meta: Meta< typeof Edit > = {
 	tags: [ 'autodocs' ],
 	decorators: [
 		( _Story, { args } ) => {
-			const [ attributes, setAttrs ] = useState< BsButtonAttributes >( args.attributes );
+			const [ attributes, setAttrs ] = useState< BsButtonAttributes >(
+				args.attributes
+			);
 			return (
 				<Edit
 					{ ...args }
@@ -36,37 +38,80 @@ const baseArgs = {
 	context: {},
 };
 
+const baseAttrs = {
+	scrollOffset: 0,
+	paddingGora: 0,
+	paddingDol: 0,
+	paddingBoki: 0,
+	kolorTlaSekcji: '',
+};
+
 export const BialyMd: Story = {
 	args: {
-		attributes: { etykieta: 'Dowiedz się więcej', url: '', wariant: 'bialy', rozmiar: 'md', nowyTab: false },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Dowiedz się więcej',
+			url: '',
+			wariant: 'bialy',
+			rozmiar: 'md',
+			nowyTab: false,
+		},
 		...baseArgs,
 	},
 };
 
 export const CzerwonyMd: Story = {
 	args: {
-		attributes: { etykieta: 'Zamów teraz', url: '', wariant: 'czerwony', rozmiar: 'md', nowyTab: false },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Zamów teraz',
+			url: '',
+			wariant: 'czerwony',
+			rozmiar: 'md',
+			nowyTab: false,
+		},
 		...baseArgs,
 	},
 };
 
 export const BialyXs: Story = {
 	args: {
-		attributes: { etykieta: 'Bardzo mały', url: '', wariant: 'bialy', rozmiar: 'xs', nowyTab: false },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Bardzo mały',
+			url: '',
+			wariant: 'bialy',
+			rozmiar: 'xs',
+			nowyTab: false,
+		},
 		...baseArgs,
 	},
 };
 
 export const BialySm: Story = {
 	args: {
-		attributes: { etykieta: 'Mały przycisk', url: '', wariant: 'bialy', rozmiar: 'sm', nowyTab: false },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Mały przycisk',
+			url: '',
+			wariant: 'bialy',
+			rozmiar: 'sm',
+			nowyTab: false,
+		},
 		...baseArgs,
 	},
 };
 
 export const CzerwonyLg: Story = {
 	args: {
-		attributes: { etykieta: 'Duży czerwony', url: '', wariant: 'czerwony', rozmiar: 'lg', nowyTab: false },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Duży czerwony',
+			url: '',
+			wariant: 'czerwony',
+			rozmiar: 'lg',
+			nowyTab: false,
+		},
 		...baseArgs,
 	},
 };
@@ -74,14 +119,28 @@ export const CzerwonyLg: Story = {
 export const PelnaLokacja: Story = {
 	name: 'Pełna szerokość',
 	args: {
-		attributes: { etykieta: 'Pełna szerokość', url: '', wariant: 'czerwony', rozmiar: 'full', nowyTab: false },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Pełna szerokość',
+			url: '',
+			wariant: 'czerwony',
+			rozmiar: 'full',
+			nowyTab: false,
+		},
 		...baseArgs,
 	},
 };
 
 export const ZLinkiem: Story = {
 	args: {
-		attributes: { etykieta: 'Otwórz w nowym oknie', url: 'https://example.com', wariant: 'bialy', rozmiar: 'md', nowyTab: true },
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Otwórz w nowym oknie',
+			url: 'https://example.com',
+			wariant: 'bialy',
+			rozmiar: 'md',
+			nowyTab: true,
+		},
 		...baseArgs,
 	},
 };

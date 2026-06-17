@@ -24,7 +24,11 @@
 				{ "numer": "04.", "tytul": "", "tresc": "" },
 				{ "numer": "05.", "tytul": "", "tresc": "" }
 			]
-		}
+		},
+		"paddingGora": { "type": "number", "default": 0 },
+		"paddingDol": { "type": "number", "default": 0 },
+		"paddingBoki": { "type": "number", "default": 0 },
+		"kolorTlaSekcji": { "type": "string", "default": "" }
 	},
 	"render": "file:./render.php",
 	"editorScript": "file:./index.js",

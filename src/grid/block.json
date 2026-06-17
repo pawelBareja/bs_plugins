@@ -46,7 +46,11 @@
 		},
 		"ozdobaLiniaKolor": {
 			"type": "string"
-		}
+		},
+		"paddingGora": { "type": "number", "default": 0 },
+		"paddingDol": { "type": "number", "default": 0 },
+		"paddingBoki": { "type": "number", "default": 0 },
+		"kolorTlaSekcji": { "type": "string", "default": "" }
 	},
 	"supports": {
 		"align": ["wide", "full"],

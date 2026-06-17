@@ -1,0 +1,100 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/bs-topbar",
+	"version": "1.0.0",
+	"title": "BS Topbar",
+	"category": "design",
+	"description": "Kolorowa belka nad nagłówkiem z przewijającym się tekstem i przyciskiem, z kampaniami zależnymi od daty (Dzień Matki, Walentynki itp.).",
+	"supports": {
+		"align": [ "full" ],
+		"anchor": true
+	},
+	"attributes": {
+		"kampanie": {
+			"type": "array",
+			"default": [
+				{
+					"tekst": "Podaruj Babci i Dziadkowi piękny bukiet",
+					"link": "",
+					"tekstPrzycisku": "Zamów Teraz",
+					"dataOd": "01-10",
+					"dataDo": "01-22"
+				},
+				{
+					"tekst": "Wyznaj miłość wyjątkowym bukietem",
+					"link": "",
+					"tekstPrzycisku": "Kup Teraz",
+					"dataOd": "01-23",
+					"dataDo": "02-14"
+				},
+				{
+					"tekst": "Kwiaty dla wyjątkowych kobiet z okazji ich Dnia",
+					"link": "",
+					"tekstPrzycisku": "Kup Teraz",
+					"dataOd": "02-15",
+					"dataDo": "03-08"
+				},
+				{
+					"tekst": "Wiosenne bukiety i stroiki wielkanocne",
+					"link": "",
+					"tekstPrzycisku": "Odkryj Ofertę",
+					"dataOd": "03-09",
+					"dataDo": "04-20"
+				},
+				{
+					"tekst": "Spraw radość Mamie wyjątkowym bukietem",
+					"link": "",
+					"tekstPrzycisku": "Zamów Bukiet",
+					"dataOd": "04-21",
+					"dataDo": "05-26"
+				},
+				{
+					"tekst": "Kwiaty na zakończenie roku szkolnego",
+					"link": "",
+					"tekstPrzycisku": "Kup Teraz",
+					"dataOd": "05-27",
+					"dataDo": "06-25"
+				},
+				{
+					"tekst": "Podziękuj Nauczycielowi pięknym bukietem",
+					"link": "",
+					"tekstPrzycisku": "Zamów",
+					"dataOd": "10-01",
+					"dataDo": "10-14"
+				},
+				{
+					"tekst": "Świąteczne stroiki i kwiaty pod choinkę",
+					"link": "",
+					"tekstPrzycisku": "Kup Teraz",
+					"dataOd": "11-20",
+					"dataDo": "12-31"
+				},
+				{
+					"tekst": "Świeże kwiaty z dostawą na każdą okazję",
+					"link": "",
+					"tekstPrzycisku": "Kup Teraz",
+					"dataOd": "",
+					"dataDo": ""
+				}
+			]
+		},
+		"kolorTla": {
+			"type": "string",
+			"default": "#a7ce3a"
+		},
+		"kolorTekstu": {
+			"type": "string",
+			"default": "#fff"
+		},
+		"paddingGora": { "type": "number", "default": 0 },
+		"paddingDol": { "type": "number", "default": 0 },
+		"paddingBoki": { "type": "number", "default": 0 },
+		"kolorTlaSekcji": { "type": "string", "default": "" }
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"textdomain": "bs-plugins"
+}

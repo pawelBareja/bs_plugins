@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/bs-produkty-slider",
+	"version": "1.0.0",
+	"title": "BS Produkty Slider",
+	"category": "widgets",
+	"description": "Slider produktów WooCommerce (najnowsze, z kategorii lub z tagu) z automatycznym przewijaniem.",
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true
+	},
+	"attributes": {
+		"zrodloProduktow": {
+			"type": "string",
+			"default": "najnowsze"
+		},
+		"kategoriaSlug": {
+			"type": "string",
+			"default": ""
+		},
+		"tagSlug": {
+			"type": "string",
+			"default": ""
+		},
+		"liczbaProduktow": {
+			"type": "number",
+			"default": 5
+		},
+		"predkosc": {
+			"type": "number",
+			"default": 4
+		},
+		"tekstPrzycisku": {
+			"type": "string",
+			"default": "Zamów w Bolt"
+		},
+		"paddingGora": { "type": "number", "default": 0 },
+		"paddingDol": { "type": "number", "default": 0 },
+		"paddingBoki": { "type": "number", "default": 0 },
+		"kolorTlaSekcji": { "type": "string", "default": "" }
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "bs-plugins"
+}

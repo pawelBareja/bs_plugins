@@ -1,0 +1,112 @@
+@use "../styles/config" as *;
+
+.blok-produkty-slider {
+	--bs-slider-visible: 3;
+
+	overflow: hidden;
+
+	&__track {
+		display: flex;
+		transition: transform 0.5s ease;
+		transform: translateX(calc(var(--bs-slider-index, 0) * -100% / var(--bs-slider-visible)));
+	}
+
+	&__slide {
+		flex: 0 0 calc(100% / var(--bs-slider-visible));
+		box-sizing: border-box;
+		padding: 0 var(--spacing-sm);
+		text-align: center;
+	}
+
+	&__obrazek-link {
+		display: block;
+	}
+
+	&__obrazek {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: var(--border-radius);
+	}
+
+	&__obrazek--placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 1;
+		background: var(--color-cream);
+		color: var(--color-gray);
+
+		svg {
+			width: 35%;
+			height: 35%;
+		}
+	}
+
+	&__nazwa {
+		margin: var(--spacing-sm) 0 var(--spacing-xs);
+		font-family: var(--font-heading);
+		font-size: var(--text-h6);
+		font-weight: var(--weight-light);
+
+		a {
+			color: var(--color-black);
+			text-decoration: none;
+		}
+	}
+
+	&__cena {
+		margin-bottom: var(--spacing-sm);
+		font-family: var(--font-body);
+		font-size: var(--text-p);
+		color: var(--color-gray);
+	}
+
+	&__przycisk {
+		display: inline-block;
+		padding-bottom: 2px;
+		font-family: var(--font-body);
+		font-size: var(--text-small);
+		font-weight: var(--weight-semi);
+		color: var(--color-red);
+		text-decoration: none;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		border-bottom: 1px solid var(--color-red);
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+
+	&__dots {
+		display: flex;
+		justify-content: center;
+		gap: var(--spacing-xs);
+		margin-top: var(--spacing-md);
+	}
+
+	&__dot {
+		width: 8px;
+		height: 8px;
+		padding: 0;
+		border: none;
+		border-radius: 50%;
+		background: var(--color-cream);
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+
+		&.is-active {
+			background: var(--color-red);
+		}
+	}
+
+	@media ( max-width: 900px ) {
+		--bs-slider-visible: 2;
+	}
+
+	@media ( max-width: 600px ) {
+		--bs-slider-visible: 1;
+	}
+}

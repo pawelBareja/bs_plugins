@@ -10,6 +10,7 @@ import {
 import { Button, PanelBody, TextControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { HeroAttributes, ObrazekMedia } from './types';
+import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
 
 const ALLOWED_BLOCKS = [ 'bs-plugins/bs-button' ];
@@ -18,22 +19,43 @@ export default function Edit( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< HeroAttributes > ) {
-	const { obrazek, tytul, marginesGorny, wysokoscVh } = attributes;
+	const {
+		obrazek,
+		tytul,
+		marginesGorny,
+		wysokoscVh,
+		paddingGora,
+		paddingDol,
+		paddingBoki,
+		kolorTlaSekcji,
+	} = attributes;
 	const blockProps = useBlockProps();
+
+	const sekcjaStyle: React.CSSProperties = {
+		...( paddingGora && { paddingTop: paddingGora } ),
+		...( paddingDol && { paddingBottom: paddingDol } ),
+		...( paddingBoki && { paddingInline: paddingBoki } ),
+		...( kolorTlaSekcji && { backgroundColor: kolorTlaSekcji } ),
+	};
 
 	const wrapperStyle: React.CSSProperties = {
 		'--blok-hero-vh': wysokoscVh,
-		...(obrazek ? { backgroundImage: `url(${ obrazek.url })` } : {}),
-		...(marginesGorny > 0
-			? { marginTop: `-${ marginesGorny }px`, paddingTop: `${ marginesGorny }px` }
-			: {}),
+		...( obrazek ? { backgroundImage: `url(${ obrazek.url })` } : {} ),
+		...( marginesGorny > 0
+			? {
+					marginTop: `-${ marginesGorny }px`,
+					paddingTop: `${ marginesGorny }px`,
+			  }
+			: {} ),
 	} as React.CSSProperties;
 
 	const labelZdjecia = obrazek ? 'Zmień zdjęcie' : 'Dodaj zdjęcie';
 
 	const onSelectObrazek = useCallback(
 		( media: ObrazekMedia ) =>
-			setAttributes( { obrazek: { id: media.id, url: media.url, alt: media.alt } } ),
+			setAttributes( {
+				obrazek: { id: media.id, url: media.url, alt: media.alt },
+			} ),
 		[ setAttributes ]
 	);
 
@@ -48,12 +70,14 @@ export default function Edit( {
 	);
 
 	const onChangeWysokosc = useCallback(
-		( val: string ) => setAttributes( { wysokoscVh: parseInt( val, 10 ) || 100 } ),
+		( val: string ) =>
+			setAttributes( { wysokoscVh: parseInt( val, 10 ) || 100 } ),
 		[ setAttributes ]
 	);
 
 	const onChangeMargines = useCallback(
-		( val: string ) => setAttributes( { marginesGorny: parseInt( val, 10 ) || 0 } ),
+		( val: string ) =>
+			setAttributes( { marginesGorny: parseInt( val, 10 ) || 0 } ),
 		[ setAttributes ]
 	);
 
@@ -63,7 +87,9 @@ export default function Edit( {
 				<PanelBody title="Zdjęcie tła">
 					<MediaUploadCheck>
 						<MediaUpload
-							onSelect={ ( media ) => onSelectObrazek( media as ObrazekMedia ) }
+							onSelect={ ( media ) =>
+								onSelectObrazek( media as ObrazekMedia )
+							}
 							allowedTypes={ [ 'image' ] }
 							value={ obrazek?.id }
 							render={ ( { open } ) => (
@@ -97,12 +123,19 @@ export default function Edit( {
 						onChange={ onChangeMargines }
 					/>
 				</PanelBody>
+				<SectionControls
+					paddingGora={ paddingGora }
+					paddingDol={ paddingDol }
+					paddingBoki={ paddingBoki }
+					kolorTlaSekcji={ kolorTlaSekcji }
+					onChange={ setAttributes }
+				/>
 			</InspectorControls>
 
 			<div
 				{ ...blockProps }
 				className="blok-hero"
-				style={ wrapperStyle }
+				style={ { ...wrapperStyle, ...sekcjaStyle } }
 			>
 				<div className="blok-hero__zawartosc">
 					<RichText

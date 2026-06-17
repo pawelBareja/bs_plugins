@@ -16,4 +16,8 @@ export type GridAttributes = {
 	ozdobaTekst?: string;
 	ozdobaTekstKolor?: string;
 	ozdobaLiniaKolor?: string;
-}
+	paddingGora: number;
+	paddingDol: number;
+	paddingBoki: number;
+	kolorTlaSekcji: string;
+};

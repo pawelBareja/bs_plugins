@@ -1,0 +1,35 @@
+.blok-karty {
+	// Usuń domyślny padding Gutenberga z wrappera bloku
+	&.wp-block {
+		padding: 0;
+		margin: 0;
+	}
+
+	&__karta {
+		background-color: var(--color-cream);
+	}
+
+	&__obrazek {
+
+		img {
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.85;
+			}
+		}
+
+		// Placeholder "Dodaj obrazek" — wyśrodkowany w kolumnie
+		.components-button {
+			width: 100%;
+			height: 280px;
+			justify-content: center;
+		}
+	}
+
+	&__przycisk {
+		outline: none;
+		cursor: text;
+		display: inline-block;
+	}
+}

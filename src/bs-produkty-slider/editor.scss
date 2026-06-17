@@ -1,0 +1,23 @@
+@use "../styles/config" as *;
+
+.editor-styles-wrapper {
+
+	.blok-produkty-slider--podglad {
+
+		.blok-produkty-slider__info {
+			margin: 0 0 var(--spacing-sm);
+			font-family: var(--font-body);
+			font-size: var(--text-small);
+			color: var(--color-gray);
+		}
+
+		.blok-produkty-slider__track {
+			overflow-x: auto;
+			transform: none;
+		}
+
+		.blok-produkty-slider__dot {
+			display: inline-block;
+		}
+	}
+}

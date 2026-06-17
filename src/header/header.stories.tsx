@@ -13,7 +13,9 @@ const meta: Meta< typeof Edit > = {
 	tags: [ 'autodocs' ],
 	decorators: [
 		( _Story, { args } ) => {
-			const [ attributes, setAttrs ] = useState< HeaderAtributes >( args.attributes );
+			const [ attributes, setAttrs ] = useState< HeaderAtributes >(
+				args.attributes
+			);
 			return (
 				<Edit
 					{ ...args }
@@ -35,6 +37,10 @@ const baseAttributes: HeaderAtributes = {
 	podtytul:
 		'Specjalizujemy się w dostawach kwiatów ciętych i roślin doniczkowych dla klientów biznesowych. Realizujemy regularne dostawy do biur, hoteli oraz przestrzeni reprezentacyjnych, tworząc sezonowe kompozycje dopasowane do charakteru wnętrza oraz identyfikacji wizualnej marki.',
 	ikona: null,
+	paddingGora: 0,
+	paddingDol: 0,
+	paddingBoki: 0,
+	kolorTlaSekcji: '',
 };
 
 const baseArgs = {
@@ -66,5 +72,8 @@ export const BezPodtytulu: Story = {
 };
 
 export const Pusty: Story = {
-	args: { attributes: { tytul: '', podtytul: '', ikona: null }, ...baseArgs },
+	args: {
+		attributes: { ...baseAttributes, tytul: '', podtytul: '', ikona: null },
+		...baseArgs,
+	},
 };

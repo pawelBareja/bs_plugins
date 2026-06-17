@@ -1,0 +1,93 @@
+@use "../styles/config" as *;
+@use "../styles/button";
+
+.blok-karty {
+	display: grid;
+	grid-template-columns: repeat(var(--bs-karty-cols, 3), 1fr);
+	gap: 0;
+
+	&__karta {
+		display: flex;
+		flex-direction: column;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		color: var(--color-black);
+		text-align: center;
+	}
+
+	&__obrazek {
+
+		img {
+			display: block;
+			width: 100%;
+			height: 280px;
+			object-fit: cover;
+		}
+
+		&--arka {
+			padding: 8% 12% 0;
+
+			img {
+				height: auto;
+				aspect-ratio: 1;
+				border-radius: 90px 90px 0 0;
+			}
+		}
+	}
+
+	&__tresc {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--spacing-sm);
+		padding: var(--spacing-lg);
+		flex: 1;
+	}
+
+	&__tytul {
+		font-family: var(--font-heading);
+		font-size: var(--text-h5);
+		font-weight: var(--weight-semi);
+		color: inherit;
+		margin: 0;
+		line-height: var(--leading-heading);
+	}
+
+	&__opis {
+		font-family: var(--font-body);
+		font-size: var(--text-p);
+		font-weight: var(--weight-regular);
+		color: inherit;
+		margin: 0;
+		line-height: var(--leading-body);
+		flex: 1;
+	}
+
+	&__przycisk {
+		align-self: center;
+		margin-top: var(--spacing-sm);
+
+		// Przycisk jako link tekstowy z podkreśleniem
+		.blok-przycisk {
+			border: none;
+			background: none;
+			border-radius: 0;
+			padding: 0;
+			text-decoration: underline;
+			letter-spacing: 0;
+			line-height: inherit;
+
+			&:hover {
+				color: var(--color-red);
+			}
+		}
+	}
+
+	@media ( max-width: 1024px ) {
+		grid-template-columns: repeat(min(var(--bs-karty-cols, 3), 2), 1fr);
+	}
+
+	@media ( max-width: 600px ) {
+		grid-template-columns: 1fr;
+	}
+}

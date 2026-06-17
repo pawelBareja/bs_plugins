@@ -5,5 +5,6 @@ module.exports = {
 	entry: {
 		...defaultConfig.entry(),
 		global: './src/global.scss',
+		'global-view': './src/global-view.ts',
 	},
 };

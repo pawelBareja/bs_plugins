@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bs-plugins/bs-usp",
+	"version": "1.0.0",
+	"title": "BS USP",
+	"category": "design",
+	"description": "Sekcja USP: zdjęcie na tle kształtu (arka) z regulowanym kolorem i rozmiarem oraz tekstem poniżej. Lekka animacja paralaksy przy scrollu.",
+	"keywords": [ "usp", "zdjęcie", "kształt", "arka", "paralaksa" ],
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": true
+	},
+	"attributes": {
+		"obrazek": {
+			"type": "object",
+			"default": null
+		},
+		"tresc": {
+			"type": "string",
+			"default": ""
+		},
+		"kolorKsztaltu": {
+			"type": "string",
+			"default": "#f1efeb"
+		},
+		"szerokoscKsztaltu": {
+			"type": "number",
+			"default": 380
+		},
+		"wysokoscKsztaltu": {
+			"type": "number",
+			"default": 420
+		},
+		"paddingGora": { "type": "number", "default": 0 },
+		"paddingDol": { "type": "number", "default": 0 },
+		"paddingBoki": { "type": "number", "default": 0 },
+		"kolorTlaSekcji": { "type": "string", "default": "" }
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"textdomain": "bs-plugins"
+}
