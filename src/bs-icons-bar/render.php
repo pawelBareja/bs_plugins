@@ -11,23 +11,71 @@ $liczba = max( 2, min( 5, $liczba ) );
 $elementy = array_slice( $attributes['elementy'] ?? [], 0, $liczba );
 
 $allowed_svg = [
-	'svg'  => [
+	'svg'      => [
 		'xmlns'               => true,
 		'viewbox'             => true,
 		'fill'                => true,
+		'width'               => true,
+		'height'              => true,
 		'preserveaspectratio' => true,
 		'aria-hidden'         => true,
+		'focusable'           => true,
 	],
-	'g'    => [
-		'transform' => true,
-	],
-	'path' => [
-		'd'          => true,
-		'fill'       => true,
-		'fill-rule'  => true,
-		'clip-rule'  => true,
-		'stroke'     => true,
+	'g'        => [
+		'transform'    => true,
+		'fill'         => true,
+		'stroke'       => true,
 		'stroke-width' => true,
+		'opacity'      => true,
+	],
+	'path'     => [
+		'd'              => true,
+		'fill'           => true,
+		'fill-rule'      => true,
+		'clip-rule'      => true,
+		'stroke'         => true,
+		'stroke-width'   => true,
+		'stroke-linecap' => true,
+		'stroke-linejoin'=> true,
+		'opacity'        => true,
+	],
+	'circle'   => [
+		'cx'           => true,
+		'cy'           => true,
+		'r'            => true,
+		'fill'         => true,
+		'stroke'       => true,
+		'stroke-width' => true,
+	],
+	'rect'     => [
+		'x'      => true,
+		'y'      => true,
+		'width'  => true,
+		'height' => true,
+		'rx'     => true,
+		'ry'     => true,
+		'fill'   => true,
+	],
+	'polyline' => [
+		'points'         => true,
+		'fill'           => true,
+		'stroke'         => true,
+		'stroke-width'   => true,
+		'stroke-linecap' => true,
+		'stroke-linejoin'=> true,
+	],
+	'line'     => [
+		'x1'             => true,
+		'y1'             => true,
+		'x2'             => true,
+		'y2'             => true,
+		'stroke'         => true,
+		'stroke-width'   => true,
+		'stroke-linecap' => true,
+	],
+	'polygon'  => [
+		'points' => true,
+		'fill'   => true,
 	],
 ];
 

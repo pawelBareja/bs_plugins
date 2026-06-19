@@ -5,8 +5,10 @@
 // =============================================================================
 
 .wpcf7 form.wpcf7-form {
+	max-width: 1290px;
+	margin-inline: auto;
 
-	// Pola tekstowe — underline only, czerwony placeholder
+	// Pola tekstowe — underline only, szary placeholder
 	.wpcf7-form-control.wpcf7-text,
 	.wpcf7-form-control.wpcf7-email,
 	.wpcf7-form-control.wpcf7-tel,
@@ -14,7 +16,7 @@
 		width: 100%;
 		background: transparent;
 		border: none;
-		border-bottom: 1px solid var(--color-red);
+		border-bottom: 1px solid #ccc;
 		border-radius: 0;
 		padding: var(--spacing-xs) 0;
 		font-family: var(--font-body);
@@ -26,7 +28,7 @@
 		transition: border-color 0.25s ease;
 
 		&::placeholder {
-			color: var(--color-red);
+			color: #aaa;
 			opacity: 1;
 		}
 
@@ -36,8 +38,8 @@
 	}
 
 	.wpcf7-form-control.wpcf7-textarea {
-		resize: none;
-		min-height: 80px;
+		resize: vertical;
+		min-height: 100px;
 		line-height: var(--leading-body);
 	}
 
@@ -88,16 +90,17 @@
 			width: 16px;
 			height: 16px;
 			min-width: 16px;
-			border: 1px solid var(--color-red);
-			border-radius: var(--border-radius);
+			border: 1px solid #ccc;
+			border-radius: 3px;
 			background: transparent;
 			margin-top: 2px;
 			cursor: pointer;
-			transition: background-color 0.25s ease;
+			transition: border-color 0.25s ease, background-color 0.25s ease;
 			position: relative;
 
 			&:checked {
-				background-color: var(--color-red);
+				background-color: var(--color-black);
+				border-color: var(--color-black);
 
 				&::after {
 					content: "";

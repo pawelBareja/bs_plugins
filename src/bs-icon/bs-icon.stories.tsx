@@ -50,7 +50,7 @@ export const Domyslna: Story = {
 	args: {
 		attributes: {
 			...baseAttrs,
-			ikona: ICON_LIBRARY.store.svg,
+			ikona: ICON_LIBRARY.storefront.svg,
 			rozmiar: 48,
 			kolor: '#fff',
 		},
@@ -62,7 +62,7 @@ export const Czerwona: Story = {
 	args: {
 		attributes: {
 			...baseAttrs,
-			ikona: ICON_LIBRARY.pin.svg,
+			ikona: ICON_LIBRARY.mapPin.svg,
 			rozmiar: 48,
 			kolor: '#ee2b27',
 		},
@@ -86,7 +86,7 @@ export const Mala: Story = {
 	args: {
 		attributes: {
 			...baseAttrs,
-			ikona: ICON_LIBRARY.check.svg,
+			ikona: ICON_LIBRARY.checkCircle.svg,
 			rozmiar: 24,
 			kolor: '#111111',
 		},

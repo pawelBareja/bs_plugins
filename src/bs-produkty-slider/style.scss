@@ -4,6 +4,8 @@
 	--bs-slider-visible: 3;
 
 	overflow: hidden;
+	max-width: 1290px;
+	margin-inline: auto;
 
 	&__track {
 		display: flex;
@@ -104,9 +106,19 @@
 
 	@media ( max-width: 900px ) {
 		--bs-slider-visible: 2;
+
+		&__obrazek {
+			width: 20%;
+			margin-inline: auto;
+		}
 	}
 
 	@media ( max-width: 600px ) {
 		--bs-slider-visible: 1;
+
+		&__obrazek {
+			width: 20%;
+			margin-inline: auto;
+		}
 	}
 }

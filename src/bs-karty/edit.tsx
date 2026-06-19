@@ -24,6 +24,7 @@ import './editor.scss';
 const WARIANTY = [
 	{ label: 'Czerwony (biały tekst)', value: 'czerwony' },
 	{ label: 'Biały (czarny tekst)', value: 'bialy' },
+	{ label: 'Tylko tekst', value: 'tekst' },
 ];
 
 export default function Edit( {
@@ -165,6 +166,17 @@ export default function Edit( {
 								} )
 							}
 						/>
+						<p>Linia ozdobna (kolor)</p>
+						<ColorPalette
+							colors={ BRAND_COLORS }
+							value={ el.ozdobaLiniaKolor }
+							onChange={ ( color ) =>
+								updateElement( i, {
+									ozdobaLiniaKolor: color ?? '',
+								} )
+							}
+							disableCustomColors
+						/>
 					</PanelBody>
 				) ) }
 				<SectionControls
@@ -196,12 +208,15 @@ export default function Edit( {
 					const obrazekClassName = el.arkaObrazka
 						? 'blok-karty__obrazek blok-karty__obrazek--arka'
 						: 'blok-karty__obrazek';
-					const btnClassName = [
-						'blok-przycisk',
-						`blok-przycisk--${ el.przyciskWariant }`,
-						'blok-przycisk--md',
-						'blok-karty__przycisk',
-					].join( ' ' );
+					const btnClassName =
+						el.przyciskWariant === 'tekst'
+							? 'blok-karty__przycisk blok-karty__przycisk--tekst'
+							: [
+									'blok-przycisk',
+									`blok-przycisk--${ el.przyciskWariant }`,
+									'blok-przycisk--md',
+									'blok-karty__przycisk',
+							  ].join( ' ' );
 
 					return (
 						<div
@@ -214,6 +229,15 @@ export default function Edit( {
 							}
 						>
 							<div className={ obrazekClassName }>
+								{ el.ozdobaLiniaKolor && (
+									<div
+										className="blok-karty__ozdoba-linia"
+										style={ {
+											backgroundColor:
+												el.ozdobaLiniaKolor,
+										} }
+									/>
+								) }
 								<MediaUploadCheck>
 									<MediaUpload
 										onSelect={ ( media ) =>

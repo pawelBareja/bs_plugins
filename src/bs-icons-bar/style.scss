@@ -6,10 +6,13 @@
 	justify-content: space-between;
 	gap: var(--spacing-md);
 	padding: var(--spacing-lg) 6%;
+	max-width: 1290px;
+	margin-inline: auto;
 
 	&__item {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: 25px;
 		flex: 1 1 0;
 		min-width: 0;
@@ -52,10 +55,10 @@
 	}
 
 	@media ( max-width: 768px ) {
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: var(--spacing-md) var(--spacing-sm);
-		padding: var(--spacing-md) var(--spacing-sm);
+		flex-direction: column;
+		align-items: center;
+		gap: var(--spacing-md);
+		padding: var(--spacing-md) var(--spacing-lg);
 
 		&__divider {
 			display: none;
@@ -63,11 +66,10 @@
 
 		&__item {
 			flex: 0 0 auto;
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-			min-width: 80px;
-			max-width: 140px;
+			width: 100%;
+			max-width: 340px;
+			justify-content: center;
+			gap: 16px;
 		}
 	}
 }

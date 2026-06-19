@@ -1,5 +1,7 @@
 export type BsIconAttributes = {
 	ikona: string;
+	ikonaNazwa: string;
+	ikonaWaga: string;
 	rozmiar: number;
 	kolor: string;
 	paddingGora: number;

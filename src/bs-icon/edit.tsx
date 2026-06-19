@@ -1,12 +1,14 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import {
 	useBlockProps,
 	InspectorControls,
 	ColorPalette,
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { BsIconAttributes } from './types';
-import { ICON_ENTRIES } from '../icons';
+import { ICON_ENTRIES, ICON_LIBRARY, WEIGHT_OPTIONS } from '../icons';
 import { BRAND_COLORS } from '../config';
 import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
@@ -14,12 +16,26 @@ import './editor.scss';
 const MIN_ROZMIAR = 16;
 const MAX_ROZMIAR = 120;
 
+function buildSvg( nazwaKlucz: string, waga: string ): string {
+	const def = ICON_LIBRARY[ nazwaKlucz ];
+	if ( ! def ) return '';
+	return renderToStaticMarkup(
+		createElement( def.Component, {
+			color: 'currentColor',
+			weight: waga,
+			'aria-hidden': true,
+		} )
+	);
+}
+
 export default function Edit( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< BsIconAttributes > ) {
 	const {
 		ikona,
+		ikonaNazwa,
+		ikonaWaga,
 		rozmiar,
 		kolor,
 		paddingGora,
@@ -54,14 +70,17 @@ export default function Edit( {
 								type="button"
 								title={ def.label }
 								aria-label={ def.label }
-								aria-pressed={ ikona === def.svg }
+								aria-pressed={ ikonaNazwa === key }
 								className={
-									ikona === def.svg
+									ikonaNazwa === key
 										? 'bs-icon-picker__btn is-active'
 										: 'bs-icon-picker__btn'
 								}
 								onClick={ () =>
-									setAttributes( { ikona: def.svg } )
+									setAttributes( {
+										ikonaNazwa: key,
+										ikona: buildSvg( key, ikonaWaga || 'thin' ),
+									} )
 								}
 								dangerouslySetInnerHTML={ { __html: def.svg } }
 							/>
@@ -69,6 +88,17 @@ export default function Edit( {
 					</div>
 				</PanelBody>
 				<PanelBody title="Wygląd">
+					<SelectControl
+						label="Grubość kreski"
+						value={ ikonaWaga || 'thin' }
+						options={ WEIGHT_OPTIONS }
+						onChange={ ( val ) => {
+							const newSvg = ikonaNazwa
+								? buildSvg( ikonaNazwa, val )
+								: ikona;
+							setAttributes( { ikonaWaga: val, ikona: newSvg } );
+						} }
+					/>
 					<RangeControl
 						label="Rozmiar (px)"
 						value={ rozmiar }

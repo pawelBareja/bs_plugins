@@ -1,90 +1,47 @@
 export {};
 
-const TYPING_SPEED = 80;
-const DELETING_SPEED = 40;
-const PAUSE_AFTER_TYPE = 2000;
-const PAUSE_BEFORE_TYPE = 400;
 const SCALE_MAX = 0.12;
 
-function initTyping( rotator: HTMLElement ): void {
+function initBlurRotator( rotator: HTMLElement ): void {
 	const items = Array.from(
 		rotator.querySelectorAll< HTMLElement >(
 			'.blok-hero-home__rotator-item'
 		)
 	);
-	if ( items.length === 0 ) {
-		return;
-	}
+	if ( items.length < 2 ) return;
 
-	const words = items.map( ( el ) => el.textContent?.trim() ?? '' );
-	const display = items[ 0 ];
+	let current = 0;
 
-	// Hide all except the display element
-	items.forEach( ( el, i ) => {
-		if ( i > 0 ) {
-			el.style.display = 'none';
-		}
-	} );
-
-	display.classList.add( 'is-active' );
-	display.textContent = '';
-
-	let wordIndex = 0;
-	let charIndex = 0;
-	let deleting = false;
-
-	const tick = () => {
-		const word = words[ wordIndex ];
-
-		if ( ! deleting ) {
-			charIndex++;
-			display.textContent = word.slice( 0, charIndex );
-			if ( charIndex === word.length ) {
-				setTimeout( () => {
-					deleting = true;
-					tick();
-				}, PAUSE_AFTER_TYPE );
-				return;
-			}
-		} else {
-			charIndex--;
-			display.textContent = word.slice( 0, charIndex );
-			if ( charIndex === 0 ) {
-				deleting = false;
-				wordIndex = ( wordIndex + 1 ) % words.length;
-				setTimeout( tick, PAUSE_BEFORE_TYPE );
-				return;
-			}
-		}
-
-		setTimeout( tick, deleting ? DELETING_SPEED : TYPING_SPEED );
-	};
-
-	setTimeout( tick, 600 );
+	setInterval( () => {
+		items[ current ].classList.remove( 'is-active' );
+		current = ( current + 1 ) % items.length;
+		items[ current ].classList.add( 'is-active' );
+	}, 3000 );
 }
 
-function initSimpleRotator( rotator: HTMLElement ): void {
-	const items = rotator.querySelectorAll< HTMLElement >(
-		'.blok-hero-home__rotator-item'
+function initBlurIn( hero: HTMLElement ): void {
+	hero.classList.add( 'js-blur-in' );
+
+	const observer = new IntersectionObserver(
+		( entries ) => {
+			entries.forEach( ( entry ) => {
+				if ( entry.isIntersecting ) {
+					hero.classList.add( 'is-in-view' );
+					observer.disconnect();
+				}
+			} );
+		},
+		{ threshold: 0.1 }
 	);
-	if ( items.length < 2 ) {
-		return;
-	}
-	let index = 0;
-	setInterval( () => {
-		items[ index ].classList.remove( 'is-active' );
-		index = ( index + 1 ) % items.length;
-		items[ index ].classList.add( 'is-active' );
-	}, 2600 );
+
+	observer.observe( hero );
 }
 
 function initParallax( hero: HTMLElement ): void {
 	const obrazek = hero.querySelector< HTMLElement >(
 		'.blok-hero-home__obrazek'
 	);
-	if ( ! obrazek ) {
-		return;
-	}
+	if ( ! obrazek ) return;
 
 	let ticking = false;
 
@@ -106,9 +63,7 @@ function initParallax( hero: HTMLElement ): void {
 	};
 
 	const onScroll = () => {
-		if ( ticking ) {
-			return;
-		}
+		if ( ticking ) return;
 		ticking = true;
 		requestAnimationFrame( update );
 	};
@@ -128,13 +83,10 @@ document
 			'.blok-hero-home__rotator'
 		);
 		if ( rotator ) {
-			if ( reducedMotion ) {
-				initSimpleRotator( rotator );
-			} else {
-				initTyping( rotator );
-			}
+			initBlurRotator( rotator );
 		}
 		if ( ! reducedMotion ) {
+			initBlurIn( hero );
 			initParallax( hero );
 		}
 	} );

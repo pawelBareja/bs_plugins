@@ -36,8 +36,8 @@ if ( $sekcja_style ) {
 				/>
 			</div>
 		<?php endif; ?>
+		<?php if ( $tresc ) : ?>
+			<div class="blok-usp__tresc"><?php echo wp_kses_post( $tresc ); ?></div>
+		<?php endif; ?>
 	</div>
-	<?php if ( $tresc ) : ?>
-		<div class="blok-usp__tresc"><?php echo wp_kses_post( $tresc ); ?></div>
-	<?php endif; ?>
 </div>

@@ -5,6 +5,8 @@
 	grid-template-columns: repeat(var(--bs-features-cols, 3), 1fr);
 	gap: 40px 30px;
 	justify-items: center;
+	max-width: 1290px;
+	margin-inline: auto;
 
 	&__element {
 		display: flex;

@@ -33,7 +33,7 @@
 		},
 		"tekstPrzycisku": {
 			"type": "string",
-			"default": "Zamów w Bolt"
+			"default": "Kup teraz"
 		},
 		"paddingGora": { "type": "number", "default": 0 },
 		"paddingDol": { "type": "number", "default": 0 },

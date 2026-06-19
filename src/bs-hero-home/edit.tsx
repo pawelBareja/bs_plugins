@@ -31,6 +31,8 @@ export default function Edit( {
 		paddingDol,
 		paddingBoki,
 		kolorTlaSekcji,
+		tekstBoczny,
+		kolorTekstuBocznego,
 	} = attributes;
 	const blockProps = useBlockProps();
 
@@ -61,6 +63,7 @@ export default function Edit( {
 
 	const wrapperStyle = {
 		'--bs-hero-home-bg': kolorTla,
+		'--bs-hero-home-tekst-boczny-kolor': kolorTekstuBocznego,
 	} as React.CSSProperties;
 
 	const labelZdjecia = obrazek ? 'Zmień zdjęcie' : 'Dodaj zdjęcie';
@@ -151,6 +154,26 @@ export default function Edit( {
 						onChange={ ( val ) => onChangeTekst( 2, val ) }
 					/>
 				</PanelBody>
+				<PanelBody title="Tekst boczny" initialOpen={ false }>
+					<TextControl
+						label="Tekst"
+						value={ tekstBoczny }
+						onChange={ ( val ) =>
+							setAttributes( { tekstBoczny: val } )
+						}
+					/>
+					<p>Kolor</p>
+					<ColorPalette
+						colors={ BRAND_COLORS }
+						value={ kolorTekstuBocznego }
+						onChange={ ( color ) =>
+							setAttributes( {
+								kolorTekstuBocznego: color ?? '#111111',
+							} )
+						}
+						disableCustomColors
+					/>
+				</PanelBody>
 				<SectionControls
 					paddingGora={ paddingGora }
 					paddingDol={ paddingDol }
@@ -194,6 +217,11 @@ export default function Edit( {
 					</div>
 				</div>
 
+				{ tekstBoczny && (
+					<span className="blok-hero-home__tekst-boczny">
+						{ tekstBoczny }
+					</span>
+				) }
 				<div className="blok-hero-home__obrazek-wrapper">
 					<MediaUploadCheck>
 						<MediaUpload

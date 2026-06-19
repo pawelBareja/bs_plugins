@@ -35,6 +35,9 @@
 			"type": "number",
 			"default": 0
 		},
+		"ikonaId": { "type": "string", "default": "" },
+		"ikonaSvg": { "type": "string", "default": "" },
+		"ikonaPozycja": { "type": "string", "default": "start" },
 		"paddingGora": { "type": "number", "default": 0 },
 		"paddingDol": { "type": "number", "default": 0 },
 		"paddingBoki": { "type": "number", "default": 0 },

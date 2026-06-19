@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Edit from './edit';
 import type { BsUspAttributes } from './types';
 import './style.scss';
+import './editor.scss';
 
 const meta: Meta< typeof Edit > = {
 	title: 'Bloki/BS USP',
@@ -17,7 +18,7 @@ const meta: Meta< typeof Edit > = {
 				args.attributes
 			);
 			return (
-				<div style={ { padding: '40px' } }>
+				<div style={ { padding: '40px', background: '#e8e8e8' } }>
 					<Edit
 						{ ...args }
 						attributes={ attributes }
@@ -77,6 +78,22 @@ export const InnyKolorIRozmiar: Story = {
 			kolorKsztaltu: '#a7ce3a',
 			szerokoscKsztaltu: 480,
 			wysokoscKsztaltu: 300,
+		},
+		...baseArgs,
+	},
+};
+
+export const PozycjaWarstwowa: Story = {
+	name: 'Warstwy — obrazek poniżej kształtu, tekst na wierzchu',
+	args: {
+		attributes: {
+			...baseAttrs,
+			obrazek,
+			tresc: 'Zaufaj naszemu ponad 20-letniemu doświadczeniu.<br>Porozmawiajmy o kwiatach.',
+			kolorKsztaltu: '#f1efeb',
+			szerokoscKsztaltu: 380,
+			wysokoscKsztaltu: 420,
+			kolorTlaSekcji: '#fff',
 		},
 		...baseArgs,
 	},

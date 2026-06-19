@@ -13,7 +13,8 @@ export type KartaItem = {
 	tresc: string;
 	przyciskEtykieta: string;
 	przyciskUrl: string;
-	przyciskWariant: 'bialy' | 'czerwony';
+	przyciskWariant: 'bialy' | 'czerwony' | 'tekst';
+	ozdobaLiniaKolor: string;
 };
 
 export type BsKartyAttributes = {

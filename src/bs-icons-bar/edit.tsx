@@ -1,18 +1,32 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { Fragment, useCallback } from 'react';
 import {
 	useBlockProps,
 	RichText,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { BsIconsBarAttributes, IconBarItem } from './types';
-import { ICON_ENTRIES, WAVE_SVG } from '../icons';
+import { ICON_ENTRIES, ICON_LIBRARY, WAVE_SVG, WEIGHT_OPTIONS } from '../icons';
 import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
 
 const MIN_ELEMENTOW = 2;
 const MAX_ELEMENTOW = 5;
+
+function buildSvg( nazwaKlucz: string, waga: string ): string {
+	const def = ICON_LIBRARY[ nazwaKlucz ];
+	if ( ! def ) return '';
+	return renderToStaticMarkup(
+		createElement( def.Component, {
+			color: 'currentColor',
+			weight: waga,
+			'aria-hidden': true,
+		} )
+	);
+}
 
 export default function Edit( {
 	attributes,
@@ -21,6 +35,7 @@ export default function Edit( {
 	const {
 		liczbaElementow,
 		elementy,
+		ikonaWaga,
 		paddingGora,
 		paddingDol,
 		paddingBoki,
@@ -53,6 +68,19 @@ export default function Edit( {
 		[ setAttributes ]
 	);
 
+	const onChangeWaga = useCallback(
+		( val: string ) => {
+			const updated = elementy.map( ( el ) => ( {
+				...el,
+				ikona: el.ikonaNazwa
+					? buildSvg( el.ikonaNazwa, val )
+					: el.ikona,
+			} ) );
+			setAttributes( { ikonaWaga: val, elementy: updated } );
+		},
+		[ elementy, setAttributes ]
+	);
+
 	return (
 		<>
 			<InspectorControls>
@@ -63,6 +91,12 @@ export default function Edit( {
 						onChange={ onChangeLiczba }
 						min={ MIN_ELEMENTOW }
 						max={ MAX_ELEMENTOW }
+					/>
+					<SelectControl
+						label="Grubość ikon"
+						value={ ikonaWaga || 'thin' }
+						options={ WEIGHT_OPTIONS }
+						onChange={ onChangeWaga }
 					/>
 				</PanelBody>
 				{ widoczne.map( ( el, i ) => (
@@ -78,14 +112,20 @@ export default function Edit( {
 									type="button"
 									title={ def.label }
 									aria-label={ def.label }
-									aria-pressed={ el.ikona === def.svg }
+									aria-pressed={ el.ikonaNazwa === key }
 									className={
-										el.ikona === def.svg
+										el.ikonaNazwa === key
 											? 'bs-icons-bar-picker__btn is-active'
 											: 'bs-icons-bar-picker__btn'
 									}
 									onClick={ () =>
-										updateElement( i, { ikona: def.svg } )
+										updateElement( i, {
+											ikonaNazwa: key,
+											ikona: buildSvg(
+												key,
+												ikonaWaga || 'thin'
+											),
+										} )
 									}
 									dangerouslySetInnerHTML={ {
 										__html: def.svg,

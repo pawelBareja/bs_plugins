@@ -8,7 +8,9 @@
 
 $tytul     = $attributes['tytul'] ?? '';
 $obrazek   = $attributes['obrazek'] ?? null;
-$kolor_tla = $attributes['kolorTla'] ?? '#fbfbfb';
+$kolor_tla           = $attributes['kolorTla'] ?? '#fbfbfb';
+$tekst_boczny        = trim( $attributes['tekstBoczny'] ?? 'pracownia florystyczna' );
+$kolor_tekstu_boczny = $attributes['kolorTekstuBocznego'] ?? '#111111';
 
 $teksty = array_values( array_filter(
 	$attributes['teksty'] ?? [],
@@ -18,7 +20,7 @@ $teksty = array_values( array_filter(
 ) );
 
 $sekcja_style  = bs_block_sekcja_style( $attributes );
-$blok_style    = '--bs-hero-home-bg: ' . esc_attr( $kolor_tla ) . ( $sekcja_style ? '; ' . $sekcja_style : '' );
+$blok_style    = '--bs-hero-home-bg: ' . esc_attr( $kolor_tla ) . '; --bs-hero-home-tekst-boczny-kolor: ' . esc_attr( $kolor_tekstu_boczny ) . ( $sekcja_style ? '; ' . $sekcja_style : '' );
 $wrapper_attrs = get_block_wrapper_attributes( [
 	'class' => 'blok-hero-home',
 	'style' => $blok_style,
@@ -42,6 +44,9 @@ $wrapper_attrs = get_block_wrapper_attributes( [
 			<div class="blok-hero-home__przyciski"><?php echo $content; ?></div>
 		<?php endif; ?>
 	</div>
+	<?php if ( $tekst_boczny ) : ?>
+		<span class="blok-hero-home__tekst-boczny"><?php echo esc_html( $tekst_boczny ); ?></span>
+	<?php endif; ?>
 	<?php if ( ! empty( $obrazek['url'] ) ) : ?>
 		<div class="blok-hero-home__obrazek-wrapper">
 			<img

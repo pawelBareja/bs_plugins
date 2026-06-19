@@ -24,9 +24,10 @@ $wrapper_attrs = get_block_wrapper_attributes( [
 		$kolor_tekstu      = $el['kolorTekstu'] ?? '';
 		$tytul             = $el['tytul'] ?? '';
 		$tresc             = $el['tresc'] ?? '';
-		$przycisk_etykieta = $el['przyciskEtykieta'] ?? '';
-		$przycisk_url      = $el['przyciskUrl'] ?? '';
-		$przycisk_wariant  = $el['przyciskWariant'] ?? 'czerwony';
+		$przycisk_etykieta  = $el['przyciskEtykieta'] ?? '';
+		$przycisk_url       = $el['przyciskUrl'] ?? '';
+		$przycisk_wariant   = $el['przyciskWariant'] ?? 'czerwony';
+		$ozdoba_linia_kolor = $el['ozdobaLiniaKolor'] ?? '';
 
 		$karta_inline = [];
 		if ( $kolor_tla ) {
@@ -39,17 +40,26 @@ $wrapper_attrs = get_block_wrapper_attributes( [
 
 		$obrazek_class = 'blok-karty__obrazek' . ( $arka_obrazka ? ' blok-karty__obrazek--arka' : '' );
 
-		$btn_class = implode( ' ', [
-			'blok-przycisk',
-			'blok-przycisk--' . esc_attr( $przycisk_wariant ),
-			'blok-przycisk--md',
-			'blok-karty__przycisk',
-		] );
+		$ozdoba_linia_html = $ozdoba_linia_kolor
+			? '<div class="blok-karty__ozdoba-linia" style="background-color:' . esc_attr( $ozdoba_linia_kolor ) . '"></div>'
+			: '';
+
+		if ( 'tekst' === $przycisk_wariant ) {
+			$btn_class = 'blok-karty__przycisk blok-karty__przycisk--tekst';
+		} else {
+			$btn_class = implode( ' ', [
+				'blok-przycisk',
+				'blok-przycisk--' . esc_attr( $przycisk_wariant ),
+				'blok-przycisk--md',
+				'blok-karty__przycisk',
+			] );
+		}
 		?>
 		<div class="blok-karty__karta"<?php echo $karta_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<?php if ( $obrazek ) : ?>
 				<div class="<?php echo esc_attr( $obrazek_class ); ?>">
 					<img src="<?php echo esc_url( $obrazek['url'] ); ?>" alt="<?php echo esc_attr( $obrazek['alt'] ?? '' ); ?>" />
+					<?php echo $ozdoba_linia_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 			<?php endif; ?>
 			<div class="blok-karty__tresc">

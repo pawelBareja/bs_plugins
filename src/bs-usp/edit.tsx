@@ -150,6 +150,13 @@ export default function Edit( {
 							}
 						/>
 					</MediaUploadCheck>
+					<RichText
+						tagName="div"
+						className="blok-usp__tresc"
+						value={ tresc }
+						onChange={ onChangeTresc }
+						placeholder="Wpisz tekst USP..."
+					/>
 				</div>
 				{ obrazek && (
 					<Button
@@ -160,13 +167,6 @@ export default function Edit( {
 						Usuń zdjęcie
 					</Button>
 				) }
-				<RichText
-					tagName="div"
-					className="blok-usp__tresc"
-					value={ tresc }
-					onChange={ onChangeTresc }
-					placeholder="Zaufaj naszemu ponad 20-letniemu doświadczeniu. Porozmawiajmy o kwiatach."
-				/>
 			</div>
 		</>
 	);

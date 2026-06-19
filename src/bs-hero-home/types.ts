@@ -13,4 +13,6 @@ export type BsHeroHomeAttributes = {
 	paddingDol: number;
 	paddingBoki: number;
 	kolorTlaSekcji: string;
+	tekstBoczny: string;
+	kolorTekstuBocznego: string;
 };

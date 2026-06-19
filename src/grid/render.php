@@ -3,7 +3,7 @@
  * Render template dla bloku Grid Obraz + Tekst.
  *
  * @var array    $attributes Atrybuty bloku.
- * @var string   $content    Zawartość InnerBlocks (nieużywana).
+ * @var string   $content    Zawartość InnerBlocks.
  * @var WP_Block $block      Instancja bloku.
  */
 
@@ -57,10 +57,11 @@ $kolumna_obrazek = sprintf(
 );
 
 $kolumna_tekst = sprintf(
-	'<div class="blok-grid__tekst"%s>%s%s</div>',
+	'<div class="blok-grid__tekst"%s>%s%s%s</div>',
 	$tekst_style, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$tytul ? '<h3 class="blok-grid__tytul">' . wp_kses_post( $tytul ) . '</h3>' : '',
-	$tresc ? '<p class="blok-grid__tresc">' . wp_kses_post( $tresc ) . '</p>' : ''
+	$tresc ? '<p class="blok-grid__tresc">' . wp_kses_post( $tresc ) . '</p>' : '',
+	$content // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 );
 ?>
 <div <?php echo get_block_wrapper_attributes( array( 'class' => $grid_class ) ); ?>>

@@ -1,93 +1,82 @@
 @use "../styles/config" as *;
 
 .blok-topbar {
-	background-color: var(--bs-topbar-bg, var(--color-black));
-	color: var(--bs-topbar-color, var(--color-white));
+  background-color: var(--bs-topbar-bg, var(--color-black));
+  color: var(--bs-topbar-color, var(--color-white));
 
-	&__pasek {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: var(--spacing-sm);
-		padding: 10px var(--spacing-md);
-		color: inherit;
-		text-decoration: none;
-	}
+  &__pasek {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 8px var(--spacing-xs);
+    color: inherit;
+    max-width: 1290px;
+    margin-inline: auto;
+    text-decoration: none;
+  }
 
-	&__tekst {
-		font-family: var(--font-body);
-		font-size: 14px;
-		font-weight: 500;
-		line-height: 1.4rem;
-		text-transform: capitalize;
-		white-space: nowrap;
-	}
+  &__tekst {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4rem;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
 
-	&__przycisk {
-		position: relative;
-		display: inline-block;
-		font-family: var(--font-body);
-		font-size: 14px;
-		font-weight: 500;
-		line-height: 1.4rem;
-		text-transform: capitalize;
-		color: var(--color-red);
-		white-space: nowrap;
+  &__przycisk {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4rem;
+    text-transform: capitalize;
+    color: var(--color-red);
+    white-space: nowrap;
 
-		&::after {
-			content: "";
-			position: absolute;
-			bottom: -2px;
-			left: 0;
-			width: 100%;
-			height: 3px;
-			background-color: var(--color-red);
-			opacity: 0.65;
-			border-radius: 2px;
-			transform: scaleX(0);
-			transform-origin: left;
-			animation: bs-topbar-marker 3s ease-in-out infinite;
-		}
-	}
+    svg {
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      overflow: visible;
 
-	&__info {
-		margin: 0;
-		padding: 10px var(--spacing-md);
-		font-family: var(--font-body);
-		font-size: 14px;
-		font-style: italic;
-		opacity: 0.7;
-		text-align: center;
-	}
+      path {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        opacity: 0.65;
+        vector-effect: non-scaling-stroke;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: bs-topbar-marker 1.4s ease-in-out 1 forwards;
+      }
+    }
+  }
+
+  &__info {
+    margin: 0;
+    padding: 10px var(--spacing-md);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-style: italic;
+    opacity: 0.7;
+    text-align: center;
+  }
 }
 
 @keyframes bs-topbar-marker {
-
-	0% {
-		transform: scaleX(0);
-		transform-origin: left;
-	}
-
-	45% {
-		transform: scaleX(1);
-		transform-origin: left;
-	}
-
-	75% {
-		transform: scaleX(1);
-		transform-origin: right;
-	}
-
-	100% {
-		transform: scaleX(0);
-		transform-origin: right;
-	}
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-@media ( prefers-reduced-motion: reduce ) {
-
-	.blok-topbar__przycisk::after {
-		animation: none;
-		transform: scaleX(1);
-	}
+@media (prefers-reduced-motion: reduce) {
+  .blok-topbar__przycisk svg path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }

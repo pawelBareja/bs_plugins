@@ -29,7 +29,9 @@
 		"paddingGora": { "type": "number", "default": 0 },
 		"paddingDol": { "type": "number", "default": 0 },
 		"paddingBoki": { "type": "number", "default": 0 },
-		"kolorTlaSekcji": { "type": "string", "default": "" }
+		"kolorTlaSekcji": { "type": "string", "default": "" },
+		"tekstBoczny": { "type": "string", "default": "pracownia florystyczna" },
+		"kolorTekstuBocznego": { "type": "string", "default": "#111111" }
 	},
 	"render": "file:./render.php",
 	"editorScript": "file:./index.js",

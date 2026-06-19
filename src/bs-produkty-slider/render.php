@@ -14,7 +14,7 @@ $kategoria_slug  = $attributes['kategoriaSlug'] ?? '';
 $tag_slug        = $attributes['tagSlug'] ?? '';
 $liczba          = max( 2, (int) ( $attributes['liczbaProduktow'] ?? 5 ) );
 $predkosc        = max( 1, (int) ( $attributes['predkosc'] ?? 4 ) );
-$tekst_przycisku = $attributes['tekstPrzycisku'] ?? 'Zamów w Bolt';
+$tekst_przycisku = $attributes['tekstPrzycisku'] ?? 'Kup teraz';
 
 $query_args = [
 	'post_type'      => 'product',

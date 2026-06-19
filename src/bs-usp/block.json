@@ -18,7 +18,7 @@
 		},
 		"tresc": {
 			"type": "string",
-			"default": ""
+			"default": "Zaufaj naszemu ponad 20-letniemu doświadczeniu. Porozmawiajmy o kwiatach."
 		},
 		"kolorKsztaltu": {
 			"type": "string",

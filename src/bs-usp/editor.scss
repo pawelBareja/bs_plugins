@@ -15,7 +15,16 @@
 	}
 
 	&__tresc {
+		position: relative;
+		bottom: auto;
+		left: auto;
+		right: auto;
+		z-index: auto;
 		outline: none;
 		cursor: text;
+		margin-top: var(--spacing-md, 16px);
+		padding: 8px 12px;
+		border: 1px dashed rgba( 0, 0, 0, 0.25 );
+		border-radius: 4px;
 	}
 }

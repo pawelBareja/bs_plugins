@@ -20,11 +20,11 @@
 		"elementy": {
 			"type": "array",
 			"default": [
-				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony" },
-				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony" },
-				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony" },
-				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony" },
-				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony" }
+				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony", "ozdobaLiniaKolor": "" },
+				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony", "ozdobaLiniaKolor": "" },
+				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony", "ozdobaLiniaKolor": "" },
+				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony", "ozdobaLiniaKolor": "" },
+				{ "obrazek": null, "arkaObrazka": false, "kolorTla": "", "kolorTekstu": "", "tytul": "", "tresc": "", "przyciskEtykieta": "", "przyciskUrl": "", "przyciskWariant": "czerwony", "ozdobaLiniaKolor": "" }
 			]
 		},
 		"paddingGora": { "type": "number", "default": 0 },

@@ -60,7 +60,10 @@ $tag = $link ? 'a' : 'div';
 	>
 		<span class="blok-topbar__tekst"><?php echo esc_html( $tekst ); ?></span>
 		<?php if ( $tekst_przycisku ) : ?>
-			<span class="blok-topbar__przycisk"><?php echo esc_html( $tekst_przycisku ); ?></span>
+			<span class="blok-topbar__przycisk">
+				<?php echo esc_html( $tekst_przycisku ); ?>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M7.7,145.6C109,125,299.9,116.2,401,121.3c42.1,2.2,87.6,11.8,87.3,25.7"></path></svg>
+			</span>
 		<?php endif; ?>
 	</<?php echo $tag; ?>>
 </div>

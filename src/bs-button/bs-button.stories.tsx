@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Edit from './edit';
 import type { BsButtonAttributes } from './types';
+import { ICON_LIBRARY } from '../icons';
 import './style.scss';
 
 const meta: Meta< typeof Edit > = {
@@ -40,6 +41,9 @@ const baseArgs = {
 
 const baseAttrs = {
 	scrollOffset: 0,
+	ikonaId: '',
+	ikonaSvg: '',
+	ikonaPozycja: 'start' as const,
 	paddingGora: 0,
 	paddingDol: 0,
 	paddingBoki: 0,
@@ -140,6 +144,60 @@ export const ZLinkiem: Story = {
 			wariant: 'bialy',
 			rozmiar: 'md',
 			nowyTab: true,
+		},
+		...baseArgs,
+	},
+};
+
+export const IkonaNaPoczatku: Story = {
+	name: 'Ikona — na początku',
+	args: {
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Zamów kwiaty',
+			url: '',
+			wariant: 'czerwony',
+			rozmiar: 'md',
+			nowyTab: false,
+			ikonaId: 'flower',
+			ikonaSvg: ICON_LIBRARY.flower.svg,
+			ikonaPozycja: 'start',
+		},
+		...baseArgs,
+	},
+};
+
+export const IkonaNaKoncu: Story = {
+	name: 'Ikona — na końcu',
+	args: {
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Dowiedz się więcej',
+			url: '',
+			wariant: 'bialy',
+			rozmiar: 'md',
+			nowyTab: false,
+			ikonaId: 'arrowRight',
+			ikonaSvg: ICON_LIBRARY.arrowRight.svg,
+			ikonaPozycja: 'end',
+		},
+		...baseArgs,
+	},
+};
+
+export const IkonaDostawy: Story = {
+	name: 'Ikona — dostawa skuterem',
+	args: {
+		attributes: {
+			...baseAttrs,
+			etykieta: 'Zamów z dostawą',
+			url: '',
+			wariant: 'czerwony',
+			rozmiar: 'lg',
+			nowyTab: false,
+			ikonaId: 'moped',
+			ikonaSvg: ICON_LIBRARY.moped.svg,
+			ikonaPozycja: 'start',
 		},
 		...baseArgs,
 	},

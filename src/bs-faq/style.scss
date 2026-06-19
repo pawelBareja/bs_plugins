@@ -4,6 +4,8 @@
 	display: flex;
 	align-items: flex-start;
 	gap: var(--spacing-xxl);
+	max-width: 1290px;
+	margin-inline: auto;
 
 	&__sidebar {
 		flex: 0 0 220px;
