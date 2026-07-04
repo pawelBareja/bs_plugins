@@ -98,6 +98,17 @@
 			justify-content: flex-end;
 		}
 
+		&__ksztalt {
+			left: 50%;
+			transform: translateX( -50% ) translateY( var( --bs-usp-ksztalt-shift, 0 ) );
+		}
+
+		&__tresc {
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+
 		&__obrazek-wrapper {
 			width: 80%;
 		}

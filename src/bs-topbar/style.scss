@@ -43,6 +43,7 @@
       width: 100%;
       height: 10px;
       overflow: visible;
+      z-index: 10;
 
       path {
         fill: none;
@@ -68,15 +69,69 @@
   }
 }
 
+// Desktop: wrappers przezroczyste — dzieci stają się bezpośrednimi flex-dziećmi __pasek
+.blok-topbar__suwak,
+.blok-topbar__zestaw {
+  display: contents;
+}
+
+// Duplikat ukryty na desktopie
+.blok-topbar__zestaw[aria-hidden="true"] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .blok-topbar__pasek {
+    overflow: hidden;
+    justify-content: flex-start;
+  }
+
+  .blok-topbar__suwak {
+    display: inline-flex;
+    animation: bs-topbar-scroll 18s linear infinite;
+  }
+
+  .blok-topbar__zestaw {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding-right: 4rem; // dystans między powtórzeniami — gwarantuje bezszwowy loop przy translateX(-50%)
+
+    &[aria-hidden="true"] {
+      display: inline-flex;
+    }
+  }
+}
+
 @keyframes bs-topbar-marker {
   to {
     stroke-dashoffset: 0;
   }
 }
 
+@keyframes bs-topbar-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .blok-topbar__przycisk svg path {
     animation: none;
     stroke-dashoffset: 0;
+  }
+
+  .blok-topbar__suwak {
+    animation: none;
+  }
+
+  @media (max-width: 768px) {
+    .blok-topbar__zestaw[aria-hidden="true"] {
+      display: none;
+    }
+
+    .blok-topbar__pasek {
+      overflow: visible;
+      justify-content: center;
+    }
   }
 }

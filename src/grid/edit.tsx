@@ -205,6 +205,35 @@ export default function Edit( {
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody title="Obrazek">
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={ ( media ) =>
+								onSelectObrazek( media as ObrazekMedia )
+							}
+							allowedTypes={ [ 'image' ] }
+							value={ obrazek?.id }
+							render={ ( { open } ) => (
+								<Button
+									onClick={ open }
+									variant="secondary"
+									style={ { marginBottom: '8px' } }
+								>
+									{ obrazek ? 'Zmień obrazek' : 'Dodaj obrazek' }
+								</Button>
+							) }
+						/>
+					</MediaUploadCheck>
+					{ obrazek && (
+						<Button
+							onClick={ () => setAttributes( { obrazek: null } ) }
+							variant="link"
+							isDestructive
+						>
+							Usuń obrazek
+						</Button>
+					) }
+				</PanelBody>
 				<PanelBody title="Układ">
 					<ToggleControl
 						label="Obrazek po lewej"

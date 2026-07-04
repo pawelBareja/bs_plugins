@@ -5,8 +5,12 @@
 // =============================================================================
 
 .wpcf7 form.wpcf7-form {
-	max-width: 1290px;
+	max-width: 600px;
 	margin-inline: auto;
+
+	@media (max-width: 768px) {
+		padding-inline: var(--spacing-sm);
+	}
 
 	// Pola tekstowe — underline only, szary placeholder
 	.wpcf7-form-control.wpcf7-text,

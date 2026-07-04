@@ -46,9 +46,11 @@
 		cursor: pointer;
 		transition: color 0.2s ease;
 
-		&:hover {
-			color: var(--color-red);
+		&:hover,
+		&:active,
+		&:focus {
 			background: none;
+			color: var(--color-black);
 		}
 
 		&.is-active {
@@ -98,6 +100,13 @@
 		border: none;
 		cursor: pointer;
 		text-align: left;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background: none;
+			color: inherit;
+		}
 	}
 
 	&__pytanie-tekst {
@@ -155,16 +164,12 @@
 	@media ( max-width: 768px ) {
 		flex-direction: column;
 		gap: var(--spacing-lg);
+		padding-block: var(--spacing-lg);
+		padding-inline: var(--spacing-sm);
 
 		&__sidebar {
 			flex: 1 1 auto;
 			width: 100%;
-		}
-
-		&__taby {
-			flex-direction: row;
-			flex-wrap: wrap;
-			gap: var(--spacing-md);
 		}
 	}
 }

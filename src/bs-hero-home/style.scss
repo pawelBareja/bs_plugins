@@ -128,7 +128,8 @@
 		flex-direction: column;
 
 		&__obrazek-wrapper {
-			flex: 1 1 auto;
+			flex: 0 0 32vw;
+			width: 32vw;
 			aspect-ratio: 4 / 3;
 			order: -1;
 			margin-right: 0;

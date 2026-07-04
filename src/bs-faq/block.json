@@ -17,23 +17,74 @@
 				{
 					"nazwa": "Usługi",
 					"pytania": [
-						{ "pytanie": "Jakie usługi świadczycie?", "odpowiedz": "" },
-						{ "pytanie": "Czy zajmujecie się organizacją ślubów/eventów poza Warszawą?", "odpowiedz": "" },
-						{ "pytanie": "Jaki jest czas oczekiwania na odpowiedź na zapytanie ofertowe?", "odpowiedz": "" },
-						{ "pytanie": "Kiedy zostanie uruchomiony sklep internetowy?", "odpowiedz": "" }
+						{
+							"pytanie": "Jakie usługi świadczycie?",
+							"odpowiedz": "Zajmujemy się kompleksową obsługą florystyczną – wszystkim, co związane z kwiatami oraz zielenią.\n\nKwiaty cięte – tworzymy bukiety, kompozycje, dekoracje okolicznościowe oraz florystykę ślubną i eventową.\n\nRośliny doniczkowe – oferujemy sprzedaż, dobór oraz aranżację roślin do wnętrz prywatnych i przestrzeni komercyjnych.\n\nRośliny sztuczne – przygotowujemy trwałe kompozycje i dekoracje z wysokiej jakości roślin sztucznych.\n\nFlorystyka funeralna – wykonujemy wieńce, wiązanki, stroiki i kompozycje okolicznościowe z pełnym wyczuciem i szacunkiem.\n\nFlorystyka eventowa – realizujemy dekoracje na wesela, przyjęcia, eventy firmowe oraz inne uroczystości.\n\nPielęgnacja zieleni – zajmujemy się opieką nad roślinami w domach, biurach i przestrzeniach komercyjnych.\n\nPlanowanie i aranżacja zieleni – projektujemy i doradzamy w zakresie doboru oraz rozmieszczenia roślin w przestrzeniach wewnętrznych i zewnętrznych."
+						},
+						{
+							"pytanie": "Czy zajmujecie się organizacją ślubów/eventów poza Warszawą?",
+							"odpowiedz": "Tak, realizujemy dekoracje oraz oprawę florystyczną ślubów i eventów również poza Warszawą.\n\nW celu omówienia szczegółów prosimy o kontakt mailowy: biuro@kwiaty-polskie.pl"
+						},
+						{
+							"pytanie": "Jaki jest czas oczekiwania na odpowiedź na zapytanie ofertowe?",
+							"odpowiedz": "Na zapytania ofertowe odpowiadamy w ciągu do 2 dni roboczych.\n\nW sezonie ślubnym czas odpowiedzi może się nieznacznie wydłużyć, jednak zawsze staramy się odpowiadać tak szybko, jak to możliwe."
+						},
+						{
+							"pytanie": "Kiedy zostanie uruchomiony sklep internetowy?",
+							"odpowiedz": "Uruchomienie naszego sklepu internetowego planowane jest na początku kwietnia br.\n\nO dokładnej dacie startu poinformujemy na naszej stronie internetowej oraz w mediach społecznościowych.\n\nDo tego czasu zamówienia można składać telefonicznie, mailowo oraz za pośrednictwem aplikacji."
+						},
+						{
+							"pytanie": "Czy asortyment na stronie różni się od oferty w aplikacji Bolt?",
+							"odpowiedz": "Tak, asortyment dostępny na stronie może różnić się od oferty w aplikacji Bolt.\n\nCzęść produktów powtarza się w obu kanałach sprzedaży, jednak niektóre pozycje dostępne są wyłącznie na stronie lub wyłącznie w aplikacji.\n\nW przypadku poszukiwania konkretnej kompozycji zachęcamy do kontaktu – chętnie sprawdzimy dostępność."
+						}
 					]
 				},
 				{
 					"nazwa": "Dostawa",
-					"pytania": [ { "pytanie": "", "odpowiedz": "" } ]
+					"pytania": [
+						{
+							"pytanie": "Czy mogę anulować swoje zamówienie po dokonaniu płatności?",
+							"odpowiedz": "Tak, istnieje możliwość anulowania zamówienia, o ile nie zostało ono jeszcze zrealizowane.\n\nNie przyjmujemy anulacji zamówień z planowanym doręczeniem tego samego dnia.\n\nW celu anulowania prosimy o jak najszybszy kontakt mailowy lub telefoniczny."
+						},
+						{
+							"pytanie": "Czy mogę zamówić kwiaty telefonicznie lub mailowo?",
+							"odpowiedz": "Tak, przyjmujemy zamówienia zarówno telefonicznie, jak i mailowo.\n\nWystarczy skontaktować się z nami, podać szczegóły zamówienia (rodzaj kompozycji, budżet, termin realizacji oraz adres dostawy), a my zajmiemy się resztą.\n\nW przypadku większych realizacji (np. dekoracji ślubnych lub eventowych) zachęcamy do kontaktu mailowego w celu ustalenia szczegółów."
+						},
+						{
+							"pytanie": "Czy posiadacie opcję zamówienia z dostawą tego samego dnia?",
+							"odpowiedz": "Tak, oferujemy dostawę tego samego dnia wyłącznie na terenie Warszawy i okolic.\n\nUsługa ta dostępna jest tylko w przypadku zamówień składanych telefonicznie.\n\nW celu sprawdzenia dostępności oraz ustalenia szczegółów prosimy o bezpośredni kontakt telefoniczny."
+						},
+						{
+							"pytanie": "Na czym polega usługa Odbiór w 15 minut?",
+							"odpowiedz": "Usługa Odbiór w 15 minut umożliwia szybkie przygotowanie gotowego bukietu lub kompozycji do osobistego odbioru w naszej pracowni.\n\nPo złożeniu zamówienia (telefonicznie lub online) przygotowujemy wybraną kompozycję w ciągu około 15 minut. Otrzymujesz potwierdzenie, gdy zamówienie jest gotowe do odbioru.\n\nUsługa dotyczy wybranych, dostępnych od ręki kompozycji. W przypadku większych lub indywidualnych realizacji czas przygotowania może być dłuższy."
+						}
+					]
 				},
 				{
 					"nazwa": "Płatności",
-					"pytania": [ { "pytanie": "", "odpowiedz": "" } ]
+					"pytania": [
+						{
+							"pytanie": "Jakie są dostępne metody płatności bez fizycznej obecności w sklepie?",
+							"odpowiedz": "Oferujemy wygodne i bezpieczne formy płatności zdalnej:\n\nSzybkie płatności online realizowane przez Przelewy24\n\nPłatność BLIKIEM (za pośrednictwem terminala płatniczego, telefonicznie)\n\nPłatność kartą płatniczą – możliwość obciążenia karty po podaniu niezbędnych danych (numer karty, data ważności, kod CVV, telefonicznie)\n\nTradycyjny przelew bankowy\n\nWszystkie płatności realizowane są za pośrednictwem bezpiecznych systemów transakcyjnych."
+						},
+						{
+							"pytanie": "Czy mogę zamówić kwiaty przez aplikację Bolt?",
+							"odpowiedz": "Tak, istnieje możliwość zamówienia kwiatów za pośrednictwem aplikacji Bolt.\n\nBezpośredni link do naszego profilu w aplikacji:\nhttps://food.bolt.eu/en/307-warsaw/p/3825-kwiaty-polskie-kwiaciarnia/"
+						}
+					]
 				},
 				{
 					"nazwa": "Ogólne",
-					"pytania": [ { "pytanie": "", "odpowiedz": "" } ]
+					"pytania": [
+						{
+							"pytanie": "W jakich godzinach czynny jest sklep stacjonarny?",
+							"odpowiedz": "Nasz sklep stacjonarny jest otwarty w następujących godzinach:\n\npon.–pt. 9:00–17:00\n\nGodziny otwarcia dostępne są również w naszej wizytówce Google.\n\nZachęcamy do sprawdzenia bieżących informacji przed wizytą – w okresach świątecznych lub sezonowych godziny otwarcia mogą ulec zmianie."
+						},
+						{
+							"pytanie": "Czy w przypadku odbioru osobistego mogę skorzystać z miejsca parkingowego przed hotelem?",
+							"odpowiedz": "Tak, istnieje możliwość skorzystania z miejsca parkingowego przed hotelem w przypadku odbioru osobistego kwiatów.\n\nParking dostępny jest na czas do 15 minut, wyłącznie w celu sprawnego odbioru zamówienia.\n\nW razie potrzeby prosimy o wcześniejszy kontakt telefoniczny."
+						}
+					]
 				}
 			]
 		},

@@ -10,6 +10,10 @@
 	max-width: 1290px;
 	margin-inline: auto;
 
+	@media (max-width: 768px) {
+		padding-inline: var(--spacing-sm);
+	}
+
 	&__ikona {
 
 		img {

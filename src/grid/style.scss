@@ -97,6 +97,10 @@
 			}
 		}
 
+		&__tekst {
+			padding: var(--spacing-lg) var(--spacing-sm);
+		}
+
 		&--obrazek-prawy {
 
 			.blok-grid__obrazek {
