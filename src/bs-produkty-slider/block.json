@@ -5,7 +5,7 @@
 	"version": "1.0.0",
 	"title": "BS Produkty Slider",
 	"category": "widgets",
-	"description": "Slider produktów WooCommerce (najnowsze, z kategorii lub z tagu) z automatycznym przewijaniem.",
+	"description": "Slider produktów WooCommerce (najnowsze, z kategorii, z tagu lub wybrane ręcznie) z automatycznym przewijaniem.",
 	"supports": {
 		"align": ["wide", "full"],
 		"anchor": true
@@ -23,6 +23,11 @@
 			"type": "string",
 			"default": ""
 		},
+		"wybraneProdukty": {
+			"type": "array",
+			"items": { "type": "number" },
+			"default": []
+		},
 		"liczbaProduktow": {
 			"type": "number",
 			"default": 5
@@ -33,7 +38,7 @@
 		},
 		"tekstPrzycisku": {
 			"type": "string",
-			"default": "Kup teraz"
+			"default": "Zobacz"
 		},
 		"paddingGora": { "type": "number", "default": 0 },
 		"paddingDol": { "type": "number", "default": 0 },

@@ -51,7 +51,10 @@ const baseAttrs = {
 const pelneElementy = [
 	{ ikona: ICON_LIBRARY.storefront.svg, tekst: 'Sklep stacjonarny' },
 	{ ikona: ICON_LIBRARY.truck.svg, tekst: 'Zamów przez Bolt' },
-	{ ikona: ICON_LIBRARY.shoppingCart.svg, tekst: 'Sklep online - już wkrótce' },
+	{
+		ikona: ICON_LIBRARY.shoppingCart.svg,
+		tekst: 'Sklep online - już wkrótce',
+	},
 	{ ikona: ICON_LIBRARY.gift.svg, tekst: 'Prezenty na każdą okazję' },
 	{ ikona: ICON_LIBRARY.tag.svg, tekst: 'Promocje sezonowe' },
 ];

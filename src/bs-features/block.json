@@ -18,11 +18,11 @@
 		"elementy": {
 			"type": "array",
 			"default": [
-				{ "numer": "01.", "tytul": "", "tresc": "" },
-				{ "numer": "02.", "tytul": "", "tresc": "" },
-				{ "numer": "03.", "tytul": "", "tresc": "" },
-				{ "numer": "04.", "tytul": "", "tresc": "" },
-				{ "numer": "05.", "tytul": "", "tresc": "" }
+				{ "numer": "01.", "tytul": "", "tresc": "", "trescUrl": "", "trescNowyTab": false },
+				{ "numer": "02.", "tytul": "", "tresc": "", "trescUrl": "", "trescNowyTab": false },
+				{ "numer": "03.", "tytul": "", "tresc": "", "trescUrl": "", "trescNowyTab": false },
+				{ "numer": "04.", "tytul": "", "tresc": "", "trescUrl": "", "trescNowyTab": false },
+				{ "numer": "05.", "tytul": "", "tresc": "", "trescUrl": "", "trescNowyTab": false }
 			]
 		},
 		"paddingGora": { "type": "number", "default": 0 },

@@ -47,31 +47,41 @@ const baseAttrs = {
 	kolorTlaSekcji: '',
 };
 
-const pelneElementy = [
+const pelneElementy: BsFeaturesAttributes[ 'elementy' ] = [
 	{
 		numer: '01.',
 		tytul: 'Elastyczne warunki współpracy',
 		tresc: 'Zakres usług i harmonogram dopasowujemy do indywidualnych potrzeb klienta.',
+		trescUrl: '',
+		trescNowyTab: false,
 	},
 	{
 		numer: '02.',
 		tytul: 'Niezawodna i terminowa obsługa',
 		tresc: 'Pracujemy zgodnie z ustalonym harmonogramem i wysokimi standardami jakości.',
+		trescUrl: '',
+		trescNowyTab: false,
 	},
 	{
 		numer: '03.',
 		tytul: 'Wieloletnie doświadczenie z klientami B2B',
 		tresc: 'Realizujemy projekty dla firm, biur i hoteli, rozumiejąc potrzeby środowiska biznesowego.',
+		trescUrl: '',
+		trescNowyTab: false,
 	},
 	{
 		numer: '04.',
 		tytul: 'Szeroka oferta roślin',
 		tresc: 'Kwiaty cięte, rośliny doniczkowe i kompozycje sezonowe dopasowane do wnętrza.',
+		trescUrl: '',
+		trescNowyTab: false,
 	},
 	{
 		numer: '05.',
 		tytul: 'Stała kontrola jakości',
 		tresc: 'Każda dostawa jest sprawdzana przed wysyłką, gwarantując świeżość i estetykę.',
+		trescUrl: '',
+		trescNowyTab: false,
 	},
 ];
 

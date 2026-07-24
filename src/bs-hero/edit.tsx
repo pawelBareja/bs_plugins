@@ -23,6 +23,7 @@ export default function Edit( {
 		obrazek,
 		tytul,
 		marginesGorny,
+		marginesGornyMobile,
 		wysokoscVh,
 		paddingGora,
 		paddingDol,
@@ -81,6 +82,12 @@ export default function Edit( {
 		[ setAttributes ]
 	);
 
+	const onChangeMarginesMobile = useCallback(
+		( val: string ) =>
+			setAttributes( { marginesGornyMobile: parseInt( val, 10 ) || 0 } ),
+		[ setAttributes ]
+	);
+
 	return (
 		<>
 			<InspectorControls>
@@ -117,10 +124,16 @@ export default function Edit( {
 						onChange={ onChangeWysokosc }
 					/>
 					<TextControl
-						label="Offset menu (px)"
+						label="Offset menu desktop (px)"
 						value={ String( marginesGorny ) }
 						type="number"
 						onChange={ onChangeMargines }
+					/>
+					<TextControl
+						label="Offset menu mobile (px)"
+						value={ String( marginesGornyMobile ) }
+						type="number"
+						onChange={ onChangeMarginesMobile }
 					/>
 				</PanelBody>
 				<SectionControls

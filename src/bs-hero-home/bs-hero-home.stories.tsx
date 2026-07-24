@@ -19,10 +19,13 @@ const meta: Meta< typeof Edit > = {
 			const ref = useRef< HTMLDivElement >( null );
 
 			useEffect( () => {
-				const hero = ref.current?.querySelector< HTMLElement >(
-					'.blok-hero-home'
-				);
-				if ( ! hero ) return;
+				const hero =
+					ref.current?.querySelector< HTMLElement >(
+						'.blok-hero-home'
+					);
+				if ( ! hero ) {
+					return;
+				}
 				hero.classList.add( 'js-blur-in' );
 				const timer = setTimeout( () => {
 					hero.classList.add( 'is-in-view' );
@@ -106,10 +109,13 @@ export const TekstBoczny: Story = {
 			const ref = useRef< HTMLDivElement >( null );
 
 			useEffect( () => {
-				const hero = ref.current?.querySelector< HTMLElement >(
-					'.blok-hero-home'
-				);
-				if ( ! hero ) return;
+				const hero =
+					ref.current?.querySelector< HTMLElement >(
+						'.blok-hero-home'
+					);
+				if ( ! hero ) {
+					return;
+				}
 				hero.classList.add( 'js-blur-in' );
 				const timer = setTimeout( () => {
 					hero.classList.add( 'is-in-view' );

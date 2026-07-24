@@ -26,7 +26,7 @@ export default function Edit( {
 		paddingBoki,
 		kolorTlaSekcji,
 	} = attributes;
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( { className: 'blok-header' } );
 
 	const sekcjaStyle: React.CSSProperties = {
 		...( paddingGora && { paddingTop: paddingGora } ),
@@ -87,11 +87,7 @@ export default function Edit( {
 				/>
 			</InspectorControls>
 
-			<div
-				{ ...blockProps }
-				className="blok-header"
-				style={ sekcjaStyle }
-			>
+			<div { ...blockProps } style={ sekcjaStyle }>
 				<MediaUploadCheck>
 					<MediaUpload
 						onSelect={ ( media ) =>

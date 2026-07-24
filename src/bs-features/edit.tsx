@@ -4,7 +4,12 @@ import {
 	RichText,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import {
+	PanelBody,
+	RangeControl,
+	TextControl,
+	ToggleControl,
+} from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { BsFeaturesAttributes, FeatureItem } from './types';
 import { SectionControls } from '../shared/SectionControls';
@@ -61,6 +66,31 @@ export default function Edit( {
 						max={ 5 }
 					/>
 				</PanelBody>
+				{ widoczne.map( ( el, i ) => (
+					<PanelBody
+						key={ i }
+						title={ `Element ${ i + 1 } — link treści` }
+						initialOpen={ false }
+					>
+						<TextControl
+							label="Link treści"
+							value={ el.trescUrl }
+							onChange={ ( val ) =>
+								updateElement( i, { trescUrl: val } )
+							}
+							placeholder="https://..."
+						/>
+						{ el.trescUrl && (
+							<ToggleControl
+								label="Otwórz w nowym oknie"
+								checked={ el.trescNowyTab }
+								onChange={ ( val ) =>
+									updateElement( i, { trescNowyTab: val } )
+								}
+							/>
+						) }
+					</PanelBody>
+				) ) }
 				<SectionControls
 					paddingGora={ paddingGora }
 					paddingDol={ paddingDol }
@@ -104,7 +134,11 @@ export default function Edit( {
 						/>
 						<RichText
 							tagName="p"
-							className="blok-features__tresc"
+							className={
+								el.trescUrl
+									? 'blok-features__tresc blok-features__tresc--link'
+									: 'blok-features__tresc'
+							}
 							value={ el.tresc }
 							onChange={ ( val ) =>
 								updateElement( i, { tresc: val } )

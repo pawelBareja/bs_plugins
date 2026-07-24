@@ -100,12 +100,24 @@
 		border: none;
 		cursor: pointer;
 		text-align: left;
+		box-shadow: none;
 
 		&:hover,
 		&:active,
 		&:focus {
 			background: none;
 			color: inherit;
+			box-shadow: none;
+		}
+	}
+
+	&__pozycja,
+	&__pytanie-wiersz {
+		box-shadow: none !important;
+
+		&:hover,
+		&:focus {
+			box-shadow: none !important;
 		}
 	}
 
@@ -165,7 +177,7 @@
 		flex-direction: column;
 		gap: var(--spacing-lg);
 		padding-block: var(--spacing-lg);
-		padding-inline: var(--spacing-sm);
+		padding-inline: 20px;
 
 		&__sidebar {
 			flex: 1 1 auto;

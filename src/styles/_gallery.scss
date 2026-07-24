@@ -4,7 +4,19 @@
 // Natywny blok WordPress — Galeria (klasa dodatkowa: bs-galeria)
 // =============================================================================
 
+$bs-galeria-gap: 48px;
+
 .wp-block-gallery.bs-galeria {
+	// ~3x natywnego odstępu WP (domyślnie 16px) — też jako margines od
+	// krawędzi ekranu, gdy galeria jest wyrównana do pełnej szerokości.
+	// Sam `gap` tu nie wystarczy — WP dogenerowuje per-instancyjną regułę
+	// (.wp-block-gallery.wp-block-gallery-{ID}) o takiej samej specyficzności
+	// jak nasza (dwie klasy), która ładuje się później w <head>, więc wygrywa
+	// w remisie. Nadpisujemy więc zmienną, z której ta reguła czyta wartość.
+	--wp--style--gallery-gap-default: #{$bs-galeria-gap};
+	gap: $bs-galeria-gap;
+	padding-inline: $bs-galeria-gap;
+	box-sizing: border-box;
 
 	.wp-block-image {
 		margin: 0;
@@ -24,18 +36,43 @@
 			color: var(--color-gray);
 			text-align: center;
 		}
+	}
 
-		// Co drugie zdjęcie przesunięte od góry
-		&:nth-child(2n) {
-			--bs-galeria-dir: 1;
-
-			@media ( min-width: 769px ) {
-				margin-top: 50px;
-			}
+	// Przeplatanka góra/dół — tylko na szerokim ekranie, gdzie WP układa
+	// galerię w stałe 3 kolumny. Poniżej tego progu WP wymusza mniej kolumn
+	// w rzędzie (np. 2 na mobile), co psuje matematykę "co któraś kolumna"
+	// i zjada odstęp między rzędami — dlatego niżej efekt jest całkiem
+	// wyłączony (--bs-galeria-dir zostaje na domyślnym 0, brak przesunięcia)
+	// i odstępy między zdjęciami pilnuje tylko natywny gap galerii.
+	@media ( min-width: 769px ) {
+		// Zdjęcia mają zawsze rozmiar "jak w rzędzie 3 kolumn" — niezależnie
+		// od tego, ile faktycznie ustawiono kolumn (1, 2, 4, 5...). WP liczy
+		// szerokość figury jako 100% / liczba_kolumn, więc np. przy 1-2
+		// zdjęciach w rzędzie stają się nienaturalnie duże. Wymuszamy stałą
+		// szerokość i zostawiamy puste miejsce zamiast rozciągać zdjęcia.
+		// Podwójne `.bs-galeria` podbija specyficzność ponad wygenerowaną
+		// przez WP regułę per-instancyjną (patrz komentarz przy `gap` wyżej).
+		&.bs-galeria .wp-block-image {
+			flex: 0 0 calc((100% - 2 * #{$bs-galeria-gap}) / 3);
+			width: calc((100% - 2 * #{$bs-galeria-gap}) / 3);
+			max-width: calc((100% - 2 * #{$bs-galeria-gap}) / 3);
 		}
 
-		&:nth-child(2n + 1) {
-			--bs-galeria-dir: -1;
+		.wp-block-image {
+			// Środkowa kolumna w KAŻDYM rzędzie (nie tylko pierwszym):
+			// przesunięcie w dół + animacja przy scrollu.
+			&:nth-child(3n + 2) {
+				--bs-galeria-dir: 1;
+				margin-top: 50px;
+			}
+
+			// Boczne kolumny — tylko w pierwszym rzędzie w górę, bo nic
+			// nad nimi nie ma. W kolejnych rzędach zostają bez przesunięcia
+			// (podniesienie ich w górę zjadałoby odstęp od rzędu wyżej).
+			&:nth-child(1),
+			&:nth-child(3) {
+				--bs-galeria-dir: -1;
+			}
 		}
 	}
 }

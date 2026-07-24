@@ -6,10 +6,10 @@
 
 .wp-block-latest-posts {
 	list-style: none;
-	padding: 0;
-	margin: 0;
+	box-sizing: border-box;
 	max-width: 1290px;
-	margin-inline: auto;
+	margin-inline: auto !important;
+	margin-block: 0;
 
 	&.is-grid {
 		display: grid;
@@ -19,6 +19,7 @@
 		padding-left: 0;
 
 		@media screen and (min-width: 767px) {
+
 			&.columns-3 {
 				grid-template-columns: 1fr 1fr 1fr;
 			}
@@ -28,6 +29,10 @@
 	li {
 		display: flex;
 		flex-direction: column;
+
+		> a {
+			margin: 0;
+		}
 	}
 
 	// Zdjęcie
@@ -53,11 +58,11 @@
 	// Data — stylowana jak etykieta kategorii
 	&__post-date {
 		font-family: var(--font-heading);
-		font-size: var(--text-small);
+		font-size: 10px;
 		font-weight: var(--weight-semi);
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--color-black);
+		color: var(--color-gray);
 		display: block;
 		margin-bottom: var(--spacing-xs);
 	}

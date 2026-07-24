@@ -35,6 +35,14 @@
     text-transform: capitalize;
     color: var(--color-red);
     white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:visited,
+    &:hover,
+    &:active {
+      color: var(--color-red);
+    }
 
     svg {
       position: absolute;
@@ -47,7 +55,7 @@
 
       path {
         fill: none;
-        stroke: currentColor;
+        stroke: currentcolor;
         stroke-width: 2;
         opacity: 0.65;
         vector-effect: non-scaling-stroke;
@@ -81,6 +89,7 @@
 }
 
 @media (max-width: 768px) {
+
   .blok-topbar__pasek {
     overflow: hidden;
     justify-content: flex-start;
@@ -104,17 +113,21 @@
 }
 
 @keyframes bs-topbar-marker {
+
   to {
     stroke-dashoffset: 0;
   }
 }
 
 @keyframes bs-topbar-scroll {
+
   from { transform: translateX(0); }
+
   to   { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .blok-topbar__przycisk svg path {
     animation: none;
     stroke-dashoffset: 0;
@@ -125,6 +138,7 @@
   }
 
   @media (max-width: 768px) {
+
     .blok-topbar__zestaw[aria-hidden="true"] {
       display: none;
     }

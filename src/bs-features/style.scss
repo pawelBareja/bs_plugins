@@ -44,6 +44,17 @@
 		margin: 0;
 	}
 
+	&__tresc--link {
+		display: inline-block;
+		color: var(--color-red);
+		text-decoration: none;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+
 	@media (max-width: 768px) {
 		grid-template-columns: 1fr;
 	}

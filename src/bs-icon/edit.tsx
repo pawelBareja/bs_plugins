@@ -18,7 +18,9 @@ const MAX_ROZMIAR = 120;
 
 function buildSvg( nazwaKlucz: string, waga: string ): string {
 	const def = ICON_LIBRARY[ nazwaKlucz ];
-	if ( ! def ) return '';
+	if ( ! def ) {
+		return '';
+	}
 	return renderToStaticMarkup(
 		createElement( def.Component, {
 			color: 'currentColor',
@@ -79,7 +81,10 @@ export default function Edit( {
 								onClick={ () =>
 									setAttributes( {
 										ikonaNazwa: key,
-										ikona: buildSvg( key, ikonaWaga || 'thin' ),
+										ikona: buildSvg(
+											key,
+											ikonaWaga || 'thin'
+										),
 									} )
 								}
 								dangerouslySetInnerHTML={ { __html: def.svg } }

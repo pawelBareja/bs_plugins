@@ -190,7 +190,17 @@ export default function Edit( {
 							{ aktywna.tekstPrzycisku && (
 								<span className="blok-topbar__przycisk">
 									{ aktywna.tekstPrzycisku }
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M7.7,145.6C109,125,299.9,116.2,401,121.3c42.1,2.2,87.6,11.8,87.3,25.7"></path></svg>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 500 150"
+										preserveAspectRatio="none"
+										aria-hidden="true"
+									>
+										<path
+											pathLength="1"
+											d="M7.7,145.6C109,125,299.9,116.2,401,121.3c42.1,2.2,87.6,11.8,87.3,25.7"
+										></path>
+									</svg>
 								</span>
 							) }
 						</div>

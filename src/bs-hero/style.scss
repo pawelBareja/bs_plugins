@@ -2,20 +2,17 @@
 
 @keyframes bs-hero-tytul-wejscie {
 
-	from {
-		opacity: 0;
-		transform: scale(0.68) translateY(24px);
-	}
+	from { opacity: 0; }
 
-	to {
-		opacity: 1;
-		transform: scale(1) translateY(0);
-	}
+	to   { opacity: 1; }
 }
 
 .blok-hero {
 	position: relative;
-	min-height: calc(var(--blok-hero-vh, 100) * 1dvh);
+	// svh (a nie dvh) — dvh przelicza się na bieżąco gdy pasek adresu w mobilnej
+	// przeglądarce chowa się/pokazuje przy scrollu, co widać jako skokowe
+	// rozciąganie sekcji i "wypychanie" treści w dół.
+	min-height: calc(var(--blok-hero-vh, 100) * 1svh);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -36,15 +33,13 @@
 		padding: 60px 20%;
 		width: 100%;
 		box-sizing: border-box;
-		opacity: var(--bs-hero-zawartosc-opacity, 1);
-		transition: opacity 0.15s linear;
-		will-change: opacity;
+		opacity: 1;
 	}
 
 	&__tytul {
 		font-family: var(--e-global-typography-vamtam_h1-font-family, "Titillium Web", sans-serif);
 		font-size: var(--e-global-typography-vamtam_h1-font-size, var(--text-h1));
-		font-weight: var(--e-global-typography-vamtam_h1-font-weight, var(--weight-light));
+		font-weight: 100;
 		line-height: var(--e-global-typography-vamtam_h1-line-height, var(--leading-heading));
 		color: var(--e-global-color-vamtam_accent_5, var(--color-white));
 		margin: 0;
@@ -76,10 +71,19 @@
 		}
 	}
 
+	margin-top: calc(var(--blok-hero-margines, 0px) * -1);
+	padding-top: var(--blok-hero-margines, 0);
+
 	@media (max-width: 768px) {
+		margin-top: calc(var(--blok-hero-margines-mobile, 0px) * -1);
+		padding-top: var(--blok-hero-margines-mobile, 0);
 
 		&__zawartosc {
 			padding: 60px 8%;
 		}
+	}
+
+	@media (min-width: 769px) {
+		min-height: 555px;
 	}
 }

@@ -3,9 +3,19 @@
 .blok-produkty-slider {
 	--bs-slider-visible: 3;
 
-	overflow: hidden;
+	position: relative;
 	max-width: 1290px;
 	margin-inline: auto;
+	padding-inline: 40px;
+
+	@media ( min-width: 901px ) {
+		padding-inline: 64px;
+	}
+
+	&__viewport {
+		overflow: hidden;
+		touch-action: pan-y;
+	}
 
 	&__track {
 		display: flex;
@@ -28,6 +38,8 @@
 		display: block;
 		width: 100%;
 		height: auto;
+		min-height: 250px;
+		object-fit: cover;
 		border-radius: var(--border-radius);
 	}
 
@@ -48,8 +60,8 @@
 	&__nazwa {
 		margin: var(--spacing-sm) 0 var(--spacing-xs);
 		font-family: var(--font-heading);
-		font-size: var(--text-h6);
-		font-weight: var(--weight-light);
+		font-size: 22px;
+		font-weight: 400;
 
 		a {
 			color: var(--color-black);
@@ -60,7 +72,8 @@
 	&__cena {
 		margin-bottom: var(--spacing-sm);
 		font-family: var(--font-body);
-		font-size: var(--text-p);
+		font-size: 30px;
+		font-weight: 200;
 		color: var(--color-gray);
 	}
 
@@ -82,43 +95,63 @@
 		}
 	}
 
-	&__dots {
+	&__nav {
 		display: flex;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		align-items: center;
 		justify-content: center;
-		gap: var(--spacing-xs);
-		margin-top: var(--spacing-md);
-	}
-
-	&__dot {
-		width: 8px;
-		height: 8px;
+		width: 32px;
+		height: 32px;
 		padding: 0;
 		border: none;
 		border-radius: 50%;
-		background: var(--color-cream);
+		background: var(--color-white);
+		color: var(--color-gray);
 		cursor: pointer;
-		transition: background-color 0.2s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		transform: translateY(-50%);
+		transition: opacity 0.2s ease, background-color 0.2s ease;
 
-		&.is-active {
-			background: var(--color-red);
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+
+		&:hover {
+			background: var(--color-cream);
+		}
+
+		&.is-hidden {
+			visibility: hidden;
+			pointer-events: none;
+		}
+
+		&--prev {
+			left: 0;
+		}
+
+		&--next {
+			right: 0;
+		}
+
+		@media ( min-width: 901px ) {
+			width: 44px;
+			height: 44px;
+
+			svg {
+				width: 20px;
+				height: 20px;
+			}
 		}
 	}
 
 	@media ( max-width: 900px ) {
 		--bs-slider-visible: 2;
-
-		&__obrazek {
-			width: 20%;
-			margin-inline: auto;
-		}
 	}
 
 	@media ( max-width: 600px ) {
 		--bs-slider-visible: 1;
-
-		&__obrazek {
-			width: 20%;
-			margin-inline: auto;
-		}
 	}
 }

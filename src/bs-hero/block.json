@@ -22,6 +22,10 @@
 			"type": "number",
 			"default": 0
 		},
+		"marginesGornyMobile": {
+			"type": "number",
+			"default": 0
+		},
 		"wysokoscVh": {
 			"type": "number",
 			"default": 100

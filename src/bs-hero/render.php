@@ -8,7 +8,8 @@
 
 $obrazek        = $attributes['obrazek'] ?? null;
 $tytul          = $attributes['tytul'] ?? '';
-$margines_gorny = intval( $attributes['marginesGorny'] ?? 0 );
+$margines_gorny        = intval( $attributes['marginesGorny'] ?? 0 );
+$margines_gorny_mobile = intval( $attributes['marginesGornyMobile'] ?? 0 );
 $wysokosc_vh    = intval( $attributes['wysokoscVh'] ?? 100 );
 
 $inline_styles = [];
@@ -19,10 +20,8 @@ if ( ! empty( $obrazek['url'] ) ) {
 	$inline_styles[] = 'background-image: url(' . esc_url( $obrazek['url'] ) . ')';
 }
 
-if ( $margines_gorny > 0 ) {
-	$inline_styles[] = 'margin-top: -' . $margines_gorny . 'px';
-	$inline_styles[] = 'padding-top: ' . $margines_gorny . 'px';
-}
+$inline_styles[] = '--blok-hero-margines: ' . $margines_gorny . 'px';
+$inline_styles[] = '--blok-hero-margines-mobile: ' . $margines_gorny_mobile . 'px';
 
 $sekcja_style = bs_block_sekcja_style( $attributes );
 if ( $sekcja_style ) {

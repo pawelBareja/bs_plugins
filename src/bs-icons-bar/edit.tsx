@@ -1,6 +1,5 @@
-import { createElement } from 'react';
+import { createElement, Fragment, useCallback } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Fragment, useCallback } from 'react';
 import {
 	useBlockProps,
 	RichText,
@@ -18,7 +17,9 @@ const MAX_ELEMENTOW = 5;
 
 function buildSvg( nazwaKlucz: string, waga: string ): string {
 	const def = ICON_LIBRARY[ nazwaKlucz ];
-	if ( ! def ) return '';
+	if ( ! def ) {
+		return '';
+	}
 	return renderToStaticMarkup(
 		createElement( def.Component, {
 			color: 'currentColor',

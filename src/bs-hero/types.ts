@@ -8,6 +8,7 @@ export type HeroAttributes = {
 	obrazek: ObrazekMedia | null;
 	tytul?: string;
 	marginesGorny: number;
+	marginesGornyMobile: number;
 	wysokoscVh: number;
 	paddingGora: number;
 	paddingDol: number;

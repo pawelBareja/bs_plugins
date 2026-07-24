@@ -19,7 +19,7 @@ Każdy blok ma przedrostek `bs-` zarówno w:
 | `src/bs-hero-home/` | `bs-plugins/bs-hero-home` | Hero strony głównej: tytuł, animowany wiersz tekstu (max 3), przycisk, zdjęcie z efektem zoom na scroll |
 | `src/bs-icons-bar/` | `bs-plugins/bs-icons-bar` | Rząd 2–5 ikon (z biblioteki @wordpress/icons) z opcjonalnym tekstem, fala-separator chowana na mobile |
 | `src/bs-faq/` | `bs-plugins/bs-faq` | FAQ: kategorie (zakładki) + akordeon pytań/odpowiedzi |
-| `src/bs-produkty-slider/` | `bs-plugins/bs-produkty-slider` | Slider produktów WooCommerce (najnowsze / kategoria / tag), autoplay z pauzą na hover |
+| `src/bs-produkty-slider/` | `bs-plugins/bs-produkty-slider` | Slider produktów WooCommerce (najnowsze / kategoria / tag / ręcznie wybrane przez FormTokenField + WC Store API), autoplay z pauzą na hover |
 | `src/bs-testimonies/` | `bs-plugins/bs-testimonies` | Slider z opiniami Google (Places API), wyszarzona stylistyka, „zobacz więcej” dla długich opinii |
 | `src/bs-topbar/` | `bs-plugins/bs-topbar` | Kolorowa belka nad nagłówkiem: przewijający się tekst + przycisk, kampanie zależne od daty (Dzień Matki, Walentynki itp.) |
 | `src/bs-icon/` | `bs-plugins/bs-icon` | Pojedyncza ikona z biblioteki (`src/icons.ts`) — wybór ikony, rozmiar, kolor z palety marki. Blok statyczny (wyjątek, patrz „Zasady ogólne”), do osadzania w innych blokach (np. w kolumnie tekstowej `grid` przez InnerBlocks) |

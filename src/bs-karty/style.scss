@@ -51,6 +51,8 @@
 		gap: 20px;
 		padding: 20px var(--spacing-lg) var(--spacing-lg);
 		flex: 1;
+		max-width: 300px;
+		margin-inline: auto;
 	}
 
 	&__tytul {

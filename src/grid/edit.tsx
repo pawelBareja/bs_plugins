@@ -26,6 +26,7 @@ const ALLOWED_BLOCKS = [
 	'core/separator',
 	'core/columns',
 	'core/list',
+	'core/html',
 	'bs-plugins/bs-icon',
 ];
 
@@ -219,7 +220,9 @@ export default function Edit( {
 									variant="secondary"
 									style={ { marginBottom: '8px' } }
 								>
-									{ obrazek ? 'Zmień obrazek' : 'Dodaj obrazek' }
+									{ obrazek
+										? 'Zmień obrazek'
+										: 'Dodaj obrazek' }
 								</Button>
 							) }
 						/>

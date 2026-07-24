@@ -8,7 +8,9 @@ function initBlurRotator( rotator: HTMLElement ): void {
 			'.blok-hero-home__rotator-item'
 		)
 	);
-	if ( items.length < 2 ) return;
+	if ( items.length < 2 ) {
+		return;
+	}
 
 	let current = 0;
 
@@ -41,7 +43,9 @@ function initParallax( hero: HTMLElement ): void {
 	const obrazek = hero.querySelector< HTMLElement >(
 		'.blok-hero-home__obrazek'
 	);
-	if ( ! obrazek ) return;
+	if ( ! obrazek ) {
+		return;
+	}
 
 	let ticking = false;
 
@@ -63,7 +67,9 @@ function initParallax( hero: HTMLElement ): void {
 	};
 
 	const onScroll = () => {
-		if ( ticking ) return;
+		if ( ticking ) {
+			return;
+		}
 		ticking = true;
 		requestAnimationFrame( update );
 	};

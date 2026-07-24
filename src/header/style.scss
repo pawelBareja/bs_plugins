@@ -1,43 +1,45 @@
 @use "../styles/config" as *;
 
 .blok-header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-	padding: 0% 20% 0% 20%;
-	column-gap: 20px;
-	max-width: 1290px;
-	margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  column-gap: 20px;
+  max-width: 1290px;
+  margin-inline: auto;
 
-	@media (max-width: 768px) {
-		padding-inline: var(--spacing-sm);
-	}
+  @media (max-width: 768px) {
+    padding-inline: 40px;
+  }
 
-	&__ikona {
+  &__ikona {
 
-		img {
-			max-width: 100%;
-			height: auto;
-		}
-	}
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 
-	&__tytul {
-		font-family: "Titillium Web", sans-serif;
-		font-size: 36px;
-		font-weight: 300;
-		line-height: 2.925rem;
-		color: var(--color-black);
-		margin: 0;
-		padding: 0;
-	}
+  &__tytul {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 2.925rem;
+    color: var(--color-black);
+    margin: 0;
+    padding: 0;
+    max-width: 700px;
+  }
 
-	&__podtytul {
-		font-family: Montserrat, sans-serif;
-		font-size: 15px;
-		font-weight: 400;
-		line-height: 1.225rem;
-		color: var(--color-black);
-		margin: 0;
-	}
+  &__podtytul {
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.225rem;
+    color: var(--color-black);
+    margin: 0;
+    max-width: 700px;
+  }
 }

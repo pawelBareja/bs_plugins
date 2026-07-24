@@ -20,8 +20,11 @@ function initSlider( slider: HTMLElement ): void {
 		return;
 	}
 
-	const dots = slider.querySelectorAll< HTMLElement >(
-		'.blok-produkty-slider__dot'
+	const prevBtn = slider.querySelector< HTMLElement >(
+		'.blok-produkty-slider__nav--prev'
+	);
+	const nextBtn = slider.querySelector< HTMLElement >(
+		'.blok-produkty-slider__nav--next'
 	);
 	const total = track.children.length;
 	const predkosc = Number( slider.dataset.predkosc ) || 4;
@@ -37,9 +40,8 @@ function initSlider( slider: HTMLElement ): void {
 		index = Math.min( Math.max( i, 0 ), max );
 		track.style.setProperty( '--bs-slider-index', String( index ) );
 
-		dots.forEach( ( dot, di ) => {
-			dot.classList.toggle( 'is-active', di === index );
-		} );
+		prevBtn?.classList.toggle( 'is-hidden', index <= 0 );
+		nextBtn?.classList.toggle( 'is-hidden', index >= max );
 	};
 
 	const next = () => {
@@ -62,11 +64,62 @@ function initSlider( slider: HTMLElement ): void {
 		timer = setInterval( next, predkosc * 1000 );
 	};
 
-	dots.forEach( ( dot, i ) => {
-		dot.addEventListener( 'click', () => {
-			goTo( i );
-			start();
-		} );
+	prevBtn?.addEventListener( 'click', () => {
+		goTo( index - 1 );
+		start();
+	} );
+	nextBtn?.addEventListener( 'click', () => {
+		goTo( index + 1 );
+		start();
+	} );
+
+	const SWIPE_THRESHOLD = 40;
+	let touchStartX = 0;
+	let touchStartY = 0;
+	let isSwiping = false;
+
+	const viewport = slider.querySelector< HTMLElement >(
+		'.blok-produkty-slider__viewport'
+	);
+
+	viewport?.addEventListener(
+		'touchstart',
+		( e: TouchEvent ) => {
+			touchStartX = e.touches[ 0 ].clientX;
+			touchStartY = e.touches[ 0 ].clientY;
+			isSwiping = true;
+			stop();
+		},
+		{ passive: true }
+	);
+
+	viewport?.addEventListener(
+		'touchmove',
+		( e: TouchEvent ) => {
+			if ( ! isSwiping ) {
+				return;
+			}
+			const deltaX = e.touches[ 0 ].clientX - touchStartX;
+			const deltaY = e.touches[ 0 ].clientY - touchStartY;
+			if ( Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+				e.preventDefault();
+			}
+		},
+		{ passive: false }
+	);
+
+	viewport?.addEventListener( 'touchend', ( e: TouchEvent ) => {
+		if ( ! isSwiping ) {
+			return;
+		}
+		isSwiping = false;
+		const deltaX = e.changedTouches[ 0 ].clientX - touchStartX;
+		if ( deltaX <= -SWIPE_THRESHOLD ) {
+			goTo( index + 1 );
+		} else if ( deltaX >= SWIPE_THRESHOLD ) {
+			goTo( index - 1 );
+		}
+		start();
 	} );
 
 	slider.addEventListener( 'mouseenter', stop );

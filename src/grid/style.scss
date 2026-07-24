@@ -1,111 +1,118 @@
 @use "../styles/config" as *;
 
 .blok-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0;
-	align-items: stretch;
-	border-radius: var(--border-radius);
-	overflow: hidden;
-	max-width: 1290px;
-	margin-inline: auto;
-	min-height: 516px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  max-width: 1260px;
+  margin-inline: auto;
+  min-height: 516px;
 
-	&__obrazek {
+  &__obrazek {
 
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			display: block;
-		}
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-		&--arka {
-			position: relative;
-			padding: 5% 20%;
+    &--arka {
+      position: relative;
+      padding: 5% 20%;
 
-			img {
-				border-radius: 90px 90px 0 0;
-				height: auto;
-			}
-		}
-	}
+      img {
+        border-radius: 90px 90px 0 0;
+        height: 100%;
+      }
+    }
+  }
 
-	&__ozdoba-linia {
-		position: absolute;
-		right: 40px;
-		top: 10%;
-		height: 112px;
-		width: 1px;
-	}
+  &__ozdoba-linia {
+    position: absolute;
+    right: 40px;
+    top: 10%;
+    height: 112px;
+    width: 1px;
+  }
 
-	&__ozdoba-tekst {
-		position: absolute;
-		left: 40px;
-		bottom: 10%;
-		writing-mode: vertical-rl;
-		transform: rotate(180deg);
-		font-family: "Titillium Web", sans-serif;
-		font-size: 12px;
-		font-weight: 500;
-		line-height: 0.975rem;
-		letter-spacing: 0.15em;
-		text-transform: uppercase;
-		white-space: nowrap;
-	}
+  &__ozdoba-tekst {
+    position: absolute;
+    left: 40px;
+    bottom: 10%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: "Titillium Web", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 0.975rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 
-	&__tekst {
-		display: flex;
-		flex-direction: column;
-		gap: 40px;
-		color: var(--color-black);
-		padding-block-start: 20%;
-		padding-inline-start: 17%;
-		padding-block-end: 11%;
-		padding-inline-end: 20%;
-		transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-	}
+  &__tekst {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: var(--color-black);
+    padding-block-start: 20%;
+    padding-inline-start: 17%;
+    padding-block-end: 11%;
+    padding-inline-end: 20%;
+    transition:
+      background 0.3s,
+      border 0.3s,
+      border-radius 0.3s,
+      box-shadow 0.3s;
+  }
 
-	&__tytul {
-		font-family: "Titillium Web", sans-serif;
-		font-size: 36px;
-		font-weight: 300;
-		line-height: 2.925rem;
-		color: inherit;
-		margin: 0;
-		padding: 0;
-	}
+  &__tytul {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 2.925rem;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+  }
 
-	&__tresc {
-		font-family: Montserrat, sans-serif;
-		font-size: 15px;
-		font-weight: 400;
-		line-height: 1.225rem;
-		color: inherit;
-		margin: 0;
-	}
+  &__tresc {
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.225rem;
+    color: inherit;
+    margin: 0;
+  }
 
-	@media (max-width: 768px) {
-		grid-template-columns: 1fr;
-		gap: 0;
-		min-height: unset;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: unset;
+    margin-inline: 20px;
 
-		&__obrazek {
+    &__obrazek {
 
-			img {
-				height: auto;
-			}
-		}
+      img {
+        height: auto;
+        min-height: 400px;
+        object-fit: cover;
+      }
+    }
 
-		&__tekst {
-			padding: var(--spacing-lg) var(--spacing-sm);
-		}
+    &__tekst {
+      padding: var(--spacing-lg) var(--spacing-sm);
+    }
 
-		&--obrazek-prawy {
+    &--obrazek-prawy {
 
-			.blok-grid__obrazek {
-				order: -1;
-			}
-		}
-	}
+      .blok-grid__obrazek {
+        order: -1;
+      }
+    }
+  }
 }

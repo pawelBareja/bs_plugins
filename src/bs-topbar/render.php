@@ -41,7 +41,7 @@ if ( ! $kampania || '' === trim( $kampania['tekst'] ?? '' ) ) {
 }
 
 $tekst           = $kampania['tekst'];
-$link            = trim( $kampania['link'] ?? '' );
+$link            = trim( $kampania['link'] ?? '' ) ?: '/sklep';
 $tekst_przycisku = trim( $kampania['tekstPrzycisku'] ?? '' );
 
 $sekcja_style       = bs_block_sekcja_style( $attributes );
@@ -51,21 +51,17 @@ $wrapper_attributes = get_block_wrapper_attributes( [
 	'style' => $blok_style,
 ] );
 
-$tag = $link ? 'a' : 'div';
 ?>
 <div <?php echo $wrapper_attributes; ?>>
-	<<?php echo $tag; ?>
-		class="blok-topbar__pasek"
-		<?php echo $link ? 'href="' . esc_url( $link ) . '"' : ''; ?>
-	>
+	<div class="blok-topbar__pasek">
 		<div class="blok-topbar__suwak">
 			<div class="blok-topbar__zestaw">
 				<span class="blok-topbar__tekst"><?php echo esc_html( $tekst ); ?></span>
 				<?php if ( $tekst_przycisku ) : ?>
-					<span class="blok-topbar__przycisk">
+					<a class="blok-topbar__przycisk" href="<?php echo esc_url( $link ); ?>">
 						<?php echo esc_html( $tekst_przycisku ); ?>
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M7.7,145.6C109,125,299.9,116.2,401,121.3c42.1,2.2,87.6,11.8,87.3,25.7"></path></svg>
-					</span>
+					</a>
 				<?php endif; ?>
 			</div>
 			<div class="blok-topbar__zestaw" aria-hidden="true">
@@ -75,5 +71,5 @@ $tag = $link ? 'a' : 'div';
 				<?php endif; ?>
 			</div>
 		</div>
-	</<?php echo $tag; ?>>
+	</div>
 </div>

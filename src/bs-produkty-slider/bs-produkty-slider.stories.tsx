@@ -44,6 +44,7 @@ const baseAttrs = {
 	paddingDol: 0,
 	paddingBoki: 0,
 	kolorTlaSekcji: '',
+	wybraneProdukty: [] as number[],
 };
 
 export const Najnowsze: Story = {
@@ -55,7 +56,7 @@ export const Najnowsze: Story = {
 			tagSlug: '',
 			liczbaProduktow: 5,
 			predkosc: 4,
-			tekstPrzycisku: 'Kup teraz',
+			tekstPrzycisku: 'Zobacz',
 		},
 		...baseArgs,
 	},
@@ -86,6 +87,22 @@ export const ZTagu: Story = {
 			liczbaProduktow: 5,
 			predkosc: 4,
 			tekstPrzycisku: 'Dodaj do koszyka',
+		},
+		...baseArgs,
+	},
+};
+
+export const WybraneProdukty: Story = {
+	args: {
+		attributes: {
+			...baseAttrs,
+			zrodloProduktow: 'wybrane',
+			kategoriaSlug: '',
+			tagSlug: '',
+			wybraneProdukty: [ 123, 456 ],
+			liczbaProduktow: 5,
+			predkosc: 4,
+			tekstPrzycisku: 'Zobacz',
 		},
 		...baseArgs,
 	},

@@ -11,13 +11,16 @@
 			color: var(--color-gray);
 		}
 
-		.blok-produkty-slider__track {
+		.blok-produkty-slider__viewport {
 			overflow-x: auto;
+		}
+
+		.blok-produkty-slider__track {
 			transform: none;
 		}
 
-		.blok-produkty-slider__dot {
-			display: inline-block;
+		.blok-produkty-slider__nav {
+			display: flex;
 		}
 	}
 }

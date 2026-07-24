@@ -25,8 +25,20 @@ $wrapper_attrs = get_block_wrapper_attributes( [
 			<?php if ( ! empty( $el['tytul'] ) ) : ?>
 				<h3 class="blok-features__tytul"><?php echo wp_kses_post( $el['tytul'] ); ?></h3>
 			<?php endif; ?>
-			<?php if ( ! empty( $el['tresc'] ) ) : ?>
-				<p class="blok-features__tresc"><?php echo wp_kses_post( $el['tresc'] ); ?></p>
+			<?php if ( ! empty( $el['tresc'] ) ) :
+				$tresc_url      = $el['trescUrl'] ?? '';
+				$tresc_nowy_tab = ! empty( $el['trescNowyTab'] );
+				$tresc_class    = 'blok-features__tresc' . ( $tresc_url ? ' blok-features__tresc--link' : '' );
+				?>
+				<?php if ( $tresc_url ) : ?>
+					<a
+						href="<?php echo esc_url( $tresc_url ); ?>"
+						class="<?php echo esc_attr( $tresc_class ); ?>"
+						<?php echo $tresc_nowy_tab ? ' target="_blank" rel="noopener noreferrer"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					><?php echo wp_kses_post( $el['tresc'] ); ?></a>
+				<?php else : ?>
+					<p class="<?php echo esc_attr( $tresc_class ); ?>"><?php echo wp_kses_post( $el['tresc'] ); ?></p>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	<?php endforeach; ?>
