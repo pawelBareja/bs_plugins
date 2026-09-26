@@ -15,4 +15,5 @@ export type BsHeroHomeAttributes = {
 	kolorTlaSekcji: string;
 	tekstBoczny: string;
 	kolorTekstuBocznego: string;
+	tekstKalendarz: string;
 };

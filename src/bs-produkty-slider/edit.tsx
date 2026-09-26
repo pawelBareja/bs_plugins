@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	InspectorControls,
+	store as blockEditorStore,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
@@ -8,6 +12,7 @@ import {
 	FormTokenField,
 } from '@wordpress/components';
 import { useDebouncedInput } from '@wordpress/compose';
+import { useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 import type { BlockEditProps } from '@wordpress/blocks';
@@ -36,7 +41,9 @@ const pobierzProdukty = (
 export default function Edit( {
 	attributes,
 	setAttributes,
+	clientId,
 }: BlockEditProps< BsProduktySliderAttributes > ) {
+	const { selectBlock } = useDispatch( blockEditorStore );
 	const {
 		zrodloProduktow,
 		kategoriaSlug,
@@ -232,6 +239,14 @@ export default function Edit( {
 				/>
 			</InspectorControls>
 
+			<button
+				type="button"
+				className="blok-produkty-slider__edytuj-blok"
+				onClick={ () => selectBlock( clientId ) }
+			>
+				✎ Edytuj ten blok (ustawienia w panelu bocznym)
+			</button>
+
 			<div
 				{ ...blockProps }
 				className="blok-produkty-slider blok-produkty-slider--podglad"
@@ -256,24 +271,6 @@ export default function Edit( {
 							: ' — wybierz produkty w panelu bocznym' ) }
 					.
 				</p>
-				<button
-					type="button"
-					className="blok-produkty-slider__nav blok-produkty-slider__nav--prev is-hidden"
-					aria-label="Poprzedni produkt"
-					tabIndex={ -1 }
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth={ 2 }
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					>
-						<polyline points="15 18 9 12 15 6" />
-					</svg>
-				</button>
 				<div className="blok-produkty-slider__viewport">
 					<div className="blok-produkty-slider__track">
 						{ PLACEHOLDER_PRODUKTY.map( ( p, i ) => (
@@ -330,24 +327,6 @@ export default function Edit( {
 						) ) }
 					</div>
 				</div>
-				<button
-					type="button"
-					className="blok-produkty-slider__nav blok-produkty-slider__nav--next"
-					aria-label="Następny produkt"
-					tabIndex={ -1 }
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth={ 2 }
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					>
-						<polyline points="9 18 15 12 9 6" />
-					</svg>
-				</button>
 			</div>
 		</>
 	);

@@ -1,12 +1,21 @@
 @use "../styles/config" as *;
 
 .blok-hero-home {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
   position: relative;
   background-color: var(--bs-hero-home-bg, #fbfbfb);
   border-radius: var(--border-radius);
+
+  // Zawiera treść + zdjęcie i przycina je do wysokości sekcji.
+  // __tekst-boczny zostaje POZA tym elementem (bezpośrednio w .blok-hero-home,
+  // które nie ma overflow: hidden), żeby mógł świadomie wystawać poza box.
+  &__inner {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+  }
 
   &__content {
     display: flex;
@@ -61,7 +70,49 @@
   }
 
   &__przyciski {
-    margin-top: 0;
+    margin-top: 20px;
+  }
+
+  &__kalendarz {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--spacing-md);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-gray);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__dostawa {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--spacing-md);
+  }
+
+  &__dostawa-ikona {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--color-red);
+  }
+
+  &__dostawa-tekst {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    max-width: 100%;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    color: var(--color-black);
+    font-weight: 400;
+    text-decoration: underline;
   }
 
   &__tekst-boczny {
@@ -69,7 +120,9 @@
     right: 130px;
     bottom: -40px;
     writing-mode: vertical-rl;
-    transform: rotate(180deg);
+    // translateY (przesunięcie na scroll) musi być PRZED rotate, inaczej
+    // liczyłby się we współrzędnych już obróconych o 180°.
+    transform: translateY(var(--bs-hero-home-boczny-shift, 0)) rotate(180deg);
     font-family: var(--font-body);
     font-size: 13px;
     font-weight: 500;
@@ -134,8 +187,11 @@
   }
 
   @media (max-width: 768px) {
-    flex-direction: column;
     padding-top: 20px;
+
+    &__inner {
+      flex-direction: column;
+    }
 
     &__obrazek-wrapper {
       flex: 0 0 auto;
@@ -177,8 +233,10 @@
     }
   }
 
+  // Pełna wysokość ekranu minus menu (140px) — jedyny element, który może
+  // wystawać poza tę wysokość, to __tekst-boczny (patrz komentarz przy __inner).
   @media (min-width: 769px) {
-    min-height: calc(100vh - 200px);
+    height: calc(100vh - 140px);
   }
 
   @media (prefers-reduced-motion: reduce) {

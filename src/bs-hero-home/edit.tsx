@@ -12,8 +12,11 @@ import { Button, PanelBody, TextControl } from '@wordpress/components';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { BsHeroHomeAttributes, ObrazekMedia } from './types';
 import { BRAND_COLORS } from '../config';
+import { ICON_LIBRARY } from '../icons';
 import { SectionControls } from '../shared/SectionControls';
 import './editor.scss';
+
+const IkonaKalendarz = ICON_LIBRARY.calendar.Component;
 
 const ALLOWED_BLOCKS = [ 'bs-plugins/bs-button' ];
 const ROTATOR_INTERVAL = 2600;
@@ -33,6 +36,7 @@ export default function Edit( {
 		kolorTlaSekcji,
 		tekstBoczny,
 		kolorTekstuBocznego,
+		tekstKalendarz,
 	} = attributes;
 	const blockProps = useBlockProps();
 
@@ -174,6 +178,19 @@ export default function Edit( {
 						disableCustomColors
 					/>
 				</PanelBody>
+				<PanelBody
+					title="Tekst z ikoną kalendarza"
+					initialOpen={ false }
+				>
+					<TextControl
+						label="Tekst"
+						value={ tekstKalendarz }
+						placeholder="np. Zamówienia do 14:00 — dostawa tego samego dnia"
+						onChange={ ( val ) =>
+							setAttributes( { tekstKalendarz: val } )
+						}
+					/>
+				</PanelBody>
 				<SectionControls
 					paddingGora={ paddingGora }
 					paddingDol={ paddingDol }
@@ -188,32 +205,75 @@ export default function Edit( {
 				className="blok-hero-home"
 				style={ { ...wrapperStyle, ...sekcjaStyle } }
 			>
-				<div className="blok-hero-home__content">
-					<RichText
-						tagName="h1"
-						className="blok-hero-home__tytul"
-						value={ tytul ?? '' }
-						onChange={ onChangeTytul }
-						placeholder="Tytuł sekcji..."
-					/>
-					{ tekstyWidoczne.length > 0 && (
-						<div className="blok-hero-home__rotator">
-							{ tekstyWidoczne.map( ( tekst, i ) => (
-								<span
-									key={ i }
-									className={
-										i === activeIndex
-											? 'blok-hero-home__rotator-item is-active'
-											: 'blok-hero-home__rotator-item'
-									}
-								>
-									{ tekst }
-								</span>
-							) ) }
+				<div className="blok-hero-home__inner">
+					<div className="blok-hero-home__content">
+						<RichText
+							tagName="h1"
+							className="blok-hero-home__tytul"
+							value={ tytul ?? '' }
+							onChange={ onChangeTytul }
+							placeholder="Tytuł sekcji..."
+						/>
+						{ tekstyWidoczne.length > 0 && (
+							<div className="blok-hero-home__rotator">
+								{ tekstyWidoczne.map( ( tekst, i ) => (
+									<span
+										key={ i }
+										className={
+											i === activeIndex
+												? 'blok-hero-home__rotator-item is-active'
+												: 'blok-hero-home__rotator-item'
+										}
+									>
+										{ tekst }
+									</span>
+								) ) }
+							</div>
+						) }
+						<div className="blok-hero-home__przyciski">
+							<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS } />
 						</div>
-					) }
-					<div className="blok-hero-home__przyciski">
-						<InnerBlocks allowedBlocks={ ALLOWED_BLOCKS } />
+						{ tekstKalendarz && (
+							<div className="blok-hero-home__kalendarz">
+								<IkonaKalendarz
+									color="currentColor"
+									weight="thin"
+									aria-hidden="true"
+								/>
+								<span>{ tekstKalendarz }</span>
+							</div>
+						) }
+					</div>
+					<div className="blok-hero-home__obrazek-wrapper">
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ ( media ) =>
+									onSelectObrazek( media as ObrazekMedia )
+								}
+								allowedTypes={ [ 'image' ] }
+								value={ obrazek?.id }
+								render={ ( { open } ) =>
+									obrazek ? (
+										// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+										<img
+											src={ obrazek.url }
+											alt={ obrazek.alt }
+											className="blok-hero-home__obrazek"
+											onClick={ open }
+											style={ { cursor: 'pointer' } }
+										/>
+									) : (
+										<Button
+											onClick={ open }
+											variant="secondary"
+											className="blok-hero-home__placeholder"
+										>
+											Dodaj zdjęcie
+										</Button>
+									)
+								}
+							/>
+						</MediaUploadCheck>
 					</div>
 				</div>
 
@@ -222,37 +282,6 @@ export default function Edit( {
 						{ tekstBoczny }
 					</span>
 				) }
-				<div className="blok-hero-home__obrazek-wrapper">
-					<MediaUploadCheck>
-						<MediaUpload
-							onSelect={ ( media ) =>
-								onSelectObrazek( media as ObrazekMedia )
-							}
-							allowedTypes={ [ 'image' ] }
-							value={ obrazek?.id }
-							render={ ( { open } ) =>
-								obrazek ? (
-									// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-									<img
-										src={ obrazek.url }
-										alt={ obrazek.alt }
-										className="blok-hero-home__obrazek"
-										onClick={ open }
-										style={ { cursor: 'pointer' } }
-									/>
-								) : (
-									<Button
-										onClick={ open }
-										variant="secondary"
-										className="blok-hero-home__placeholder"
-									>
-										Dodaj zdjęcie
-									</Button>
-								)
-							}
-						/>
-					</MediaUploadCheck>
-				</div>
 			</div>
 		</>
 	);

@@ -64,6 +64,7 @@ const baseAttrs = {
 	kolorTlaSekcji: '',
 	tekstBoczny: 'pracownia florystyczna',
 	kolorTekstuBocznego: '#111111',
+	tekstKalendarz: 'Zamówienia do 14:00 — dostawa tego samego dnia',
 };
 
 const obrazek = {

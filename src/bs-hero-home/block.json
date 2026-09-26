@@ -31,7 +31,8 @@
 		"paddingBoki": { "type": "number", "default": 0 },
 		"kolorTlaSekcji": { "type": "string", "default": "" },
 		"tekstBoczny": { "type": "string", "default": "pracownia florystyczna" },
-		"kolorTekstuBocznego": { "type": "string", "default": "#111111" }
+		"kolorTekstuBocznego": { "type": "string", "default": "#111111" },
+		"tekstKalendarz": { "type": "string", "default": "" }
 	},
 	"render": "file:./render.php",
 	"editorScript": "file:./index.js",

@@ -2,6 +2,26 @@
 
 .editor-styles-wrapper {
 
+	.blok-produkty-slider__edytuj-blok {
+		display: block;
+		width: 100%;
+		margin-bottom: var(--spacing-xs);
+		padding: 10px 16px;
+		font-family: var(--font-body);
+		font-size: var(--text-small);
+		font-weight: var(--weight-semi);
+		color: var(--color-white);
+		background: var(--color-red);
+		border: none;
+		border-radius: var(--border-radius);
+		cursor: pointer;
+		text-align: center;
+
+		&:hover {
+			opacity: 0.85;
+		}
+	}
+
 	.blok-produkty-slider--podglad {
 
 		.blok-produkty-slider__info {
@@ -17,10 +37,6 @@
 
 		.blok-produkty-slider__track {
 			transform: none;
-		}
-
-		.blok-produkty-slider__nav {
-			display: flex;
 		}
 	}
 }
