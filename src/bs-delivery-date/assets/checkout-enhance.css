@@ -1,0 +1,228 @@
+#bs-delivery-date-panel {
+	margin: 16px 0;
+	padding: 16px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	background: #fafafa;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow-x: hidden;
+}
+
+#bs-delivery-date-panel * {
+	box-sizing: border-box;
+	max-width: 100%;
+}
+
+.bs-delivery-date__kod-pocztowy {
+	margin-bottom: 16px;
+}
+
+.bs-delivery-date__godzina {
+	margin-top: 8px;
+}
+
+.bs-delivery-date__godzina label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 500;
+}
+
+.bs-delivery-date__godzina select {
+	width: 100%;
+	max-width: 500px;
+	box-sizing: border-box;
+	padding: 8px 12px;
+	border: 1px solid #949494;
+	border-radius: 4px;
+}
+
+.bs-delivery-date__kod-pocztowy label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 500;
+}
+
+.bs-delivery-date__kod-pocztowy input {
+	width: 100%;
+	max-width: 500px;
+	box-sizing: border-box;
+	padding: 8px 12px;
+	border: 1px solid #949494;
+	border-radius: 4px;
+}
+
+.bs-delivery-date__kod-pocztowy input.bs-delivery-date__pole--blad {
+	border-color: #cc1818;
+}
+
+.bs-delivery-date__blad-formatu {
+	margin-top: 4px;
+	font-size: 13px;
+	color: #cc1818;
+}
+
+.bs-delivery-date__etykieta-kalendarza {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 500;
+}
+
+#bs-delivery-date-kalendarz {
+	margin-bottom: 8px;
+	max-width: 320px;
+}
+
+#bs-delivery-date-kalendarz.bs-delivery-date__kalendarz--zablokowany {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #949494;
+	border-radius: 4px;
+	padding: 8px;
+	font-size: 14px;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker * {
+	box-sizing: border-box;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 4px 24px;
+	margin-bottom: 8px;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-title {
+	flex: 1;
+	min-width: 0;
+	text-align: center;
+	font-weight: 600;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-prev,
+#bs-delivery-date-kalendarz .ui-datepicker-next {
+	position: absolute;
+	top: 0;
+	cursor: pointer;
+	padding: 4px 6px;
+	user-select: none;
+	color: #767676;
+	font-size: 18px;
+	line-height: 1.4;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-prev:hover,
+#bs-delivery-date-kalendarz .ui-datepicker-next:hover {
+	color: #444;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-prev {
+	left: 0;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-next {
+	right: 0;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-prev.ui-datepicker-prev-hover,
+#bs-delivery-date-kalendarz .ui-datepicker-next.ui-datepicker-next-hover {
+	opacity: 0.6;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-calendar {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-calendar th {
+	text-align: center;
+	padding: 4px 0;
+	font-weight: 500;
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-calendar td {
+	text-align: center;
+	padding: 2px;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-calendar td a,
+#bs-delivery-date-kalendarz .ui-datepicker-calendar td span {
+	display: block;
+	padding: 6px 0;
+	border-radius: 4px;
+	text-decoration: none;
+	color: inherit;
+
+	/* Reset domyślnych stanów jQuery UI (na wypadek, gdyby na stronie był
+	   gdzieś załadowany jego motyw) — inaczej „dziś" i wybrana data mogłyby
+	   wizualnie wyglądać tak samo, mimo że nasze reguły niżej są różne. */
+	background: transparent;
+	border: none;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-calendar td a:hover {
+	background: rgba( 0, 0, 0, 0.08 );
+}
+
+/* „Dziś" (jeszcze niewybrane) — wyraźnie odróżnione od wybranej daty:
+   obramowanie, bez wypełnienia. */
+#bs-delivery-date-kalendarz .ui-datepicker-calendar .ui-datepicker-today a {
+	font-weight: 700;
+	border: 2px solid #767676;
+	background: transparent;
+	color: inherit;
+}
+
+/* Faktycznie wybrana przez użytkownika data — jedyny stan z zielonym
+   wypełnieniem. Reguła musi być NIŻEJ niż .ui-datepicker-today, żeby
+   wygrywała, gdy dziś jest jednocześnie wybraną datą. */
+#bs-delivery-date-kalendarz .ui-datepicker-calendar .ui-datepicker-current-day a {
+	background: #0f9d4f;
+	border-color: #0f9d4f;
+	color: #fff;
+	font-weight: 700;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker-calendar td.ui-datepicker-other-month {
+	visibility: hidden;
+}
+
+#bs-delivery-date-kalendarz .ui-datepicker td.bs-delivery-date-niedostepny a,
+#bs-delivery-date-kalendarz .ui-datepicker td.bs-delivery-date-niedostepny span {
+	background: #eee;
+	color: #aaa;
+	text-decoration: line-through;
+	pointer-events: none;
+	border-radius: 4px;
+}
+
+.bs-delivery-date__komunikat {
+	margin-top: 8px;
+	margin-bottom: 16px;
+	padding: 10px 12px;
+	background: #fdecea;
+	border: 1px solid #f5c2c0;
+	color: #7a1e1e;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.bs-delivery-date__komunikat--blad {
+	background: #fdecea;
+	border-color: #f5c2c0;
+	color: #7a1e1e;
+}

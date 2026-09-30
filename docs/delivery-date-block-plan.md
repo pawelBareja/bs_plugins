@@ -1,6 +1,40 @@
 # Plan: Własna wtyczka „Kalendarz Dostawy" — zamiennik Order Delivery Date
 
-> Status: plan, nie zrealizowany. To trzecia iteracja koncepcji — zobacz „Historia" na dole po szczegóły dwóch poprzednich, odrzuconych podejść.
+> Status: **zbudowane, jeszcze nie wdrożone na produkcję.** Kod gotowy w `src/bs-delivery-date/`. Zobacz „Status budowy" poniżej.
+
+## Status budowy
+
+### Duża zmiana architektury (po testach na żywo): klasyczne hooki zamiast Store API
+
+Pierwsza wersja rejestrowała pola przez `woocommerce_register_additional_checkout_field()` (nowoczesne Additional Checkout Fields API) i walidowała przez `woocommerce_store_api_checkout_update_order_from_request`. **Testy na żywo pokazały, że to niestabilne**: w momencie odpalenia tego hooka `$request`/`$order` nie zawsze mają jeszcze zapisane wartości pól ani adresu — powodowało to fałszywe blokady mimo poprawnie wybranej daty, a sam hook odpala się też przy niepowiązanych częściowych żądaniach (`?__experimental_calc_totals=true`).
+
+Znaleźliśmy kod źródłowy wtyczki **Order Delivery Date (OrdDD)** — tej samej, którą zastępujemy, zainstalowanej i **działającej** na tym samym blokowym checkout — na WordPress.org SVN (https://plugins.svn.wordpress.org/order-delivery-date-for-woocommerce/trunk/includes/class-orddd-lite-process.php). Okazuje się, że **w ogóle nie używa Store API** — używa klasycznych hooków:
+- `woocommerce_after_order_notes` + `woocommerce_form_field()` do renderowania
+- `woocommerce_checkout_process` + `wc_add_notice(..., 'error')` do walidacji/blokady
+- `woocommerce_checkout_update_order_meta` do zapisu
+
+WooCommerce Blocks ma wbudowaną warstwę kompatybilności, która automatycznie pokazuje takie klasyczne pola w bloku Checkout i poprawnie tłumaczy `wc_add_notice` na błąd blokujący finalizację. To sprawdzony w praktyce (OrdDD realnie działa) wzorzec, więc **przepisaliśmy `checkout-fields.php` i `validation.php` na dokładnie ten sam mechanizm**. `checkout-enhance.js` nie wymagał zmian — już wcześniej znajdował pola po treści etykiety, co działa niezależnie od mechanizmu rejestracji pod spodem.
+
+### Zbudowane pliki
+- `config.php`, `includes/availability.php` — logika dostępności (pełna blokada weekendów potwierdzona w kodzie)
+- `includes/checkout-fields.php` — renderowanie pól przez klasyczne hooki + helpery wykrywania odbioru osobistego
+- `includes/rest-api.php` — endpoint dostępności
+- `includes/validation.php` — walidacja przez `woocommerce_checkout_process` + zapis przez `woocommerce_checkout_update_order_meta`
+- `includes/emails.php` — widoczność w mailach (czyta własne klucze meta `_bs_delivery_date` / `_bs_delivery_time_slot`)
+- `assets/checkout-enhance.js` + `assets/checkout-enhance.css` — inline kalendarz (jQuery UI Datepicker), widget kodu pocztowego, ukrywanie godziny dla odbioru osobistego, wymagane pola
+- `bs-delivery-date.php` — bootstrap, enqueue assetów tylko na checkout
+- Wpięte w `bs-plugins.php`
+
+Zweryfikowane: lint JS/CSS czysty, ręczny przegląd składni PHP (brak PHP lokalnie do `php -l`), `npm run build` poprawnie kopiuje cały folder do `build/bs-delivery-date/` (dopisany `CopyWebpackPlugin` w `webpack.config.js`).
+
+**Wdrożenie wraca do standardowego wzorca repo:** tylko `build/` + `bs-plugins.php` trafiają na serwer przez SFTP.
+
+**Potwierdzone na żywo:** panel pojawia się we właściwym miejscu (zaraz po wyborze metody wysyłki), kalendarz renderuje się poprawnie, blokada bez kodu pocztowego działa, wpisanie warszawskiego kodu odblokowuje kalendarz, weekendy poprawnie wykluczone (API), przełączenie „Odbiór osobisty" działa.
+
+**Niezweryfikowane na żywo po przepisaniu na klasyczne hooki (do sprawdzenia przy kolejnym teście):**
+- Czy `$_POST['shipping_postcode']` / `$_POST['billing_postcode']` to faktycznie poprawne klucze w tej wersji WooCommerce (nazwy klasyczne, wysokie zaufanie, ale niepotwierdzone na tym konkretnym sklepie)
+- Czy `woocommerce_checkout_process` / `wc_add_notice` faktycznie blokuje finalizację na blokowym checkout tego sklepu (wysokie zaufanie na podstawie działania OrdDD, ale nie testowane bezpośrednio dla naszego kodu)
+- Czy `woocommerce_checkout_update_order_meta` fires poprawnie i `$_POST` jest tam populowane przy submisji przez blokowy checkout
 
 ## Cel
 Zastąpić obecnie używaną wtyczkę **Order Delivery Date Lite (OrdDD)** własną wtyczką w tym repo. Powody: OrdDD jest brzydkie, sprawia problemy, i użytkownik musiał doklejać własny, bardzo rozbudowany kod (JS wstrzykiwany przez `wp_footer`) żeby dodać funkcje, których OrdDD nie ma natywnie. Własna wtyczka ma mieć te funkcje wbudowane od razu, bez doklejania z zewnątrz.
