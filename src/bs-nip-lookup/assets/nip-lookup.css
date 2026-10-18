@@ -1,0 +1,27 @@
+.bs-nip-lookup__komunikat {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-size: 13px;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.bs-nip-lookup__komunikat--info {
+	background: #eef3fb;
+	border: 1px solid #cfe0f5;
+	color: #2c5282;
+}
+
+.bs-nip-lookup__komunikat--sukces {
+	background: #eafbea;
+	border: 1px solid #b7e4b7;
+	color: #1a7d1a;
+}
+
+.bs-nip-lookup__komunikat--blad {
+	background: #fdecea;
+	border: 1px solid #f5c2c0;
+	color: #7a1e1e;
+}

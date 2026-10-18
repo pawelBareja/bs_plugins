@@ -14,6 +14,7 @@ Te pola **nie są nasze** (nie z `bs-delivery-date`) — pochodzą z zainstalowa
 #section_one-company_ulica  ← Ulica/adres
 #section_one-company_lokal  ← Nr domu/lokalu
 #section_one-company_postal ← Kod pocztowy
+#section_one-company_city   ← Miejscowość
 #section_one-nip_number     ← Numer NIP
 ```
 

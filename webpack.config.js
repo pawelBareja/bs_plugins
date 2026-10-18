@@ -16,6 +16,10 @@ module.exports = {
 					from: 'src/bs-delivery-date',
 					to: 'bs-delivery-date',
 				},
+				{
+					from: 'src/bs-nip-lookup',
+					to: 'bs-nip-lookup',
+				},
 			],
 		} ),
 	],

@@ -103,6 +103,12 @@ add_action( 'wp_body_open', 'bs_plugins_render_topbar' );
 
 require_once __DIR__ . '/build/bs-delivery-date/bs-delivery-date.php';
 
+// =============================================================================
+// Autouzupełnianie danych firmy po NIP w checkout WooCommerce
+// =============================================================================
+
+require_once __DIR__ . '/build/bs-nip-lookup/bs-nip-lookup.php';
+
 function bs_plugins_enqueue_assets(): void {
 	if ( file_exists( __DIR__ . '/build/global.css' ) ) {
 		wp_enqueue_style(
